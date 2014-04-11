@@ -1,0 +1,11 @@
+{
+	"u1":{ "user":"John", "age":21, "country":"United State" },
+	"u2":{ "user":"Wayne", "age":21, "country":"United Kingdom" },
+	"u3":{ "user":"Chris", "age":22, "country":"Las Vegas" },
+	"u4":{ "user":"Lawrence", "age":22, "country":"Mexico" },
+	"u5":{ "user":"Michael", "age":23, "country":"Egypt" },
+	"u6":{ "user":"Rene", "age":23, "country":"Europe" },
+	"u7":{ "user":"Gabriel", "age":24, "country":"Norland" },
+	"u8":{ "user":"Stephen", "age":24, "country":"Usop Land" },
+	"u9":{ "user":"Rafael", "age":33, "country":"Luffy Land"}
+}

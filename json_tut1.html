@@ -1,0 +1,24 @@
+<html>
+<head><title>Fetch JSON array Data</title></head>
+<script type="text/javascript">
+	var obj1 = { user:"John", age:25, country:"United State" };
+	var obj2 = { user:"Wayne", age:27, country:"United Kingdom" };
+	var obj3 = { user:"Jose", age:21, country:"Las Vegas" };
+	var obj4 = { u1:obj1, u2:obj2, u3:obj3 };
+
+	// document.write(obj1.user+" is "+obj1.age+" years old from "+obj1.country);
+	// document.write("<hr />"+obj2.user+" is "+obj2.age+" years old from "+obj2.country);
+	// document.write(" <hr />");
+	// document.write(obj4.u3.country);
+	// document.write(" <hr />");
+	// document.write(obj4["u2"]["country"]);
+
+	var meats = ["beef", "pork", "lamb"];
+	var fruits = ["apple", "mango", "guavano", "orange"];
+	var obj5 = { arr1:meats, arr2:fruits};
+	document.write(obj5.arr1[0]+" with a "+obj5.arr2[1]+" in dinner.");
+</script>
+<body>
+<ul></ul>
+</body>
+</html>
