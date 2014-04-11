@@ -5,9 +5,9 @@
 	    // Create our XMLHttpRequest object
 	    var hr = new XMLHttpRequest();
 
-	    hr.open("GET", "mylist.json", true);
+	    hr.open("POST", "my_json_list.php", true);
 	    // Set content type header information for sending url encoded variables in the request
-	    hr.setRequestHeader("Content-type", "application/json", true);
+	    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	    // Access the onreadystatechange event for the XMLHttpRequest object
 	    hr.onreadystatechange = function() {
 		    if(hr.readyState == 4 && hr.status == 200) {
@@ -20,13 +20,14 @@
 
 				for(var obj in data){
 
-					results.innerHTML += data[obj].user+" is "+data[obj].age+" and lives in "+data[obj].country+"<hr />";
+					results.innerHTML += " Property A: "+data[obj].propertyA+"<hr />";
+					results.innerHTML += " Property B: "+data[obj].propertyB;
 
 				}
 		    }
 	    }
 	    
-	    hr.send(null); // Actually execute the request
+	    hr.send("var1=birds&var2=bees"); // Actually execute the request
 	    results.innerHTML = "requesting ...";
 	}
 </script>

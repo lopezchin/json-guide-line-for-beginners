@@ -5,9 +5,9 @@
 	    // Create our XMLHttpRequest object
 	    var hr = new XMLHttpRequest();
 
-	    hr.open("GET", "mylist.json", true);
+	    hr.open("GET", "my_json_list.php", true);
 	    // Set content type header information for sending url encoded variables in the request
-	    hr.setRequestHeader("Content-type", "application/json", true);
+	    hr.setRequestHeader("Content-type", "application/json");
 	    // Access the onreadystatechange event for the XMLHttpRequest object
 	    hr.onreadystatechange = function() {
 		    if(hr.readyState == 4 && hr.status == 200) {
