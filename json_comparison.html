@@ -1,0 +1,140 @@
+<html>
+<head><title>Fetch JSON array Data</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<style type="text/css">
+		div#databox{
+			padding:13px;
+			background:#f3f3f3;
+			border: #ccc 1px solid;
+			width: 550px;
+			height: 400px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		// var myTimer;
+        //event handler for submit button
+     //    $(document).ready(function() {
+	    //     $("#btnSubmit").click(function () {
+	    //         //collect userName and password entered by users
+	    //         var userName = $("#username").val();
+	    //         var passWord = $("#password").val();
+
+	    //         //call the authenticate function
+
+			  //   var hr = new XMLHttpRequest();
+
+			  //   // hr.open("POST", "json_tut6_data.php", true); //local
+			  //   hr.open("POST", "http://1fx.philwebservicesdev.com/data_fetching.php", true); //dev server
+			  //   // Set content type header information for sending url encoded variables in the request
+			  //   hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  //   // Access the onreadystatechange event for the XMLHttpRequest object
+			  //   hr.onreadystatechange = function() {
+				 //    if(hr.readyState == 4 && hr.status == 200) {
+					// 	// d stands for DATA
+					// 	var d = JSON.parse(hr.responseText);
+					// 	// arbitraybox.innerHTML = d.arbitrary.returntime;
+					// 	// databox.innerHTML = ""; // grabbing the data to json file
+
+
+					// 	// o stands for object
+					// 	for(var o in d);
+					// 	var dataUser = d[o].user;
+					// 	var dataPass = d[o].password;
+
+				 //    }
+			  //   }
+			    
+			  //   hr.send(null); // Actually execute the request
+	    //     });
+	    // });
+
+		
+		$(document).ready(function () {
+        //event handler for submit button
+	        $("#btnSubmit").click(function () {
+	            //collect userName and password entered by users
+	            var userName = $("#username").val();
+	            var passWord = $("#password").val();
+
+	            //call the authenticate function
+	            authenticate(userName, password);
+	        });
+	    });
+
+	    //authenticate function to make ajax call
+	    function authenticate(userName, password) {
+	        $.ajax
+	        ({
+	            type: "POST",
+	            //the url where you want to sent the userName and password to
+	            url: "http://1fx.philwebservicesdev.com/data_fetching.php",
+	            dataType: 'json',
+	            async: false,
+	            //json object to sent to the authentication url
+	            data: '{"userName": "' + userName + '", "password" : "' + password + '"}',
+	            success: function () {
+	               
+	            }
+	        })
+	    }
+
+		// function ajax_json_data(){
+		//     // Create our XMLHttpRequest object
+		//     var databox = document.getElementById("databox");
+		//     var arbitraybox = document.getElementById("arbitraybox");
+
+		//     var hr = new XMLHttpRequest();
+
+		//     // hr.open("POST", "json_tut6_data.php", true); //local
+		//     hr.open("POST", "http://1fx.philwebservicesdev.com/data_fetching.php", true); //dev server
+		//     // Set content type header information for sending url encoded variables in the request
+		//     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//     // Access the onreadystatechange event for the XMLHttpRequest object
+		//     hr.onreadystatechange = function() {
+		// 	    if(hr.readyState == 4 && hr.status == 200) {
+		// 			// d stands for DATA
+		// 			var d = JSON.parse(hr.responseText);
+		// 			// arbitraybox.innerHTML = d.arbitrary.returntime;
+		// 			databox.innerHTML = ""; // grabbing the data to json file
+
+
+		// 			// o stands for object
+		// 			for(var o in d){
+		// 				if (d[o].user) {
+		// 					databox.innerHTML += '<p>'+d[o].user+'</p>';						
+		// 					databox.innerHTML += '<p>'+d[o].password+'</p>';						
+		// 				}
+		// 			}
+		// 	    }
+		//     }
+		    
+		//     hr.send(null); // Actually execute the request
+		//     // databox.innerHTML = "requesting ...";
+		//     // myTimer = setTimeout('ajax_json_data()', 10000);
+		// }
+
+	</script>
+</head>
+<body>
+
+<input type="text" name="username" id="username" class="text" maxlength="30" />
+<br />
+<input type="password" name="password" id="password" class="text" maxlength="30" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+<!--
+<h2>Timed JSON DATA Request Random Items Script</h2>
+<div id="databox"></div>
+<div id="arbitraybox"></div>
+
+<script type="text/javascript">
+	ajax_json_data();
+</script>
+-->
+
+</body>
+</html>

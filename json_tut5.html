@@ -23,7 +23,7 @@
 		    // Access the onreadystatechange event for the XMLHttpRequest object
 		    hr.onreadystatechange = function() {
 			    if(hr.readyState == 4 && hr.status == 200) {
-				 	//var return_data = hr.responseText;
+				 	// var return_data = hr.responseText;
 					// document.getElementById("results").innerHTML = return_data;
 
 					var d = JSON.parse(hr.responseText);
