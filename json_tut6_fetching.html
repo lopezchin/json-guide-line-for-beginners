@@ -1,0 +1,63 @@
+<html>
+<head><title>Fetch JSON array Data</title>
+	<style type="text/css">
+		div#databox{
+			padding:13px;
+			background:#f3f3f3;
+			border: #ccc 1px solid;
+			width: 550px;
+			height: 400px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		// var myTimer;
+		function ajax_json_data(){
+		    // Create our XMLHttpRequest object
+		    var databox = document.getElementById("databox");
+		    var arbitraybox = document.getElementById("arbitraybox");
+
+		    var hr = new XMLHttpRequest();
+
+		     hr.open("POST", "json_tut6_data.php", true); //local
+		    //hr.open("POST", "http://1fx.philwebservicesdev.com/json_tut6_data.php", true); //dev server
+		    // Set content type header information for sending url encoded variables in the request
+		    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		    // Access the onreadystatechange event for the XMLHttpRequest object
+		    hr.onreadystatechange = function() {
+			    if(hr.readyState == 4 && hr.status == 200) {
+					// d stands for DATA
+					var d = JSON.parse(hr.responseText);
+					// arbitraybox.innerHTML = d.arbitrary.returntime;
+					databox.innerHTML = ""; // grabbing the data to json file
+
+
+					// o stands for object
+					for(var o in d){
+						if (d[o].user) {
+							databox.innerHTML += '<p>'+d[o].user+'</p>';						
+							databox.innerHTML += '<p>'+d[o].password+'</p>';						
+						}
+					}
+			    }
+		    }
+		    
+		    hr.send("limit=2"); // Actually execute the request
+		    // databox.innerHTML = "requesting ...";
+		    // myTimer = setTimeout('ajax_json_data()', 10000);
+		}
+
+	</script>
+</head>
+<body>
+
+<h2>Timed JSON DATA Request Random Items Script</h2>
+<div id="databox"></div>
+<div id="arbitraybox"></div>
+
+<script type="text/javascript">
+	ajax_json_data();
+</script>
+
+</body>
+</html>

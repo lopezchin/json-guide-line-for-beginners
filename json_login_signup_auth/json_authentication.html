@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    //event handler for submit button
+      $("#btnSubmit").click(function () {
+          //collect userName and password entered by users
+          var userName = $("#username").val();
+          var passWord = $("#password").val();
+
+          //call the authenticate function
+          checkingValue(userName, passWord);
+          // alert(userName+ '/' +passWord);
+          // authenticate(userName, passWord);
+      });
+  });
+
+  function checkingValue(userName, passWord){
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'http://localhost/JSON_beginner/json_login_signup_auth/json_tut6_data_fetch.php',
+        // url: 'http://1fx.philwebservicesdev.com/data_fetching.php',
+        data: {
+          'username': userName,
+          'password': passWord,
+          '_token': "",
+          'action': 'signup'
+
+        },
+        success: function(data) {
+
+          if (typeof data !== 'object') {
+            data = jQuery.parseJSON(data);
+          }
+
+          //if data is success
+          if (data.status == "success") {
+            alert(data.message);
+          } else {
+            alert(data.message);
+          }
+
+          // if data is undefiened
+          if (typeof data.redirect !== 'undefined') {
+            window.location = data.redirect;
+          }
+        }
+        
+      });
+  }
+  //authenticate function to make ajax call
+  // function authenticate(userName, passWord) {
+  //     $.ajax({
+  //      dataType: "json",
+  //      // url: 'http://1fx.philwebservicesdev.com/data_fetching.php', //live database
+  //      url: 'http://localhost/JSON_beginner/json_login_signup_auth/json_tut6_data_fetch.php', // localhost
+  //      data: 'data',
+  //      success: function(response){
+           
+  //         var UName = response["User"]["user"]; 
+  //         if(user==null $$ user==""){
+  //           alert('No Property');
+  //         }else{
+  //           alert("Success");
+  //         }
+           
+  //        // if(userName == response["User"]["user"] && passWord == response["User"]["password"]){
+  //        //    // console.log("Success");
+  //        //    alert("Success!");
+  //        // }else {
+  //        //    // console.log("Success");
+  //        //    alert("Invalid input on user and password");
+  //        }
+  //         }
+  //         }
+  //      }
+  //    });
+  // }  
+
+</script>
+
+<body>
+
+<!-- form for fetching value's -->
+<input type="text" name="username" id="username" class="text" maxlength="30" />
+<br />
+<input type="password" name="password" id="password" class="text" maxlength="30" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+
+</body>
+</html>

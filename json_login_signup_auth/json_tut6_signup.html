@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    //event handler for submit button
+      $("#btnSubmit").click(function () {
+      	//collect userName and password entered by users
+		var userName = $("#username").val();
+		var passWord = $("#password").val();
+
+		//fetchdata(userName, passWord);
+
+	  	//alert(userName+' '+passWord); // checking if the input send
+
+      	$.ajax({
+			type: 'POST',
+			url: 'http://localhost/JSON_beginner/json_tut6_data_inserter.php',
+			// url: 'http://1fx.philwebservicesdev.com/json_tut6_data_inserter.php',
+			data: {
+				'username': userName,
+				'password': passWord,
+				'_token': "",
+				'action': 'signup'
+
+			}
+			
+ 		});
+
+      });
+  });
+
+ //  function fetchdata(userName, passWord) {
+	// $.ajax({
+	// 	type: 'POST',
+	// 	url: 'http://localhost/sealite/dealer/corporate-presentation',
+	// 	data: {
+	// 		'current_uid': currentuserid,
+	// 		'current_image_name': currentimagename,
+	// 		'_token': "",
+	// 		'action': 'send_mail'
+	// 	}
+		
+	// });
+ //  }  
+
+</script>
+
+<input type="text" name="username" id="username" class="text" maxlength="30" placeholder="Username"/>
+<br />
+<input type="password" name="password" id="password" class="text" maxlength="30" placeholder="Password"/>
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+
+</body>
+</html>

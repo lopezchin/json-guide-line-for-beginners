@@ -34,7 +34,7 @@
 	
 	//BELOW CODE ARE PROVEN AND TESTED THAT RESULT WILL SHOW AND THE ITEM'S WILL BE IN JSON FORMAT
 	// if(isset($_POST['limit'])){
-		$limit = preg_replace('#[^0-9]#', '', 2);
+		// $limit = preg_replace('#[^0-9]#', '', 2);
 		
 		$host = "localhost";
 		$user = "root";
@@ -48,7 +48,7 @@
 		$i = 0;
 		$jsonData = '{';
 
-			$sqlString = "SELECT * FROM users ORDER BY RAND() LIMIT $limit" ;
+			$sqlString = "SELECT * FROM users" ;
 			$query = mysql_query($sqlString) or die (mysql_error()); 
 			while ($row = mysql_fetch_array($query)) {
 				$i++;
