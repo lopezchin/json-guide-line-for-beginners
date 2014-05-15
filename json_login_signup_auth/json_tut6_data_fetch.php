@@ -48,7 +48,7 @@
 				$i++;
 
 				$ret = array(					
-					'status' => 'success',
+					// 'status' => 'success',
 			    	'id' => $row["id"],
 			    	'user'=> $row["user"],
 					'password'  => $row["password"],

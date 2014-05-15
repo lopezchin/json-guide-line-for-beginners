@@ -7,49 +7,66 @@
 <body>
 
 <script type="text/javascript">
-  $(document).ready(function () {
-    //event handler for submit button
-      $("#btnSubmit").click(function () {
-      	//collect userName and password entered by users
+	$(document).ready(function () {
+	//event handler for submit button
+	  $("#btnSubmit").click(function () {
+	  	//collect userName and password entered by users
 		var userName = $("#username").val();
 		var passWord = $("#password").val();
 
 		//fetchdata(userName, passWord);
 
 	  	//alert(userName+' '+passWord); // checking if the input send
+	  	registerResult(userName, passWord);
 
-      	$.ajax({
+	  });
+	});
+
+	function registerResult(userName, passWord){
+
+	  	var msg="";
+
+	  	$.ajax({
 			type: 'POST',
-			url: 'http://localhost/JSON_beginner/json_tut6_data_inserter.php',
-			// url: 'http://1fx.philwebservicesdev.com/json_tut6_data_inserter.php',
+			dataType: 'json',
+			// url: 'http://localhost/JSON_beginner/json_login_signup_auth/json_tut6_data_inserter.php', //perfectly working
+			url: 'http://1fx.philwebservicesdev.com/json_tut6_data_inserter.php',
 			data: {
 				'username': userName,
 				'password': passWord,
 				'_token': "",
 				'action': 'signup'
+			},
 
-			}
+			success: function(data) {
+
+	          if (typeof data !== 'object') {
+	            data = jQuery.parseJSON(data);
+	          }
+
+	          //if data is success
+	          if (data.status == "success") {
+	            msg = data.message; 
+	            document.getElementById("result").innerHTML = msg;
+	          } else {
+	            msg = data.message;
+	            document.getElementById("result").innerHTML = msg;
+	          }
+
+	          // if data is undefiened
+	          if (typeof data.redirect !== 'undefined') {
+	            window.location = data.redirect;
+	          }
+	        }
 			
- 		});
+		});
 
-      });
-  });
+	}
 
- //  function fetchdata(userName, passWord) {
-	// $.ajax({
-	// 	type: 'POST',
-	// 	url: 'http://localhost/sealite/dealer/corporate-presentation',
-	// 	data: {
-	// 		'current_uid': currentuserid,
-	// 		'current_image_name': currentimagename,
-	// 		'_token': "",
-	// 		'action': 'send_mail'
-	// 	}
-		
-	// });
- //  }  
 
 </script>
+
+<div id="result"></div>
 
 <input type="text" name="username" id="username" class="text" maxlength="30" placeholder="Username"/>
 <br />

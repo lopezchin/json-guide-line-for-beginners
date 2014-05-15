@@ -2,14 +2,21 @@
 
 	//from dev server
 
-	header("Content-Type: application/json");
+	// header("Content-Type: application/json");
 
-	//to have access live use this 2 header below
-	// header('content-type: application/json; charset=utf-8');
-	// header("access-control-allow-origin: *");
+	// $host = "localhost";
+	// $user = "root";
+	// $password = "";
+	// $database = "wwwphilw_1fx";
 
-
-	//if live change this to your host, user, password, and live database
+	header('content-type: application/json; charset=utf-8');
+	header("access-control-allow-origin: *");
+		
+	// database connection
+	// $host = "localhost";
+	// $user = "wwwphilw_1fx";
+	// $password = "philweb223";
+	// $database = "wwwphilw_1fx";
 
 	$host = "localhost";
 	$user = "root";
@@ -20,25 +27,47 @@
 	
 	mysql_select_db($database) or die("Could not connect to database: ". mysql_error());
 
-	if (isset($_POST['action']) ) {
 
-		// var_dump('yes' . " - " . $_POST['username']);
+	if (isset($_GET['action']) ) {	
+
+		$userName = isset($_GET['username']) ? $_GET['username'] : null;
+		$passWord = isset($_GET['password']) ? $_GET['password'] : null;
+
+	}else if (isset($_POST['action']) ){
 
 		$userName = isset($_POST['username']) ? $_POST['username'] : null;
 		$passWord = isset($_POST['password']) ? $_POST['password'] : null;
 
-		var_dump($userName . " - " . $passWord);
+	}
 
-		$query = "INSERT INTO users(user,password)
-							 VALUES('$userName','$passWord')";
+	if($userName=="" || $passWord==""){
+		$ret = array(
+			'status' => 'error',
+			'message' => 'Dont leave blank on Username or Password.'
+		);
 
-		if($query=='' && $query==null){
-			$message="Error Occur!";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-		}else{
-			mysql_query($query);
-		}
+		echo json_encode($ret);
+			
+		exit();
+		
+	}
 
-	};
+	// var_dump($userName . " - " . $passWord);
+
+	$ret = array(
+		'user'=> $userName,
+		'password'  => $passWord,
+		'status' => 'success',
+		'message' => 'Successfully Signup!'
+	);
+
+	$query = "INSERT INTO users(user,password)
+						 VALUES('$userName','$passWord')";
+
+	mysql_query($query);
+	
+			
+	echo json_encode($ret);
+	exit();
 	
 ?>
