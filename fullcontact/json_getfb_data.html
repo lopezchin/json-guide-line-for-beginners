@@ -53,7 +53,19 @@
             //   $("div#resultdata").append(photo.type + " ");
             // };
 
-              $("div#resultdata").append(data.contactInfo.familyName + " ");
+            $("div#resultdata").append(data.contactInfo.fullName);
+            // $("div#resultdata").append(data.socialProfiles.username);
+
+            for(x in data.socialProfiles);
+            profile = data.socialProfiles[x];              
+            $("div#resultID").append(profile.id);
+            
+            if(profile.id){
+              document.getElementById('Pic').src = 'http://graph.facebook.com/' + profile.id + '/Picture';
+              document.getElementById('Pic').alt = profile.name;
+              document.getElementById('Pic').title = profile.name;
+            }
+
             
           } else {
             msg = "Not Found";
@@ -70,7 +82,9 @@
 
 <div id="result"></div>
 <div id="resultdata"></div>
+<div id="resultID"></div>
 <!-- form for fetching value's -->
+<div><img id="Pic" /></div>
 <input type="text" name="facebookUser" id="facebookUser" class="text" maxlength="30" />
 <br />
 <input type="submit" name="btnSubmit" id="btnSubmit" />

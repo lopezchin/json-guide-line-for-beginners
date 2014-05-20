@@ -6,6 +6,8 @@
 <body>
     <script>
         // Load the SDK Asynchronously
+       
+
         (function (d) {
             var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
             if (d.getElementById(id)) { return; }
@@ -18,7 +20,7 @@
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '1416223935319696', // App ID
-                channelUrl: '//' + window.location.hostname + '/channel', // Path to your   Channel File
+                // channelUrl: '//' + window.location.hostname + '/channel', // Path to your   Channel File
                 status: true, // check login status
                 cookie: true, // enable cookies to allow the server to access the session
                 xfbml: true  // parse XFBML
@@ -27,6 +29,8 @@
             // listen for and handle auth.statusChange events
             FB.Event.subscribe('auth.statusChange', function (response) {
                 console.log(response);
+                var profilePicsDiv = document.getElementById('profile_pics');
+
                 if (response.authResponse) {
                     // user has auth'd your app and is logged into Facebook
                     FB.api('/me', function (me) {
@@ -35,7 +39,7 @@
                         }
                         if (me.id) {
                             document.getElementById('FBId').innerHTML = me.id;
-                            document.getElementById('Pic').src = 'http://graph.facebook.com/' + me.id + '/Picture';
+                            document.getElementById('Pic').src = 'https://graph.facebook.com/' + me.id + '/picture';
                             document.getElementById('Pic').alt = me.name;
                             document.getElementById('Pic').title = me.name;
                         }
@@ -50,7 +54,33 @@
                             document.getElementById("DOB").innerHTML = me.birthday;
                         }
 
-                    })
+                    });
+    
+
+                    if (response.status != 'connected') {
+                        profilePicsDiv.innerHTML = '<em>You are not connected</em>';
+                        return;
+                    }
+                    FB.api({ method: 'friends.get' }, function(result) {
+                        // Log.info('friends.get response', result);
+
+                        console.log(result);
+                        var markup = '';
+                        var numFriends = result ? Math.min(5, result.length) : 0;
+                        if (numFriends > 0) {
+                          for (var i=0; i<numFriends; i++) {
+                            markup += (
+                              '<fb:profile-pic size="square" ' +
+                                              'uid="' + result[i] + '" ' +
+                                              'facebook-logo="true"' +
+                              '></fb:profile-pic>'
+                            );
+                          }
+                        }
+                        profilePicsDiv.innerHTML = markup;
+                        FB.XFBML.parse(profilePicsDiv);
+                    });
+
                     document.getElementById('auth-loggedout').style.display = 'none';
                     document.getElementById('auth-loggedin').style.display = 'block';
                 } else {
@@ -59,8 +89,44 @@
                     document.getElementById('auth-loggedin').style.display = 'none';
                 }
             });
+
+            // var profilePicsDiv = document.getElementById('profile_pics');
+
+            // FB.Event.subscribe('auth.statusChange', function (response) {
+            //   if (response.status != 'connected') {
+            //     profilePicsDiv.innerHTML = '<em>You are not connected</em>';
+            //     return;
+            //   }
+
+            //   FB.api({ method: 'friends.get' }, function(result) {
+            //     Log.info('friends.get response', result);
+            //     var markup = '';
+            //     var numFriends = result ? Math.min(5, result.length) : 0;
+            //     if (numFriends > 0) {
+            //       for (var i=0; i<numFriends; i++) {
+            //         markup += (
+            //           '<fb:profile-pic size="square" ' +
+            //                           'uid="' + result[i] + '" ' +
+            //                           'facebook-logo="true"' +
+            //           '></fb:profile-pic>'
+            //         );
+            //       }
+            //     }
+            //     profilePicsDiv.innerHTML = markup;
+            //     FB.XFBML.parse(profilePicsDiv);
+            //   });
+            // });
+            
             $("#auth-logoutlink").click(function () { FB.logout(function () { window.location.reload(); }); });
-        }
+        };
+
+
+        function FacebookInviteFriends(){
+            FB.ui({ method: 'apprequests', 
+                message: '1FX requested you to join.'
+            });
+            // alert('request sent!');
+        };
     </script>
     <h1>Facebook Login Authentication Example</h1>
     <div id="auth-status">
@@ -85,6 +151,11 @@
             Your Pic:
             <img id="Pic" />
             <br />
+
+            <div id="profile_pics"></div>
+
+            <div id="fb-root"></div>
+            <a href='#' onclick="FacebookInviteFriends();"> Facebook Invite Friends</a>
         </div>
     </div>
 </body>

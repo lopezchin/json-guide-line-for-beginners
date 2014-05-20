@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+</head>
+<body>
+	<div id="profile_pics"></div>
+
+	<script>
+
+	window.fbAsyncInit = function() {
+    	FB.init({
+	        appId: '1416223935319696', // App ID
+	        channelUrl: '//' + window.location.hostname + '/channel', // Path to your   Channel File
+	        status: true, // check login status
+	        cookie: true, // enable cookies to allow the server to access the session
+	        xfbml: true  // parse XFBML
+	    });
+
+	    // Additional initialization code 
+	    var profilePicsDiv = document.getElementById('profile_pics');
+		FB.getLoginStatus(function(response) {
+		  if (response.status != 'connected') {
+		    profilePicsDiv.innerHTML = '<em>You are not connected</em>';
+		    return;
+		  }
+
+		  FB.api({ method: 'friends.get' }, function(result) {
+		    Log.info('friends.get response', result);
+		    var markup = '';
+		    var numFriends = result ? Math.min(5, result.length) : 0;
+
+		    console.log(numfriends);
+		    if (numFriends > 0) {
+		      for (var i=0; i<numFriends; i++) {
+		        markup += (
+		          '<fb:profile-pic size="square" ' +
+		                          'uid="' + result[i] + '" ' +
+		                          'facebook-logo="true"' +
+		          '></fb:profile-pic>'
+		        );
+		      }
+		    }
+		    profilePicsDiv.innerHTML = markup;
+		    FB.XFBML.parse(profilePicsDiv);
+		  });
+		});
+	};
+
+	</script>
+</body>
+</html>
+
