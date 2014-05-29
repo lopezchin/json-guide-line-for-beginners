@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<div id="accesstoken"></div>
+<div id="profile_pics"></div>
+<div id="fb-root"></div>
+<script src="https://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        FB.init({ 
+            appId: '1416223935319696', 
+            cookie: true, 
+            xfbml: true, 
+            status: true });
+
+        FB.getLoginStatus(function (response) {
+            if (response.authResponse) {
+                document.getElementById('accesstoken').innerHTML = response.authResponse.accessToken;
+                FB.api(
+                    "/{friendlist-id}",
+                    function (response) {
+                      if (response && !response.error) {
+                        console.log(response);
+                      }
+                    }
+                );
+            } else {
+                // do something...maybe show a login prompt
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

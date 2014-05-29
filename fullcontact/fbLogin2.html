@@ -85,6 +85,7 @@
                         FB.XFBML.parse(profilePicsDiv);
                     });
 
+
                     document.getElementById('auth-loggedout').style.display = 'none';
                     document.getElementById('auth-loggedin').style.display = 'block';
                 } else {
@@ -93,6 +94,7 @@
                     document.getElementById('auth-loggedin').style.display = 'none';
                 }
             });
+
 
             // var profilePicsDiv = document.getElementById('profile_pics');
 
@@ -124,6 +126,55 @@
             $("#auth-logoutlink").click(function () { FB.logout(function () { window.location.reload(); }); });
         };
 
+
+        function PostMessage() {
+            // FB.api('/me/feed', 'post', {
+            //     message: document.getElementById("fb_message").value
+
+            // });
+
+            var opts = {
+                message : document.getElementById('fb_message').value,
+                name : 'Post Title',
+                link : 'www.1fx.philwebservicesdev.com',
+                description : 'post description',
+                picture : 'https://graph.facebook.com/1406503342967785/picture'
+            };
+
+            FB.api('/me/feed', 'post', opts, function(response){
+                if (!response || response.error)
+                {
+                    alert('Posting error occured');
+                }
+                else
+                {
+                    alert('Success - Post ID: ' + response.id);
+                }
+            });
+
+            console.log(document.getElementById('fb_message').value);
+
+            // var opts = {
+            //     message : document.getElementById('fb_message').value,
+            //     name : 'Post Title',
+            //     link : 'www.postlink.com',
+            //     description : 'post description',
+            //     picture : 'http://2.gravatar.com/avatar/8a13ef9d2ad87de23c6962b216f8e9f4?s=128&amp;d=mm&amp;r=G'
+            // };
+            // FB.api('/me/feed', 'post', opts, function(response){
+            //     if (!response || response.error)
+            //     {
+            //         alert('Posting error occured');
+            //     }
+            //     else
+            //     {
+            //         alert('Success - Post ID: ' + response.id);
+            //     }
+            // });
+            //alert("hello world");
+
+            
+        };
 
         function FacebookInviteFriends(){
             FB.ui({ method: 'apprequests', 
@@ -160,6 +211,12 @@
 
             <div id="fb-root"></div>
             <a href='#' onclick="FacebookInviteFriends();"> Facebook Invite Friends</a>
+            <br><br>
+
+
+            <textarea id="fb_message" cols="10" rows="5"></textarea><br>
+            <input type="button" id="postButton" value="Post" onclick="PostMessage();" />
+
         </div>
     </div>
 </body>
