@@ -1,0 +1,70 @@
+<html>
+<head><title>Fetch JSON array Data</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<style type="text/css">
+		div#databox{
+			padding:13px;
+			background:#f3f3f3;
+			border: #ccc 1px solid;
+			width: 550px;
+			height: 400px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function () {
+        //event handler for submit button
+	        $("#btnSubmit").click(function () {
+	            //collect userName and password entered by users
+	            var userName = $("#username").val();
+	            var passWord = $("#password").val();
+
+	            //call the authenticate function
+	            // alert(userName+'/'+passWord);
+	            authenticate(userName, passWord);
+	        });
+	    });
+
+	    // authenticate function to make ajax call
+	    function authenticate(userName, passWord){
+	        $.ajax
+	        ({
+	            type: "POST",
+	            contentType: "application/x-www-form-urlencoded", 
+	            //the url where you want to sent the userName and password to
+	            url: "https://devapi.thecurrencycloud.com/api/en/v1.0/authentication/token/new",
+	            dataType: 'json',
+	            async: false,
+	            //json object to sent to the authentication url
+	            data: '{"login_id": "' + userName + '", "api_key" : "' + passWord + '"}',
+	            success: function () {
+	               
+	            }
+	        })
+	    }
+
+	</script>
+</head>
+<body>
+
+<input type="text" name="username" id="username" class="text" maxlength="100" />
+<br />
+<input type="password" name="password" id="password" class="text" maxlength="100" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+<!--
+<h2>Timed JSON DATA Request Random Items Script</h2>
+<div id="databox"></div>
+<div id="arbitraybox"></div>
+
+<script type="text/javascript">
+	ajax_json_data();
+</script>
+-->
+
+</body>
+</html>

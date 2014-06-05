@@ -12,7 +12,7 @@
             var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement('script'); js.id = id; js.async = true;
-            js.src="http://connect.facebook.net/en_US/all.js";
+            js.src="//connect.facebook.com/en_US/all.js"; 
             ref.parentNode.insertBefore(js, ref);
         }(document));
 
@@ -23,7 +23,7 @@
                 // channelUrl: '//' + window.location.hostname + '/channel', // Path to your   Channel File
                 status: true, // check login status
                 cookie: true, // enable cookies to allow the server to access the session
-                xfbml: true  // parse XFBML
+                xfbml: true,  // parse XFBML
             });
 
             // listen for and handle auth.statusChange events
@@ -65,29 +65,31 @@
                         profilePicsDiv.innerHTML = '<em>You are not connected</em>';
                         return;
                     }
-                    FB.api({ method: 'friends.get' }, function(result) {
+                    FB.api('/me/taggable_friends', function(result) {
                         // Log.info('friends.get response', result);
+                        // for(var o in d){
+                        //     if (d[o].src) {
+                        //         thumbnailbox.innerHTML += '<div onclick="putinframe(\''+d[o].src+'\')"><img src="'+d[o].src+'"></div>';                     
+                        //     }
+                        // }
+                        
+                        var profile_pics = document.getElementById("profile_pics");
+            			result.data.forEach(function(entry) {
+            			    // console.log('Id: '+entry.id);
+            			    // console.log('Name: '+entry.name);
+            			    // console.log('Image Url: '+entry.picture.data.url);
+            			    // console.log('\n\n');
 
-                        console.log(result);
-                        var markup = '';
-                        var numFriends = result ? Math.min(5, result.length) : 0;
-                        if (numFriends > 0) {
-                          for (var i=0; i<numFriends; i++) {
-                            markup += (
-                              '<fb:profile-pic size="square" ' +
-                                              'uid="' + result[i] + '" ' +
-                                              'facebook-logo="true"' +
-                              '></fb:profile-pic>'
-                            );
-                          }
-                        }
-                        profilePicsDiv.innerHTML = markup;
-                        FB.XFBML.parse(profilePicsDiv);
+                            // profile_pics.innerHTML += "<div>"+entry.id+'<br>'+entry.name+'<br>'+'<img src="'+entry.picture.data.url+'"><div>';
+
+                            profile_pics.innerHTML += "<div><img src="+entry.picture.data.url+"> "+entry.name+'<div>';
+            			});
+			
                     });
-
 
                     document.getElementById('auth-loggedout').style.display = 'none';
                     document.getElementById('auth-loggedin').style.display = 'block';
+                    
                 } else {
                     // user has not auth'd your app, or is not logged into Facebook
                     document.getElementById('auth-loggedout').style.display = 'block';
@@ -95,34 +97,6 @@
                 }
             });
 
-
-            // var profilePicsDiv = document.getElementById('profile_pics');
-
-            // FB.Event.subscribe('auth.statusChange', function (response) {
-            //   if (response.status != 'connected') {
-            //     profilePicsDiv.innerHTML = '<em>You are not connected</em>';
-            //     return;
-            //   }
-
-            //   FB.api({ method: 'friends.get' }, function(result) {
-            //     Log.info('friends.get response', result);
-            //     var markup = '';
-            //     var numFriends = result ? Math.min(5, result.length) : 0;
-            //     if (numFriends > 0) {
-            //       for (var i=0; i<numFriends; i++) {
-            //         markup += (
-            //           '<fb:profile-pic size="square" ' +
-            //                           'uid="' + result[i] + '" ' +
-            //                           'facebook-logo="true"' +
-            //           '></fb:profile-pic>'
-            //         );
-            //       }
-            //     }
-            //     profilePicsDiv.innerHTML = markup;
-            //     FB.XFBML.parse(profilePicsDiv);
-            //   });
-            // });
-            
             $("#auth-logoutlink").click(function () { FB.logout(function () { window.location.reload(); }); });
         };
 
@@ -130,7 +104,6 @@
         function PostMessage() {
             // FB.api('/me/feed', 'post', {
             //     message: document.getElementById("fb_message").value
-
             // });
 
             var opts = {
@@ -153,33 +126,13 @@
             });
 
             console.log(document.getElementById('fb_message').value);
-
-            // var opts = {
-            //     message : document.getElementById('fb_message').value,
-            //     name : 'Post Title',
-            //     link : 'www.postlink.com',
-            //     description : 'post description',
-            //     picture : 'http://2.gravatar.com/avatar/8a13ef9d2ad87de23c6962b216f8e9f4?s=128&amp;d=mm&amp;r=G'
-            // };
-            // FB.api('/me/feed', 'post', opts, function(response){
-            //     if (!response || response.error)
-            //     {
-            //         alert('Posting error occured');
-            //     }
-            //     else
-            //     {
-            //         alert('Success - Post ID: ' + response.id);
-            //     }
-            // });
-            //alert("hello world");
-
             
         };
 
         function FacebookInviteFriends(){
-            FB.ui({ method: 'apprequests', 
+            console.log(FB.ui({ method: 'apprequests', 
                 message: '1FX requested you to join.'
-            });
+            }));
             // alert('request sent!');
         };
     </script>
@@ -206,15 +159,19 @@
             Your Pic:
             <img id="Pic" />
             <br />
+            <br />
 
+            Your Friends:
             <div id="profile_pics"></div>
 
+            <br />
+            <br />
             <div id="fb-root"></div>
             <a href='#' onclick="FacebookInviteFriends();"> Facebook Invite Friends</a>
             <br><br>
 
 
-            <textarea id="fb_message" cols="40" rows="5"></textarea><br>
+            <textarea id="fb_message" cols="10" rows="5"></textarea><br>
             <input type="button" id="postButton" value="Post" onclick="PostMessage();" />
 
         </div>
