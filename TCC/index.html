@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    //event handler for submit button
+      $("#btnSubmit").click(function () {
+          //collect userName and password entered by users
+          var fbUser = $("#facebookUser").val();
+
+          if(fbUser != null && fbUser != ""){
+            var fbUsername = fbUser;
+
+            checkingValue(fbUsername);
+
+          }else{
+            msg = "Dont leave blank on input field"; 
+            document.getElementById("result").innerHTML = msg;
+          }
+
+          //call the authenticate function
+           // alert(fbUsername);
+      });
+  });
+
+  function checkingValue(fbUsername){
+       $.ajax({
+          type: "POST",
+          url: "https://api.fullcontact.com/v2/person.json?apiKey=c2867eeefff9edc0&facebookUsername="+fbUsername,                
+          contentType: "application/json; charset=utf-8",
+          dataType: "jsonp",
+          success: function(data) {
+
+          if (typeof data !== 'object') {
+            data = jQuery.parseJSON(data);
+          }
+
+          //if data is success
+          if (data.status == "200") {
+            msg = "Success"; 
+            document.getElementById("result").innerHTML = msg;
+
+
+            // photo use array because there is many photo 
+            // for(x in data.photos){
+            //   photo = data.photos[x];              
+            //   // $("div#resultdata").append(photo.type + " ");
+            //   $("div#resultdata").append(photo.type + " ");
+            // };
+
+            // getting the result on the ajax url json
+            $("div#resultdata").append(data.contactInfo.fullName);
+            // $("div#resultdata").append(data.socialProfiles.username);
+
+            for(x in data.socialProfiles);
+            profile = data.socialProfiles[x];              
+            $("div#resultID").append(profile.id);
+            
+            if(profile.id){
+              document.getElementById('Pic').src = 'http://graph.facebook.com/' + profile.id + '/Picture';
+              document.getElementById('Pic').alt = profile.name;
+              document.getElementById('Pic').title = profile.name;
+            }
+
+            
+          } else {
+            msg = "Not Found";
+            document.getElementById("result").innerHTML = msg;
+          }
+        }
+      });
+  }
+
+
+</script>
+
+<body>
+
+<div id="result"></div>
+<div id="resultdata"></div>
+<div id="resultID"></div>
+<!-- form for fetching value's -->
+<div><img id="Pic" /></div>
+<input type="text" name="facebookUser" id="facebookUser" class="text" maxlength="30" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+
+</body>
+</html>

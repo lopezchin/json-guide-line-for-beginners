@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+  $(function () {
+
+
+	  $.ajax({
+	  	type: "POST",
+	    dataType : 'JSONP',
+	    contentType: "application/x-www-form-urlencoded",
+	    url : "https://devapi.thecurrencycloud.com/api/en/v1.0/authentication/token/new",
+	    data: {
+		    'login_id': 'phiweb.seniorprogrammer05@gmail.com',
+		    'api_key': '4107a1cf7fba52e49d3257f24693078d4c10f13cf7ff1c2e74417b67fd63b103'
+		},
+	    success : function(data){
+	    	console.log(data);
+	      //YOUR CODE FOR AJAX SUCCESS
+
+	    }, error : function(err){
+	    	console.log(err);
+	      //YOUR CODE FOR AJAX FAILURE  
+	    }
+	});
+
+	//event handler for submit button
+ 	//    $.ajax({
+ 	//      	type: "GET",
+	// 	url: "https://devapi.thecurrencycloud.com/api/en/v1.0/authentication/token/new",                
+	// 	// contentType: "application/x-www-form-urlencoded",
+	// 	contentType: "application/json; charset=utf-8",
+	// 	dataType: "jsonp",
+	// 	data: {
+	// 	    login_id: "philweb.seniorprogrammer05@gmail.com",
+	// 	    api_key: "4107a1cf7fba52e49d3257f24693078d4c10f13cf7ff1c2e74417b67fd63b103"
+	// 	},
+	// 	success: function( data ) {
+	// 		console.log(data);
+	// 	}
+	// });
+
+  });
+
+</script>
+
+<body>
+
+<div>Getting TCC data</div>
+
+</body>
+</html>
