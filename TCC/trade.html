@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    //event handler for submit button
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/JSON_beginner/TCC/authentication.php",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(res) {
+          // console.log(res.data);
+          var tokenKey = res.data;
+          //result show on success respond
+          document.getElementById('tokenID').innerHTML = tokenKey;
+          document.getElementById('token').value = tokenKey;
+
+      }
+    });
+
+    $("#btnSubmit").click(function () {
+        //collect userName and password entered by users
+
+        var token_key = $("#token").val();
+        var buy_currency = $("#buy_currency").val();
+        var sell_currency = $("#sell_currency").val();
+        var amount = $("#amount").val();
+        var side = $("#side").val();
+        var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked)  to get true/false result
+        var reason = $("#reason").val();
+
+        //call the authenticate function
+        // checkingValue(userName, passWord);
+        // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
+        // document.getElementById("result").innerHTML = buy_currency+ '<br>' +sell_currency+ '<br>' +amount+ '<br>' +side+ '<br>' +term_agreement+ '<br>' +reason+ '<br>' +token_key;
+        checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
+    
+    });
+
+  });
+
+
+
+  function checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason){
+    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason);
+
+    var msg="";
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      // url: 'http://localhost/JSON_beginner/json_login_signup_auth/json_tut6_data_fetch.php', //perfectly working
+      url: 'http://localhost/JSON_beginner/TCC/trade.php',
+      data: {
+        'tokenKey': token_key,
+        'buyCurrency': buy_currency,
+        'sellCurrency': sell_currency,
+        'amount': amount,
+        'side': side,
+        'termAgreement': term_agreement,
+        'reason': reason,
+        _token: "",
+        action: 'trade'
+      },
+
+      success: function(data) {
+
+        if (typeof data !== 'object') {
+          data = jQuery.parseJSON(data);
+        }
+
+        //if data is success
+        if (data.status == "success") {
+          msg = data.message; 
+          document.getElementById("result").innerHTML = msg;
+          
+        } else {
+          msg = data.message;
+          document.getElementById("result").innerHTML = msg;
+        }
+
+        // if data is undefiened
+        if (typeof data.redirect !== 'undefined') {
+          window.location = data.redirect;
+        }
+      }
+      
+    });   
+  }
+
+</script>
+
+<body>
+<!-- 
+  <?php var_dump($token); ?> 
+-->
+
+<!-- form for fetching value's -->
+<br>
+<div style="border: 1px solid #000; padding: 10px; width: 500px;">
+<span style="color: blue;">GUIDELINES:</span> "Use this value's for the moment"<br>
+'dynamic Token_key' => '<span id="tokenID"></span><br>
+'buy_currency'=>'EUR',<br>
+'sell_currency'=>'GBP',<br>
+'amount'=>'10000',<br>
+'side'=>'1',<br>
+'term_agreement'=>'true',<br>
+'reason'=>'Invoice Settlement'<br>
+</div>
+<br>
+Result Below: <br>
+<div id="result"></div>
+<br><br>
+<hr>
+<div>Buy Currency: </div><input type="text" name="buy_currency" id="buy_currency" class="text" />
+<br />
+<div>Sell Currency:</div> <input type="text" name="sell_currency" id="sell_currency" class="text" />
+<br />
+<div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
+<br />
+<div>Side:</div><input type="number" name="side" id="side" class="text" />
+<br />
+<div>Terms of Agreement:</div> <input type="checkbox" name="term_agreement" id="term_agreement"/>
+<br />
+<div>Reason:</div> <textarea name="reason" id="reason" class="text" rows="5" cols="30"></textarea>
+
+<input type="hidden" name="token" id="token" value="" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+
+</body>
+</html>
