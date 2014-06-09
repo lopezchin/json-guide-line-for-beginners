@@ -37,7 +37,7 @@
 		
 	}
 
-	var_dump('value = '.$token_key.'<br/>'.$buyCurrency.'<br/>'.$sellCurrency.'<br/>'.$amount.'<br/>'.$side.'<br/>'.$termAgreement.'<br/>'.$reason);
+	// var_dump('value = '.$token_key.'<br/>'.$buyCurrency.'<br/>'.$sellCurrency.'<br/>'.$amount.'<br/>'.$side.'<br/>'.$termAgreement.'<br/>'.$reason);
 		
 	$qstring = array(
 	    'buy_currency'=> $buyCurrency,
@@ -51,7 +51,7 @@
 	 //cURL settings
     $curlOptions = array (
         // CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token."/trade/execute",
-        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$	."/trade/execute",
+        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/execute",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
@@ -65,13 +65,13 @@
 
 
 	//Sending our request - $response will hold the API response
-	$response = curl_exec($ch);
+	$trade = curl_exec($ch);
 
 	curl_close($ch);
 
 	// $responseArray = array();
 	// parse_str($response,$responseArray);
 	
-	echo $response;
+	echo $trade;
 
 ?>

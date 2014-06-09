@@ -8,21 +8,84 @@
 <script type="text/javascript">
 
   $(document).ready(function () {
-    //event handler for submit button
+    //handling authentication and token respond
     $.ajax({
         type: "POST",
         url: "http://localhost/JSON_beginner/TCC/authentication.php",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function(res) {
+        success: function(token) {
           // console.log(res.data);
-          var tokenKey = res.data;
+          var tokenKey = token.data;
           //result show on success respond
           document.getElementById('tokenID').innerHTML = tokenKey;
           document.getElementById('token').value = tokenKey;
 
       }
     });
+
+    // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
+    $("#settlement").click(function () {
+      
+      var token_key = $("#token").val();
+
+      // alert(token_key);
+
+      settlementID(token_key);
+    });
+
+    function settlementID(token_key){
+      $.ajax({
+          type: "POST",
+          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
+          url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
+          dataType: "json",
+          data:{
+            'tokenKey': token_key,
+            _token: "",
+            action: 'settlement'
+          },
+          success: function(settle) {
+            // console.log(res.data);
+
+            // var msg = settle.message;
+            // var msg = settle.data.settlement_id;
+
+            // var settleID = settle.data.settlement_id;
+
+            console.log('sample = '+settle.status);
+
+            // document.getElementById('response').innerHTML = settleID;
+
+            // result show on success respond
+            // document.getElementById('tokenID').innerHTML = tokenKey;
+            // document.getElementById('token').value = tokenKey;
+
+            if (typeof settle !== 'object') {
+              settle = jQuery.parseJSON(settle);
+            }
+
+            //if data is success
+            if (settle.status == "success") {
+              var msg = settle.data.settlement_id;
+              document.getElementById("settlement_id").innerHTML = msg;
+              
+            } else {
+              var msg = settle.message;
+              document.getElementById("settlement_id").innerHTML = msg;
+            }
+
+            // if data is undefiened
+            if (typeof settle.redirect !== 'undefined') {
+              window.location = settle.redirect;
+            }
+        }
+      });
+    }
+
+    // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
     $("#btnSubmit").click(function () {
         //collect userName and password entered by users
@@ -32,29 +95,27 @@
         var sell_currency = $("#sell_currency").val();
         var amount = $("#amount").val();
         var side = $("#side").val();
-        var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked)  to get true/false result
+        var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
         var reason = $("#reason").val();
 
         //call the authenticate function
         // checkingValue(userName, passWord);
         // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
-        // document.getElementById("result").innerHTML = buy_currency+ '<br>' +sell_currency+ '<br>' +amount+ '<br>' +side+ '<br>' +term_agreement+ '<br>' +reason+ '<br>' +token_key;
+        document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
         checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
     
     });
 
   });
 
-
-
   function checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason){
     alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason);
 
     var msg="";
+
     $.ajax({
       type: 'POST',
       dataType: 'json',
-      // url: 'http://localhost/JSON_beginner/json_login_signup_auth/json_tut6_data_fetch.php', //perfectly working
       url: 'http://localhost/JSON_beginner/TCC/trade.php',
       data: {
         'tokenKey': token_key,
@@ -70,24 +131,29 @@
 
       success: function(data) {
 
+        // console.log(data);
+
+        // document.getElementById("response").innerHTML = data.message;
+
         if (typeof data !== 'object') {
           data = jQuery.parseJSON(data);
         }
 
         //if data is success
         if (data.status == "success") {
-          msg = data.message; 
-          document.getElementById("result").innerHTML = msg;
+          msg = data.data.trade_id; 
+          document.getElementById("response").innerHTML = msg;
           
         } else {
           msg = data.message;
-          document.getElementById("result").innerHTML = msg;
+          document.getElementById("response").innerHTML = msg;
         }
 
         // if data is undefiened
         if (typeof data.redirect !== 'undefined') {
           window.location = data.redirect;
         }
+
       }
       
     });   
@@ -95,10 +161,7 @@
 
 </script>
 
-<body>
-<!-- 
-  <?php var_dump($token); ?> 
--->
+<body>  
 
 <!-- form for fetching value's -->
 <br>
@@ -113,6 +176,12 @@
 'reason'=>'Invoice Settlement'<br>
 </div>
 <br>
+
+Response Message:<br>
+<div id="response"></div><br><br>
+
+<div id="settlement_id"></div><br><br>
+
 Result Below: <br>
 <div id="result"></div>
 <br><br>
@@ -131,7 +200,9 @@ Result Below: <br>
 
 <input type="hidden" name="token" id="token" value="" />
 <br />
-<input type="submit" name="btnSubmit" id="btnSubmit" />
+<input type="submit" name="btnSubmit" id="btnSubmit" value="trade"/>
+<input type="submit" name="settlement" id="settlement" value="get settlement id"/>
+
 
 
 </body>
