@@ -15,14 +15,75 @@
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(token) {
-          // console.log(res.data);
-          var tokenKey = token.data;
-          //result show on success respond
-          document.getElementById('tokenID').innerHTML = tokenKey;
-          document.getElementById('token').value = tokenKey;
+
+        // console.log(res.data);
+        var tokenKey = token.data;
+        //result show on success respond
+        document.getElementById('tokenID').innerHTML = tokenKey;
+        document.getElementById('token').value = tokenKey;
 
       }
     });
+
+
+    // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
+    $("#tradeID").click(function () {
+      
+      var token_key = $("#token").val();
+      var trade_id = $("#trade_id").val();
+
+      // alert(token_key+'\n\n'+trade_id);
+
+      confirmResend(token_key, trade_id);
+
+    });
+
+    function confirmResend(token_key, trade_id){
+      $.ajax({
+          type: "POST",
+          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
+          url: "http://localhost/JSON_beginner/TCC/trade_confirm_resend.php",
+          dataType: "json",
+          data:{
+            'tokenKey': token_key,
+            'tradeID': trade_id,
+            _token: "",
+            action: 'settlement'
+          },
+          success: function(resend) {
+            // console.log(res.data);
+
+            // var msg = settle.message;
+            // var msg = settle.data.settlement_id;
+
+            // var settleID = settle.data.settlement_id;
+
+            console.log('sample = '+resend.status+'&'+resend.message);
+
+            if (typeof resend !== 'object') {
+              resend = jQuery.parseJSON(resend);
+            }
+
+            //if data is success
+            if (resend.status == "success") {
+              var msg = resend.message;
+              document.getElementById("resend").innerHTML = msg;
+              
+            } else {
+              var msg = resend.message;
+              document.getElementById("resend").innerHTML = msg;
+            }
+
+            // if data is undefiened
+            if (typeof resend.redirect !== 'undefined') {
+              window.location = settle.redirect;
+            }
+        }
+      });
+    }
+
 
     // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -48,20 +109,6 @@
             action: 'settlement'
           },
           success: function(settle) {
-            // console.log(res.data);
-
-            // var msg = settle.message;
-            // var msg = settle.data.settlement_id;
-
-            // var settleID = settle.data.settlement_id;
-
-            console.log('sample = '+settle.status);
-
-            // document.getElementById('response').innerHTML = settleID;
-
-            // result show on success respond
-            // document.getElementById('tokenID').innerHTML = tokenKey;
-            // document.getElementById('token').value = tokenKey;
 
             if (typeof settle !== 'object') {
               settle = jQuery.parseJSON(settle);
@@ -85,6 +132,7 @@
       });
     }
 
+
     // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
     $("#btnSubmit").click(function () {
@@ -94,12 +142,10 @@
         var buy_currency = $("#buy_currency").val();
         var sell_currency = $("#sell_currency").val();
         var amount = $("#amount").val();
-        var side = $("#side").val();
+        var side = $("#side").val();  //side  1 = buy, 2 = sell
         var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
         var reason = $("#reason").val();
 
-        //call the authenticate function
-        // checkingValue(userName, passWord);
         // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
         document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
         checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
@@ -167,7 +213,7 @@
 <br>
 <div style="border: 1px solid #000; padding: 10px; width: 500px;">
 <span style="color: blue;">GUIDELINES:</span> "Use this value's for the moment"<br>
-'dynamic Token_key' => '<span id="tokenID"></span><br>
+'dynamic Token_key' => '<span id="tokenID"></span>'<br>
 'buy_currency'=>'EUR',<br>
 'sell_currency'=>'GBP',<br>
 'amount'=>'10000',<br>
@@ -180,6 +226,7 @@
 Response Message:<br>
 <div id="response"></div><br><br>
 
+Settlement:
 <div id="settlement_id"></div><br><br>
 
 Result Below: <br>
@@ -192,8 +239,12 @@ Result Below: <br>
 <br />
 <div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
 <br />
-<div>Side:</div><input type="number" name="side" id="side" class="text" />
-<br />
+<div>Side:</div>
+  <select name="side" id="side">
+    <option value="1">buy</option>
+    <option value="2">sell</option>
+  </select>
+<br/>
 <div>Terms of Agreement:</div> <input type="checkbox" name="term_agreement" id="term_agreement"/>
 <br />
 <div>Reason:</div> <textarea name="reason" id="reason" class="text" rows="5" cols="30"></textarea>
@@ -202,6 +253,13 @@ Result Below: <br>
 <br />
 <input type="submit" name="btnSubmit" id="btnSubmit" value="trade"/>
 <input type="submit" name="settlement" id="settlement" value="get settlement id"/>
+
+<!-- for the trade confirm resend -->
+<hr>
+<span>Confirm Resend</span><br>
+<div id="resend"></div>
+<input type="text" name="trade_id" id="trade_id"/>
+<input type="submit" name="tradeID" id="tradeID" value="confirm resend"/>
 
 
 

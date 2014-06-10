@@ -8,15 +8,6 @@
 	// header('content-type: application/json; charset=utf-8');
 	// header("access-control-allow-origin: *");
 
-	// 'token_key': token_key,
-	// 'buyCurrency': buy_currency,
-	// 'sellCurrency': sell_currency,
-	// 'amount': amount,
-	// 'side': side,
-	// 'termAgreement': term_agreement,
-	// 'reason': reason,
-	// '_token': "",
-	// 'action': 'trade'
 	$token_key = '';
 	$buyCurrency = '';
 	$sellCurrency = '';
