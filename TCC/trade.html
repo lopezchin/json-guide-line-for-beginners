@@ -3,210 +3,16 @@
 <head>
   <title></title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <style type="text/css">
+
+   .divider{
+    float:left;
+    border-right: 1px solid #000;
+    padding: 0 10px;
+   }
+
+  </style>
 </head>
-
-<script type="text/javascript">
-
-  $(document).ready(function () {
-    //handling authentication and token respond
-    $.ajax({
-        type: "POST",
-        url: "http://localhost/JSON_beginner/TCC/authentication.php",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(token) {
-
-        // console.log(res.data);
-        var tokenKey = token.data;
-        //result show on success respond
-        document.getElementById('tokenID').innerHTML = tokenKey;
-        document.getElementById('token').value = tokenKey;
-
-      }
-    });
-
-
-    // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-
-    $("#tradeID").click(function () {
-      
-      var token_key = $("#token").val();
-      var trade_id = $("#trade_id").val();
-
-      // alert(token_key+'\n\n'+trade_id);
-
-      confirmResend(token_key, trade_id);
-
-    });
-
-    function confirmResend(token_key, trade_id){
-      $.ajax({
-          type: "POST",
-          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
-          url: "http://localhost/JSON_beginner/TCC/trade_confirm_resend.php",
-          dataType: "json",
-          data:{
-            'tokenKey': token_key,
-            'tradeID': trade_id,
-            _token: "",
-            action: 'settlement'
-          },
-          success: function(resend) {
-            // console.log(res.data);
-
-            // var msg = settle.message;
-            // var msg = settle.data.settlement_id;
-
-            // var settleID = settle.data.settlement_id;
-
-            console.log('sample = '+resend.status+'&'+resend.message);
-
-            if (typeof resend !== 'object') {
-              resend = jQuery.parseJSON(resend);
-            }
-
-            //if data is success
-            if (resend.status == "success") {
-              var msg = resend.message;
-              document.getElementById("resend").innerHTML = msg;
-              
-            } else {
-              var msg = resend.message;
-              document.getElementById("resend").innerHTML = msg;
-            }
-
-            // if data is undefiened
-            if (typeof resend.redirect !== 'undefined') {
-              window.location = settle.redirect;
-            }
-        }
-      });
-    }
-
-
-    // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-
-    $("#settlement").click(function () {
-      
-      var token_key = $("#token").val();
-
-      // alert(token_key);
-
-      settlementID(token_key);
-    });
-
-    function settlementID(token_key){
-      $.ajax({
-          type: "POST",
-          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
-          url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
-          dataType: "json",
-          data:{
-            'tokenKey': token_key,
-            _token: "",
-            action: 'settlement'
-          },
-          success: function(settle) {
-
-            if (typeof settle !== 'object') {
-              settle = jQuery.parseJSON(settle);
-            }
-
-            //if data is success
-            if (settle.status == "success") {
-              var msg = settle.data.settlement_id;
-              document.getElementById("settlement_id").innerHTML = msg;
-              
-            } else {
-              var msg = settle.message;
-              document.getElementById("settlement_id").innerHTML = msg;
-            }
-
-            // if data is undefiened
-            if (typeof settle.redirect !== 'undefined') {
-              window.location = settle.redirect;
-            }
-        }
-      });
-    }
-
-
-    // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-    $("#btnSubmit").click(function () {
-        //collect userName and password entered by users
-
-        var token_key = $("#token").val();
-        var buy_currency = $("#buy_currency").val();
-        var sell_currency = $("#sell_currency").val();
-        var amount = $("#amount").val();
-        var side = $("#side").val();  //side  1 = buy, 2 = sell
-        var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
-        var reason = $("#reason").val();
-
-        // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
-        document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
-        checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
-    
-    });
-
-  });
-
-  function checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason){
-    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason);
-
-    var msg="";
-
-    $.ajax({
-      type: 'POST',
-      dataType: 'json',
-      url: 'http://localhost/JSON_beginner/TCC/trade.php',
-      data: {
-        'tokenKey': token_key,
-        'buyCurrency': buy_currency,
-        'sellCurrency': sell_currency,
-        'amount': amount,
-        'side': side,
-        'termAgreement': term_agreement,
-        'reason': reason,
-        _token: "",
-        action: 'trade'
-      },
-
-      success: function(data) {
-
-        // console.log(data);
-
-        // document.getElementById("response").innerHTML = data.message;
-
-        if (typeof data !== 'object') {
-          data = jQuery.parseJSON(data);
-        }
-
-        //if data is success
-        if (data.status == "success") {
-          msg = data.data.trade_id; 
-          document.getElementById("response").innerHTML = msg;
-          
-        } else {
-          msg = data.message;
-          document.getElementById("response").innerHTML = msg;
-        }
-
-        // if data is undefiened
-        if (typeof data.redirect !== 'undefined') {
-          window.location = data.redirect;
-        }
-
-      }
-      
-    });   
-  }
-
-</script>
-
 <body>  
 
 <!-- form for fetching value's -->
@@ -233,35 +39,396 @@ Result Below: <br>
 <div id="result"></div>
 <br><br>
 <hr>
-<div>Buy Currency: </div><input type="text" name="buy_currency" id="buy_currency" class="text" />
-<br />
-<div>Sell Currency:</div> <input type="text" name="sell_currency" id="sell_currency" class="text" />
-<br />
-<div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
-<br />
-<div>Side:</div>
-  <select name="side" id="side">
-    <option value="1">buy</option>
-    <option value="2">sell</option>
+<div class="divider">
+  <div>Buy Currency: </div>
+    <select name="buy_currency" id="buy_currency">
+      <option value="EUR">EU euro</option>
+      <option value="GBP">British pound</option>
+    </select>
+  <br />
+  <div>Sell Currency:</div>             
+  <select  name="sell_currency" id="sell_currency">
+      <option value="GBP">British pound</option>
+      <option value="EUR">EU euro</option>
   </select>
-<br/>
-<div>Terms of Agreement:</div> <input type="checkbox" name="term_agreement" id="term_agreement"/>
-<br />
-<div>Reason:</div> <textarea name="reason" id="reason" class="text" rows="5" cols="30"></textarea>
 
-<input type="hidden" name="token" id="token" value="" />
-<br />
-<input type="submit" name="btnSubmit" id="btnSubmit" value="trade"/>
-<input type="submit" name="settlement" id="settlement" value="get settlement id"/>
+  <br />
+  <div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
+  <br />
+  <div>Side:</div>
+    <select name="side" id="side">
+      <option value="1">buy</option>
+      <option value="2">sell</option>
+    </select>
+  <br/>
+  <div>Terms of Agreement:</div> <input type="checkbox" name="term_agreement" id="term_agreement"/>
+  <br />
+  <div>Reason:</div> <textarea name="reason" id="reason" class="text" rows="5" cols="30"></textarea>
 
-<!-- for the trade confirm resend -->
+  <input type="hidden" name="token" id="token" value="" />
+  <br />
+  <input type="submit" name="btnSubmit" id="btnSubmit" value="trade"/>
+  <input type="submit" name="deposit_account" id="deposit_account" value="Deposit Price"/>
+  <input type="submit" name="settlement" id="settlement" value="get settlement id"/>
+  <br><br>
+  <!-- for the trade confirm resend -->
+  <span>Confirm Resend</span><br>
+  <div id="resend"></div>
+  <input type="text" name="trade_id" id="trade_id"/>
+  <input type="submit" name="tradeID" id="tradeID" value="resend"/>
+</div>
+
+<div class="divider">
+
+
+  <div>Nickname:</div><input type="text" name="nickname" id="nickname"/>
+  <div>Account CCY:</div><input type="text" name="account_ccy" id="account_ccy"/>
+  <div>Beneficiary Name:</div><input type="text" name="beneficiary_name" id="beneficiary_name"/>
+  <div>Bank Name:</div><input type="text" name="back_name" id="back_name"/>
+  <div>Bank Address:</div><input type="text" name="bank_address" id="bank_address"/>
+  <div>Account Number:</div><input type="text" name="account_number" id="account_number"/>
+  <div>Sort Code:</div><input type="text" name="sort_code" id="sort_code"/>
+  <div>Destination Country Code:</div><input type="text" name="destination_code" id="destination_code"/>
+  <div>Beneficiary:</div><input type="checkbox" name="beneficiary" id="beneficiary"/>
+  <div>source:</div><input type="checkbox" name="source" id="source"/>
+  <br>
+  <input type="submit" name="beneficiary_btn" id="beneficiary_btn" value="Beneficiary"/>
+
+</div>
+ <br style="clear:both;">
 <hr>
-<span>Confirm Resend</span><br>
-<div id="resend"></div>
-<input type="text" name="trade_id" id="trade_id"/>
-<input type="submit" name="tradeID" id="tradeID" value="confirm resend"/>
 
 
-
+<!-- <select name="sell_currency" id="sell_currency">
+  <option value="AFA">Afghanistan afghani</option>
+                  
+  <option value="ALL">Albanian lek</option>
+                  
+  <option value="DZD">Algerian dinar</option>
+                  
+  <option value="AOR">Angolan kwanza reajustado</option>
+                  
+  <option value="ARS">Argentine peso</option>
+                  
+  <option value="AMD">Armenian dram</option>
+                  
+  <option value="AWG">Aruban guilder</option>
+                  
+  <option value="AUD">Australian dollar</option>
+                  
+  <option value="AZN">Azerbaijanian new manat</option>
+                  
+  <option value="BSD">Bahamian dollar</option>
+                  
+  <option value="BHD">Bahraini dinar</option>
+                  
+  <option value="BDT">Bangladeshi taka</option>
+                  
+  <option value="BBD">Barbados dollar</option>
+                  
+  <option value="BYR">Belarusian ruble</option>
+                  
+  <option value="BZD">Belize dollar</option>
+                  
+  <option value="BMD">Bermudian dollar</option>
+                  
+  <option value="BTN">Bhutan ngultrum</option>
+                  
+  <option value="BOB">Bolivian boliviano</option>
+                  
+  <option value="BWP">Botswana pula</option>
+                  
+  <option value="BRL">Brazilian real</option>
+                  
+  <option value="GBP">British pound</option>
+                  
+  <option value="BND">Brunei dollar</option>
+                  
+  <option value="BGN">Bulgarian lev</option>
+                  
+  <option value="BIF">Burundi franc</option>
+                  
+  <option value="KHR">Cambodian riel</option>
+                  
+  <option value="CAD">Canadian dollar</option>
+                  
+  <option value="CVE">Cape Verde escudo</option>
+                  
+  <option value="KYD">Cayman Islands dollar</option>
+                  
+  <option value="XOF">CFA franc BCEAO</option>
+                  
+  <option value="XAF">CFA franc BEAC</option>
+                  
+  <option value="XPF">CFP franc</option>
+                  
+  <option value="CLP">Chilean peso</option>
+                  
+  <option value="CNY">Chinese yuan renminbi</option>
+                  
+  <option value="COP">Colombian peso</option>
+                  
+  <option value="KMF">Comoros franc</option>
+                  
+  <option value="CDF">Congolese franc</option>
+                  
+  <option value="CRC">Costa Rican colon</option>
+                  
+  <option value="HRK">Croatian kuna</option>
+                  
+  <option value="CUP">Cuban peso</option>
+                  
+  <option value="CZK">Czech koruna</option>
+                  
+  <option value="DKK">Danish krone</option>
+                  
+  <option value="DJF">Djibouti franc</option>
+                  
+  <option value="DOP">Dominican peso</option>
+                  
+  <option value="XCD">East Caribbean dollar</option>
+                  
+  <option value="EGP">Egyptian pound</option>
+                  
+  <option value="SVC">El Salvador colon</option>
+                  
+  <option value="ERN">Eritrean nakfa</option>
+                  
+  <option value="EEK">Estonian kroon</option>
+                  
+  <option value="ETB">Ethiopian birr</option>
+                  
+  <option value="EUR">EU euro</option>
+                  
+  <option value="FKP">Falkland Islands pound</option>
+                  
+  <option value="FJD">Fiji dollar</option>
+                  
+  <option value="GMD">Gambian dalasi</option>
+                  
+  <option value="GEL">Georgian lari</option>
+                  
+  <option value="GHS">Ghanaian new cedi</option>
+                  
+  <option value="GIP">Gibraltar pound</option>
+                  
+  <option value="XAU">Gold (ounce)</option>
+                  
+  <option value="XFO">Gold franc</option>
+                  
+  <option value="GTQ">Guatemalan quetzal</option>
+                  
+  <option value="GNF">Guinean franc</option>
+                  
+  <option value="GYD">Guyana dollar</option>
+                  
+  <option value="HTG">Haitian gourde</option>
+                  
+  <option value="HNL">Honduran lempira</option>
+                  
+  <option value="HKD">Hong Kong SAR dollar</option>
+                  
+  <option value="HUF">Hungarian forint</option>
+                  
+  <option value="ISK">Icelandic krona</option>
+                  
+  <option value="XDR">IMF special drawing right</option>
+                  
+  <option value="INR">Indian rupee</option>
+                  
+  <option value="IDR">Indonesian rupiah</option>
+                  
+  <option value="IRR">Iranian rial</option>
+                  
+  <option value="IQD">Iraqi dinar</option>
+                  
+  <option value="ILS">Israeli new shekel</option>
+                  
+  <option value="JMD">Jamaican dollar</option>
+                  
+  <option value="JPY">Japanese yen</option>
+                  
+  <option value="JOD">Jordanian dinar</option>
+                  
+  <option value="KZT">Kazakh tenge</option>
+                  
+  <option value="KES">Kenyan shilling</option>
+                  
+  <option value="KWD">Kuwaiti dinar</option>
+                  
+  <option value="KGS">Kyrgyz som</option>
+                  
+  <option value="LAK">Lao kip</option>
+                  
+  <option value="LVL">Latvian lats</option>
+                  
+  <option value="LBP">Lebanese pound</option>
+                  
+  <option value="LSL">Lesotho loti</option>
+                  
+  <option value="LRD">Liberian dollar</option>
+                  
+  <option value="LYD">Libyan dinar</option>
+                  
+  <option value="LTL">Lithuanian litas</option>
+                  
+  <option value="MOP">Macao SAR pataca</option>
+                  
+  <option value="MKD">Macedonian denar</option>
+                  
+  <option value="MGA">Malagasy ariary</option>
+                  
+  <option value="MWK">Malawi kwacha</option>
+                  
+  <option value="MYR">Malaysian ringgit</option>
+                  
+  <option value="MVR">Maldivian rufiyaa</option>
+                  
+  <option value="MRO">Mauritanian ouguiya</option>
+                  
+  <option value="MUR">Mauritius rupee</option>
+                  
+  <option value="MXN">Mexican peso</option>
+                  
+  <option value="MDL">Moldovan leu</option>
+                  
+  <option value="MNT">Mongolian tugrik</option>
+                  
+  <option value="MAD">Moroccan dirham</option>
+                  
+  <option value="MZN">Mozambique new metical</option>
+                  
+  <option value="MMK">Myanmar kyat</option>
+                  
+  <option value="NAD">Namibian dollar</option>
+                  
+  <option value="NPR">Nepalese rupee</option>
+                  
+  <option value="ANG">Netherlands Antillian guilder</option>
+                  
+  <option value="NZD">New Zealand dollar</option>
+                  
+  <option value="NIO">Nicaraguan cordoba oro</option>
+                  
+  <option value="NGN">Nigerian naira</option>
+                  
+  <option value="KPW">North Korean won</option>
+                  
+  <option value="NOK">Norwegian krone</option>
+                  
+  <option value="OMR">Omani rial</option>
+                  
+  <option value="PKR">Pakistani rupee</option>
+                  
+  <option value="XPD">Palladium (ounce)</option>
+                  
+  <option value="PAB">Panamanian balboa</option>
+                  
+  <option value="PGK">Papua New Guinea kina</option>
+                  
+  <option value="PYG">Paraguayan guarani</option>
+                  
+  <option value="PEN">Peruvian nuevo sol</option>
+                  
+  <option value="PHP">Philippine peso</option>
+                  
+  <option value="XPT">Platinum (ounce)</option>
+                  
+  <option value="PLN">Polish zloty</option>
+                  
+  <option value="QAR">Qatari rial</option>
+                  
+  <option value="RON">Romanian new leu</option>
+                  
+  <option value="RUB">Russian ruble</option>
+                  
+  <option value="RWF">Rwandan franc</option>
+                  
+  <option value="SHP">Saint Helena pound</option>
+                  
+  <option value="WST">Samoan tala</option>
+                  
+  <option value="STD">Sao Tome and Principe dobra</option>
+                  
+  <option value="SAR">Saudi riyal</option>
+                  
+  <option value="RSD">Serbian dinar</option>
+                  
+  <option value="SCR">Seychelles rupee</option>
+                  
+  <option value="SLL">Sierra Leone leone</option>
+                  
+  <option value="XAG">Silver (ounce)</option>
+                  
+  <option value="SGD">Singapore dollar</option>
+                  
+  <option value="SBD">Solomon Islands dollar</option>
+                  
+  <option value="SOS">Somali shilling</option>
+                  
+  <option value="ZAR">South African rand</option>
+                  
+  <option value="KRW">South Korean won</option>
+                  
+  <option value="LKR">Sri Lanka rupee</option>
+                  
+  <option value="SDG">Sudanese pound</option>
+                  
+  <option value="SRD">Suriname dollar</option>
+                  
+  <option value="SZL">Swaziland lilangeni</option>
+                  
+  <option value="SEK">Swedish krona</option>
+                  
+  <option value="CHF">Swiss franc</option>
+                  
+  <option value="SYP">Syrian pound</option>
+                  
+  <option value="TWD">Taiwan New dollar</option>
+                  
+  <option value="TJS">Tajik somoni</option>
+                  
+  <option value="TZS">Tanzanian shilling</option>
+                  
+  <option value="THB">Thai baht</option>
+                  
+  <option value="TOP">Tongan pa'anga</option>
+                  
+  <option value="TTD">Trinidad and Tobago dollar</option>
+                  
+  <option value="TND">Tunisian dinar</option>
+                  
+  <option value="TRY">Turkish lira</option>
+                  
+  <option value="TMT">Turkmen new manat</option>
+                  
+  <option value="AED">UAE dirham</option>
+                  
+  <option value="UGX">Uganda new shilling</option>
+                  
+  <option value="XFU">UIC franc</option>
+                  
+  <option value="UAH">Ukrainian hryvnia</option>
+                  
+  <option value="UYU">Uruguayan peso uruguayo</option>
+                  
+  <option value="USD">US dollar</option>
+                  
+  <option value="UZS">Uzbekistani sum</option>
+                  
+  <option value="VUV">Vanuatu vatu</option>
+                  
+  <option value="VEF">Venezuelan bolivar fuerte</option>
+                  
+  <option value="VND">Vietnamese dong</option>
+                  
+  <option value="YER">Yemeni rial</option>
+                  
+  <option value="ZMK">Zambian kwacha</option>
+                  
+  <option value="ZWL">Zimbabwe dollar</option>
+</select>  -->  
+  <script type="text/javascript" src="tcc_ajax.js"></script>
 </body>
 </html>
+
