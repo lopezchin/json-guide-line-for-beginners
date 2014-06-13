@@ -8,7 +8,7 @@
    .divider{
     float:left;
     border-right: 1px solid #000;
-    padding: 0 10px;
+    padding: 0 20px;
    }
 
   </style>
@@ -44,12 +44,14 @@ Result Below: <br>
     <select name="buy_currency" id="buy_currency">
       <option value="EUR">EU euro</option>
       <option value="GBP">British pound</option>
+      <option value="USD">US Dollar</option>
     </select>
   <br />
   <div>Sell Currency:</div>             
   <select  name="sell_currency" id="sell_currency">
       <option value="GBP">British pound</option>
       <option value="EUR">EU euro</option>
+      <option value="USD">US Dollar</option>
   </select>
 
   <br />
@@ -79,20 +81,19 @@ Result Below: <br>
 </div>
 
 <div class="divider">
-
-
-  <div>Nickname:</div><input type="text" name="nickname" id="nickname"/>
-  <div>Account CCY:</div><input type="text" name="account_ccy" id="account_ccy"/>
-  <div>Beneficiary Name:</div><input type="text" name="beneficiary_name" id="beneficiary_name"/>
-  <div>Bank Name:</div><input type="text" name="back_name" id="back_name"/>
-  <div>Bank Address:</div><input type="text" name="bank_address" id="bank_address"/>
-  <div>Account Number:</div><input type="text" name="account_number" id="account_number"/>
-  <div>Sort Code:</div><input type="text" name="sort_code" id="sort_code"/>
-  <div>Destination Country Code:</div><input type="text" name="destination_code" id="destination_code"/>
+  Respond Beneficiary:<div id="benefNew"></div><br>
+  <div>Nickname:</div><input type="text" name="nickname" id="nickname" placeholder="GBP Account"/>
+  <div>Account CCY:</div><input type="text" name="account_ccy" id="account_ccy" placeholder="GBP"/>
+  <div>Beneficiary Name:</div><input type="text" name="beneficiary_name" id="beneficiary_name" placeholder="John Smith"/>
+  <div>Bank Name:</div><input type="text" name="bank_name" id="bank_name" placeholder="Barclays Bank plc"/>
+  <div>Bank Address:</div><input type="text" name="bank_address" id="bank_address"  placeholder="1 Churchill Place, London, E14 5HP, UK"/>
+  <div>Account Number:</div><input type="text" name="account_number" id="account_number" placeholder="13071472"/>
+  <div>Sort Code:</div><input type="text" name="sort_code" id="sort_code" placeholder="200605"/>
+  <div>Destination Country Code:</div><input type="text" name="destination_code" id="destination_code" placeholder="GB"/>
   <div>Beneficiary:</div><input type="checkbox" name="beneficiary" id="beneficiary"/>
   <div>source:</div><input type="checkbox" name="source" id="source"/>
   <br>
-  <input type="submit" name="beneficiary_btn" id="beneficiary_btn" value="Beneficiary"/>
+  <input type="submit" name="beneficiary_btn" id="beneficiary_btn" value="New Beneficiary"/>
 
 </div>
  <br style="clear:both;">

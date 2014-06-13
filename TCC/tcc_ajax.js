@@ -14,7 +14,7 @@ $.ajax({
   }
 });
 
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 // Confirm Resend
 
 $("#tradeID").click(function () {
@@ -73,9 +73,8 @@ function confirmResend(token_key, trade_id){
 }
 
 
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-    //DEPOSIT
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  //DEPOSIT
 
     $("#deposit_account").click(function () {
       
@@ -174,7 +173,7 @@ function confirmResend(token_key, trade_id){
       });
     }
 
-  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // Trade_id
 
   $("#btnSubmit").click(function () {
@@ -245,15 +244,16 @@ function confirmResend(token_key, trade_id){
     });   
   }
 
-  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // Beneficiary
 
   $("#beneficiary_btn").click(function () {
 
         var token_key = $("#token").val();
+        var nickname = $('#nickname').val();
         var account_ccy = $("#account_ccy").val();
         var beneficiary_name = $("#beneficiary_name").val();
-        var back_name = $("#back_name").val();
+        var bank_name = $("#bank_name").val();
         var bank_address = $("#bank_address").val();
         var account_number = $("#account_number").val();
         var sort_code = $("#sort_code").val();
@@ -262,13 +262,13 @@ function confirmResend(token_key, trade_id){
         var source = $('#source').is(':checked'); // use .is(:checked) to get value of true/false result
 
         // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
-        document.getElementById("result").innerHTML = account_ccy+'<br>'+beneficiary_name+'<br>'+back_name+'<br>'+bank_address+'<br>'+account_number+'<br>'+sort_code+'<br>'+destination_code+'<br>'+beneficiary+'<br>'+source+'<br>'+token_key;
-        beneficiary(token_key, account_ccy, beneficiary_name, back_name, bank_address, account_number, sort_code, destination_code, beneficiary, source);
+        document.getElementById("result").innerHTML = nickname+'<br>'+account_ccy+'<br>'+beneficiary_name+'<br>'+bank_name+'<br>'+bank_address+'<br>'+account_number+'<br>'+sort_code+'<br>'+destination_code+'<br>'+beneficiary+'<br>'+source+'<br>'+token_key;
+        benefNew(token_key, nickname, account_ccy, beneficiary_name, bank_name, bank_address, account_number, sort_code, destination_code, beneficiary, source);
     
   });
 
-  function beneficiary(token_key, account_ccy, beneficiary_name, back_name, bank_address, account_number, sort_code, destination_code, beneficiary, source){
-    alert(token_key+'\n\n'+account_ccy+'\n\n'+beneficiary_name+'\n\n'+back_name+'\n\n'+bank_address+'\n\n'+account_number+'\n\n'+sort_code+'\n\n'+destination_code+'\n\n'+beneficiary+'\n\n'source);
+  function benefNew(token_key, nickname, account_ccy, beneficiary_name, bank_name, bank_address, account_number, sort_code, destination_code, beneficiary, source){
+    alert(token_key+'\n\n'+nickname+'\n\n'+account_ccy+'\n\n'+beneficiary_name+'\n\n'+bank_name+'\n\n'+bank_address+'\n\n'+account_number+'\n\n'+sort_code+'\n\n'+destination_code+'\n\n'+beneficiary+'\n\n'+source);
 
     var msg="";
 
@@ -278,9 +278,10 @@ function confirmResend(token_key, trade_id){
       url: 'http://localhost/JSON_beginner/TCC/beneficiary.php',
       data: {
         'tokenKey': token_key,
+        'n_name': nickname,
         'account_ccy': account_ccy,
         'beneficiary_name': beneficiary_name,
-        'back_name': back_name,
+        'bank_name': bank_name,
         'bank_address': bank_address,
         'account_number': account_number,
         'sort_code': sort_code,
@@ -288,34 +289,33 @@ function confirmResend(token_key, trade_id){
         'beneficiary': beneficiary,
         'source': source,
         _token: "",
-        action: 'beneficiary'
+        action: 'beneficiary_new'
       },
 
-      success: function(beneficiary) {
+      success: function(objbenef) {
 
-        console.log(beneficiary);
+        console.log(objbenef);
 
         // document.getElementById("response").innerHTML = data.message;
 
-        // if (typeof beneficiary !== 'object') {
-        //   beneficiary = jQuery.parseJSON(beneficiary);
-        // }
+        if (typeof objbenef !== 'object') {
+          objbenef = jQuery.parseJSON(objbenef);
+        }
 
-        // //if data is success
-        // if (beneficiary.status == "success") {
-        //   msg = beneficiary.data.trade_id; 
-        //   document.getElementById('trade_id').value = msg;
-        //   document.getElementById("response").innerHTML = msg;
+        //if data is success
+        if (objbenef.status == "success") {
+          msg = objbenef.data.beneficiary_id; 
+          document.getElementById("benefNew").innerHTML = msg;
           
-        // } else {
-        //   msg = beneficiary.message;
-        //   document.getElementById("response").innerHTML = msg;
-        // }
+        } else {
+          msg = objbenef.message;
+          document.getElementById("benefNew").innerHTML = msg;
+        }
 
-        // // if data is undefiened
-        // if (typeof beneficiary.redirect !== 'undefined') {
-        //   window.location = beneficiary.redirect;
-        // }
+        // if data is undefiened
+        if (typeof objbenef.redirect !== 'undefined') {
+          window.location = objbenef.redirect;
+        }
 
       }
       

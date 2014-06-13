@@ -8,23 +8,24 @@
 	// header('content-type: application/json; charset=utf-8');
 	// header("access-control-allow-origin: *");
 
-	$tokenKey = '';
+	$n_name = '';
 	$account_ccy = '';
 	$beneficiary_name = '';
-	$back_name = '';
+	$bank_name = '';
 	$bank_address = '';
 	$account_number = '';
 	$sort_code = '';
 	$destination_code = '';
 	$beneficiary = '';
-	$source = ''
+	$source = '';
 
 	if (isset($_REQUEST['action']) ) {
 
 		$token_key = isset($_REQUEST['tokenKey']) ? $_REQUEST['tokenKey'] : null;
+		$n_name = isset($_REQUEST['n_name']) ? $_REQUEST['n_name'] : null;
 		$account_ccy = isset($_REQUEST['account_ccy']) ? $_REQUEST['account_ccy'] : null;
 		$beneficiary_name = isset($_REQUEST['beneficiary_name']) ? $_REQUEST['beneficiary_name'] : null;
-		$back_name = isset($_REQUEST['back_name']) ? $_REQUEST['back_name'] : null;
+		$bank_name = isset($_REQUEST['bank_name']) ? $_REQUEST['bank_name'] : null;
 		$bank_address = isset($_REQUEST['bank_address']) ? $_REQUEST['bank_address'] : null;
 		$account_number = isset($_REQUEST['account_number']) ? $_REQUEST['account_number'] : null;
 		$sort_code = isset($_REQUEST['sort_code']) ? $_REQUEST['sort_code'] : null;
@@ -34,21 +35,25 @@
 		
 	}
 
-	// var_dump('value = '.$token_key.'<br/>'.$buyCurrency.'<br/>'.$sellCurrency.'<br/>'.$amount.'<br/>'.$side.'<br/>'.$termAgreement.'<br/>'.$reason);
-		
+	// var_dump('value = '.$token_key.'<br/>'.$n_name.'<br/>'.$account_ccy.'<br/>'.$beneficiary_name.'<br/>'.$bank_name.'<br/>'.$bank_address.'<br/>'.$source);
+
 	$qstring = array(
-	    'buy_currency'=> $buyCurrency,
-		'sell_currency'=> $sellCurrency,
-		'amount'=> $amount,
-		'side'=>$side,
-		'term_agreement'=> $termAgreement,
-		'reason'=> $reason
+	    'nickname' => $n_name,
+		'acct_ccy' => $account_ccy,
+		'beneficiary_name' => $beneficiary_name,
+		'bank_name' => $bank_name,
+		'bank_address' => $bank_address,
+		'acct_number' => $account_number,
+		'sort_code' => $sort_code,
+		'destination_country_code' => $destination_code,
+		'is_beneficiary' => $beneficiary,
+		'is_source' => $source
 	);
-	
+
 	 //cURL settings
     $curlOptions = array (
         // CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token."/trade/execute",
-        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/execute",
+        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/beneficiary/new",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
@@ -62,13 +67,12 @@
 
 
 	//Sending our request - $response will hold the API response
-	$trade = curl_exec($ch);
+	$beneficiary_new = curl_exec($ch);
 
 	curl_close($ch);
 
 	// $responseArray = array();
 	// parse_str($response,$responseArray);
 	
-	echo $trade;
-
+	echo $beneficiary_new;
 ?>
