@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Placeholder Customize JS</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<style type="text/css">
+		input.place::-webkit-input-placeholder:after{color:red;content:" *";}
+	</style>
+	<script type="text/javascript">
+
+		$(function () {
+
+			$("input#placeholder").focus(function () {
+    
+			   	//document.getElementById("placeholder").placeholder = 'Hello*';
+
+				$( this ).toggleClass( "place" );
+				// $('.place').attr('placeholder', 'Hello*');
+			});
+
+		});
+
+	</script>
+</head>
+
+<body>
+	<input type="text" name="placeholder" id="placeholder" placeholder="Fullname"/>
+	<input type="text" name="placeholder" id="placeholder" placeholder="Email "/>
+</body>
+</html>

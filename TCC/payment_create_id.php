@@ -1,21 +1,21 @@
 <?php
-
-	$settlment_id = '';
+	
+	$currency = '';
 
 	if (isset($_REQUEST['action']) ) {
 
 		$token_key = isset($_REQUEST['tokenKey']) ? $_REQUEST['tokenKey'] : null;
-		$settlement_id = isset($_REQUEST['settleID']) ? $_REQUEST['settleID'] : null;
+		$currency = isset($_REQUEST['paymentCurrency']) ? $_REQUEST['paymentCurrency'] : null;
 		
 	};
 
 	$qstring = array(
-	    
+	  'currency' => $currency
 	);
 
 	 //cURL settings
     $curlOptions = array (
-        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/settlement/".$settlement_id,
+        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/payments",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
@@ -29,25 +29,13 @@
 
 
 	//Sending our request - $response will hold the API response
-	$settlement_summary = curl_exec($ch);
+	$payment_id = curl_exec($ch);
 
 	curl_close($ch);
 
 	// $responseArray = array();
 	// parse_str($response,$responseArray);
 	
-	echo $settlement_summary;
-
-	// sending email
-	
-	// $to      = 'philweb.seniorprogrammer05@gmail.com';
-	// $subject = 'Settlement ID';
-	// $message = 	$settlement;
-	// $headers = 'From: '.$to.
-	//     'Reply-To: admin@gmail.com'. "\r\n" .
-	//     'X-Mailer: PHP/' . phpversion();
-
-	// mail($to, $subject, $message, $headers);
-
+	echo $payment_id;
 
 ?>

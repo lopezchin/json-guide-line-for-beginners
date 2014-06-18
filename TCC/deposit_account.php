@@ -1,5 +1,7 @@
 <?php
 
+	$trade_id = '';
+	
 	if (isset($_REQUEST['action']) ) {
 
 		$token_key = isset($_REQUEST['tokenKey']) ? $_REQUEST['tokenKey'] : null;
@@ -8,7 +10,7 @@
 	};
 
 	$qstring = array(
-	    
+	    // 'trade_id' => $trade_id;
 	);
 
 	 //cURL settings
@@ -35,17 +37,5 @@
 	// parse_str($response,$responseArray);
 	
 	echo $depositAccount;
-
-	// sending email
-	
-	// $to      = 'philweb.seniorprogrammer05@gmail.com';
-	// $subject = 'Settlement ID';
-	// $message = 	$settlement;
-	// $headers = 'From: '.$to.
-	//     'Reply-To: admin@gmail.com'. "\r\n" .
-	//     'X-Mailer: PHP/' . phpversion();
-
-	// mail($to, $subject, $message, $headers);
-
 
 ?>
