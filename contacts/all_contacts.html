@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    //event handler for submit button
+	$.ajax({
+	  type: "POST",
+	  url: "http://localhost/JSON_beginner/contacts/contact_fetch_data.php",
+	  contentType: "application/json;",
+	  dataType: "json",
+	  success: function(fetch_contacts) {
+
+	  console.log(fetch_contacts);
+	  // var fetchContacts = fetch_contacts;
+	  //result show on success respond
+	  // $('#fetch_data').html(fetch_contacts);
+
+	  //for(var o in fetch_contacts){
+	  //console.log(fetch_contacts[o]);
+		// 	document.getElementById('fetch_data').innerHTML = fetch_contacts[o];
+		// }
+	  //document.getElementById('fetch_data').innerHTML = fetch_contacts.fullname;
+		}
+	});
+
+	
+
+      $("#btnSubmit").click(function () {
+          //collect userName and password entered by users
+          var userName = $("#username").val();
+          var passWord = $("#password").val();
+
+          //call the authenticate function
+          // checkingValue(userName, passWord);
+          // alert(userName+ '/' +passWord);
+          // authenticate(userName, passWord);
+
+          
+      });
+  });
+
+  function checkingValue(userName, passWord){
+    var msg="";
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'http://localhost/JSON_beginner/contacts/contact_fetch_data.php', //perfectly working
+        // url: 'http://1fx.philwebservicesdev.com/data_fetching.php',
+        data: {
+          'username': userName,
+          'password': passWord,
+          '_token': "",
+          'action': 'signup'
+        },
+
+        success: function(data) {
+
+          if (typeof data !== 'object') {
+            data = jQuery.parseJSON(data);
+          }
+
+          //if data is success
+          if (data.status == "success") {
+            msg = data.message; 
+            document.getElementById("result").innerHTML = msg;
+            
+          } else {
+            msg = data.message;
+            document.getElementById("result").innerHTML = msg;
+          }
+
+          // if data is undefiened
+          if (typeof data.redirect !== 'undefined') {
+            window.location = data.redirect;
+          }
+        }
+        
+      });   
+  }
+
+</script>
+
+<body>
+
+<div id="result"></div>
+<!-- form for fetching value's -->
+
+<input type="text" name="username" id="username" class="text" maxlength="30" />
+<br />
+<input type="password" name="password" id="password" class="text" maxlength="30" />
+<br />
+<input type="submit" name="btnSubmit" id="btnSubmit" />
+
+<hr>
+<div id="fetch_data"></div>
+
+
+</body>
+</html>

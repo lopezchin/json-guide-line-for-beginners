@@ -1,0 +1,67 @@
+<transaction>
+  <amount type="integer">100</amount>
+  <on_test_gateway type="boolean">true</on_test_gateway>
+  <created_at type="datetime">2014-05-21T21:39:12Z</created_at>
+  <updated_at type="datetime">2014-05-21T21:39:13Z</updated_at>
+  <currency_code>USD</currency_code>
+  <succeeded type="boolean">true</succeeded>
+  <state>succeeded</state>
+  <token>YXZp2StVIZO9Bz2Urj9JdPcBsK5</token>
+  <transaction_type>Purchase</transaction_type>
+  <order_id nil="true"/>
+  <ip nil="true"/>
+  <description nil="true"/>
+  <email nil="true"/>
+  <merchant_name_descriptor nil="true"/>
+  <merchant_location_descriptor nil="true"/>
+  <gateway_specific_fields nil="true"/>
+  <gateway_specific_response_fields nil="true"/>
+  <gateway_transaction_id>68</gateway_transaction_id>
+  <message key="messages.transaction_succeeded">Succeeded!</message>
+  <gateway_token>MOYsn3GchG72V9xtaM1e5zuiQrw</gateway_token>
+  <response>
+    <success type="boolean">true</success>
+    <message>Successful purchase</message>
+    <avs_code nil="true"/>
+    <avs_message nil="true"/>
+    <cvv_code nil="true"/>
+    <cvv_message nil="true"/>
+    <pending type="boolean">false</pending>
+    <error_code></error_code>
+    <error_detail nil="true"/>
+    <cancelled type="boolean">false</cancelled>
+    <created_at type="datetime">2014-05-21T21:39:13Z</created_at>
+    <updated_at type="datetime">2014-05-21T21:39:13Z</updated_at>
+  </response>
+  <payment_method>
+    <token>Y83vERay2dppredMDdnKKJyzw3D</token>
+    <created_at type="datetime">2014-05-21T21:39:07Z</created_at>
+    <updated_at type="datetime">2014-05-21T21:39:13Z</updated_at>
+    <email nil="true"/>
+    <data nil="true"/>
+    <storage_state>used</storage_state>
+    <test type="boolean">true</test>
+    <last_four_digits>1111</last_four_digits>
+    <first_six_digits>411111</first_six_digits>
+    <card_type>visa</card_type>
+    <first_name>newFirstName</first_name>
+    <last_name>Smith</last_name>
+    <month type="integer">2</month>
+    <year type="integer">2020</year>
+    <address1>newAddress1</address1>
+    <address2 nil="true"/>
+    <city nil="true"/>
+    <state nil="true"/>
+    <zip nil="true"/>
+    <country nil="true"/>
+    <phone_number nil="true"/>
+    <full_name>newFirstName Smith</full_name>
+    <payment_method_type>credit_card</payment_method_type>
+    <errors>
+    </errors>
+    <verification_value></verification_value>
+    <number>XXXX-XXXX-XXXX-1111</number>
+  </payment_method>
+  <api_urls>
+  </api_urls>
+</transaction>
