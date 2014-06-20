@@ -19,75 +19,24 @@
 
   $(document).ready(function () {
     //event handler for submit button
+  	
+    $(".delete_contact").click(function(){
 
-    // $(".delete_contact").click(function(){
+      var contactid = $(this).data('contactid');
 
-    //   var contactid = $(this).data('data-contactid');
+      alert('Deleting userID = '+contactid);
+      // console.log(contactid);
+      // $.ajax({
+      //   type: 'POST',
+      //   url: 'http://localhost/JSON_beginner/contacts/contact_delete_data.php',
+      //   data: {
+      //     'contactid': contactid,
+      //     '_token': "",
+      //     'action': 'delete_contact'
+      //   }
+      // });
+    });
 
-  	$.ajax({
-      type: 'POST',
-      dataType: 'json',
-      url: 'http://localhost/JSON_beginner/contacts/fetch_all_data.php', //perfectly working
-      success: function(fetch_data) {
-
-        // console.log(fetch_data.contact1.fullname);
-
-        // var fetchData = document.getElementById("fetch_data");
-
-        // for(var i =0;i < fetch_data.length-1;i++)
-        // {
-        //   var item = fetch_data[i];
-        //   console.log(item.Test1 + item.Test2 + item.Test3);
-        // }
-        $.each( fetch_data, function( key, value ) {
-          // document.getElementById("fetch_data").innerHTML = value.fullname;
-          console.log(value.fullname+' - '+value.email+' - '+value.address+' - '+value.phone);
-          var contact_result = value.fullname+' - '+value.email+' - '+value.address+' - '+value.phone+ '<br />';
-          $("#fetch_data").append(contact_result);
-        });
-        // $('#fetch_data').html(fetch_data.content);
-
-        //event handler for submit button
-        
-        // $(".delete_contact").click(function(){
-
-        //   var contactid = $(this).data('contactid');
-
-        //   alert('Deleting userID = '+contactid);
-        //   console.log(contactid);
-        //   $.ajax({
-        //     type: 'POST',
-        //     url: 'http://localhost/JSON_beginner/contacts/contact_delete_data.php',
-        //     data: {
-        //       'contactid': contactid,
-        //       '_token': "",
-        //       'action': 'delete_contact'
-        //     }
-        //   });
-        // });
-
-        // // console.log(contact_detail);
-        // if (typeof contact_detail !== 'object') {
-        //   contact_detail = jQuery.parseJSON(contact_detail);
-        // }
-
-        // //if contact_detail is success
-        // if (contact_detail.status == "success") {
-        //   msg = contact_detail.message; 
-        //   document.getElementById("result").innerHTML = msg;
-          
-        // } else {
-        //   msg = contact_detail.message;
-        //   document.getElementById("result").innerHTML = msg;
-        // }
-
-        // // if contact_detail is undefiened
-        // if (typeof contact_detail.redirect !== 'undefined') {
-        //   window.location = contact_detail.redirect;
-        // }
-      }
-      
-    });   
 
     $("#insertData").click(function () {
         //collect userName and password entered by users
@@ -168,8 +117,38 @@
   <input type="submit" name="insertData" id="insertData" value="Insert Contact" />
 </div>
 <hr>
+<?php
 
-<div id="fetch_data"></div>
+  //from Local
+
+  // header("Content-Type: application/json");
+
+  $host = "localhost";
+  $user = "root";
+  $password = "";
+  $database = "wwwphilw_1fx";
+
+  $con = mysql_connect($host, $user, $password) or die("Could not connect: ". mysql_error());
+
+  mysql_select_db($database) or die("Could not connect to database: ". mysql_error());
+
+  $sqlString = "SELECT * FROM contacts"; //fetch compared database
+
+  //inserting data // INSERT INTO `wwwphilw_1fx`.`contacts` (`id`, `fullname`, `address`, `email`, `phone_number`) VALUES (NULL, 'John Wayne Jose', 'New Jersey', 'philweb.seniorprogrammer05@gmail.com', '222 222-2222');
+
+  //delete // DELETE FROM `wwwphilw_1fx`.`contacts` WHERE `contacts`.`id` = 4 LIMIT 1;
+
+  $query = mysql_query($sqlString); 
+
+  while ($row = mysql_fetch_array($query)) { ?>
+
+    <div class="result_contact"><?php echo "<b>id:</b>".$row['id']." <b>fullname:</b>".$row['fullname']." <b>address:</b>".$row['address']." <b>email:</b>".$row['email']." <b>phone_number:</b>".$row['phone_number']; ?>
+      <br><a href="" class="delete_contact" data-contactid="<?php echo $row['id']; ?>" >delete</a>
+    </div>
+
+<?php } ?>
+
+
 
 </body>
 </html>
