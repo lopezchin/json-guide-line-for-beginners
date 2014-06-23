@@ -25,6 +25,7 @@
 
 	if (isset($_REQUEST['action']) ) {
 
+		$contact_id = isset($_REQUEST['contact_id']) ? $_REQUEST['contact_id'] : null;
 		$fullname = isset($_REQUEST['fullname']) ? $_REQUEST['fullname'] : null;
 		$address = isset($_REQUEST['address']) ? $_REQUEST['address'] : null;
 		$email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
@@ -55,8 +56,10 @@
 		'message' => 'Successfully Signup!'
 	);
 
-	$query = "INSERT INTO contacts(fullname,address,email,phone_number)
-						 VALUES('$fullname','$address','$email','$phone_number')";
+	$query = " UPDATE  contacts SET  fullname =  '$fullname', address =  '$address', email =  '$email', phone_number =  '$phone_number' WHERE  id = '$contact_id'"; // workable
+
+	// $query = "INSERT INTO contacts(fullname,address,email,phone_number)
+	// 					 VALUES('$fullname','$address','$email','$phone_number')";
 
 			 
 	mysql_query($query);

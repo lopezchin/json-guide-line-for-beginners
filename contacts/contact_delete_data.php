@@ -46,7 +46,7 @@
 	$ret = array(
 		'id'=> $contactID,
 		'status' => 'success',
-		'message' => 'Successfully Signup!'
+		'message' => 'Successfully deleted!'
 	);
 
 	//$query = "INSERT INTO contacts(`id`, `fullname`, `address`, `email`, `phone_number`) VALUES (NULL, 'John Wayne Jose', 'New Jersey', 'philweb.seniorprogrammer05@gmail.com', '222 222-2222')";

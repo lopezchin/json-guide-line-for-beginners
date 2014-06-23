@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <id>P-22345</id>
+        <name>LCD Television</name>
+        <price>$500</price>
+        <discount>5%</discount>
+    </product>
+    <product>
+        <id>P-13245</id>
+        <name>Mac Mini</name>
+        <price>$700</price>
+        <discount>2%</discount>
+    </product>
+    <product>
+        <id>P-52346</id>
+        <name>Home Theatre</name>
+        <price>$500</price>
+        <discount>1%</discount>
+    </product>
+    <product>
+        <id>P-78385</id>
+        <name>Laptop Computer</name>
+        <price>$1500</price>
+        <discount>5%</discount>
+    </product>
+    <product>
+        <id>P-78385</id>
+        <name>Desktop Computer</name>
+        <price>$1000</price>
+        <discount>7%</discount>
+    </product>
+</products>

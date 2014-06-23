@@ -2,7 +2,31 @@
 <html>
 <head>
     <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $.ajax({ 
+              type: 'GET',
+              dataType: 'xml',
+              url: 'http://localhost/JSON_beginner/spreedly/sampledata.xml', //
+              success: function(xml_data) {
+
+                // console.log(xml_data);
+                  $(xml_data).find('product').each(function () {
+                    var data_id = $(this).find('id').text();
+                    var name = $(this).find('name').text();
+                    var price = $(this).find('price').text();
+                    var discount = $(this).find('discount').text();
+
+                    $("#xml_result").append('<div>' + data_id + " " + name + " " + price + " " + discount + '</div>');
+                  });
+              }
+            });
+
+        });
+    </script>
 <body>
     <form accept-charset="UTF-8" action="https://core.spreedly.com/v1/payment_methods" method="POST">
       <fieldset>
@@ -29,5 +53,7 @@
         <button type='submit'>Submit Payment</button>
       </fieldset>
     </form>
+    <hr>
+    <div id="xml_result"></div>
 </body>
 </html>
