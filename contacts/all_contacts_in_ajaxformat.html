@@ -37,7 +37,7 @@
           console.log(value.fullname+' - '+value.email+' - '+value.address+' - '+value.phone);
          
           var contact_result = value.fullname+' - '+value.email+' - '+value.address+' - '+value.phone+' ';
-          var delete_link = '<a href="#" class="delete_contact" data-contactid="'+value.id+'">delete</a>'+' ';
+          var delete_link = '<a href="#" class="delete_contact" data-contactid="'+value.id+'" onClick="document.location.reload(true)">delete</a>'+' ';
           var edit_link = '<a href="#" class="edit_contact" data-contactid="'+value.id+'">edit</a>'+'<br />';
 
           $("#fetch_data").append(contact_result); //use append when you are using the each loop for ajax
@@ -59,6 +59,17 @@
               'contactid': contactid,
               '_token': "",
               'action': 'delete_contact'
+            },
+            success: function(delete_contact){
+              console.log(delete_contact);
+
+              if (delete_contact.status == "success") {
+                msg = delete_contact.message;
+                document.getElementById("result").innerHTML = msg;
+              } else {
+                msg = delete_contact.message;
+                document.getElementById("result").innerHTML = msg;
+              }
             }
           });
         });// delete_contact end

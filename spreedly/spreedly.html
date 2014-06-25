@@ -13,7 +13,9 @@
               url: 'http://localhost/JSON_beginner/spreedly/sampledata.xml', //
               success: function(xml_data) {
 
-                // console.log(xml_data);
+                // console.log(xml_data);]
+
+                //each.loop function 
                   $(xml_data).find('product').each(function () {
                     var data_id = $(this).find('id').text();
                     var name = $(this).find('name').text();
@@ -30,7 +32,7 @@
 <body>
     <form accept-charset="UTF-8" action="https://core.spreedly.com/v1/payment_methods" method="POST">
       <fieldset>
-        <input name="redirect_url" type="hidden" value="http://example.com/transparent_redirect_complete" />
+        <!-- <input name="redirect_url" type="hidden" value="http://example.com/transparent_redirect_complete" /> -->
         <input name="environment_key" type="hidden" value="8swOjWN7iUOAozk0w0tj9gvMBY8" />
         <input name="utf8" type="hidden" value="✓" />
 
