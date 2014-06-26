@@ -424,6 +424,68 @@
       
     });   
   }
+
+   $("#payment_type").click(function () {
+
+        var token_key = $("#token").val();
+        var ccy = $('#ccy').val();
+        var pay_type = $('#pay_type').val();
+        var destination_country_code = $("#destination_country_code").val();
+
+        // alert(token_key+ '/' +ccy+ '/' +destination_country_code);
+        // document.getElementById("result").innerHTML = nickname+'<br>'+account_ccy+'<br>'+beneficiary_name+'<br>'+bank_name+'<br>'+bank_address+'<br>'+account_number+'<br>'+sort_code+'<br>'+destination_code+'<br>'+beneficiary+'<br>'+source+'<br>'+token_key;
+        paymentType(token_key, ccy, destination_country_code, pay_type);
+    
+  });
+
+  function paymentType(token_key, ccy, destination_country_code, pay_type){
+  alert(token_key+'\n\n'+ccy+'\n\n'+destination_country_code+'\n\n'+pay_type);
+
+  var msg="";
+
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    url: 'http://localhost/JSON_beginner/TCC/payment_type.php',
+    data: {
+      'tokenKey': token_key,
+      'ccy': ccy,
+      'destination_country_code': destination_country_code,
+      'pay_type': pay_type,
+      _token: "",
+      action: 'payment_type'
+    },
+
+    success: function(paymentType) {
+
+      console.log(paymentType);
+
+      // document.getElementById("response").innerHTML = data.message;
+
+      if (typeof paymentType !== 'object') {
+        paymentType = jQuery.parseJSON(paymentType);
+      }
+
+      //if data is success
+      if (paymentType.status == "success") {
+        msg = paymentType.data.beneficiary_id; 
+        document.getElementById("paymentType").innerHTML = msg;
+        
+      } else {
+        msg = paymentType.message;
+        document.getElementById("paymentType").innerHTML = msg;
+      }
+
+      // if data is undefiened
+      if (typeof paymentType.redirect !== 'undefined') {
+        window.location = paymentType.redirect;
+      }
+
+    }
+    
+  });   
+}
+
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // Payment Add
 

@@ -25,13 +25,13 @@
 		  	function payment_method(firstName, lastName, cardNumber, month, year, cvv){
 		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv);
 			    Spreedly.tokenize({
-				  environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
-				  firstName: firstName,
-				  lastName: lastName,
-				  number: cardNumber,
-				  month: month,
-				  year: year,
-				  cvv: cvv,
+					environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
+					firstName: firstName,
+					lastName: lastName,
+					number: cardNumber,
+					month: month,
+					year: year,
+					cvv: cvv,
 				  callback: function(token) {
 				    // alert('I tokenized a payment! Woot! ' + token);
 				    console.log('I tokenized a payment! Woot! ' + token);
