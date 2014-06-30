@@ -2,6 +2,12 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+	.align{
+		margin-bottom: 15px;
+	}
+
+	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="spreedly.js"></script>
 	<script type="text/javascript">
@@ -15,15 +21,25 @@
 			    var month = $("#month").val();
 			    var year = $("#year").val();
 			    var cvv = $("#cvv_payment").val();
+			    //with billing 
+			    var address_1 = $("#address_1").val();
+			    var address_2 = $("#address_2").val();
+			    var city = $("#city").val();
+			    var state = $("#state").val();
+			    var zip = $("#zip").val();
+			    var country = $("#country").val();
+			    var phone_number = $("#phone_number").val();
+			    var email = $("#email").val();
 
-			    // alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv);
-
-			   	payment_method(firstName, lastName, cardNumber, month, year, cvv);
+			    // alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+
+			    // 	address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number);
+			   	payment_method(firstName, lastName, cardNumber, month, year, cvv, address_1, address_2, city, state, zip, country, phone_number, email);
 
 			});
 
-		  	function payment_method(firstName, lastName, cardNumber, month, year, cvv){
-		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv);
+		  	function payment_method(firstName, lastName, cardNumber, month, year, cvv, address_1, address_2, city, state, zip, country, phone_number, email){
+		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+
+			    	address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number+'\n\n'+email);
 			    Spreedly.tokenize({
 					environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
 					firstName: firstName,
@@ -32,10 +48,45 @@
 					month: month,
 					year: year,
 					cvv: cvv,
+					// with billing
+					address_1: address_1,
+					address_2: address_2,
+					city: city,
+					state: state,
+					zip: zip,
+					country: country,
+					phone_number: phone_number,
+					email: email,
 				  callback: function(token) {
 				    // alert('I tokenized a payment! Woot! ' + token);
 				    console.log('I tokenized a payment! Woot! ' + token);
-				    document.getElementById('token_request').value = token;
+				    document.getElementById('process_token_request').value = token;
+				  },
+				  error: function() {
+				    // alert('Something went horribly wrong.');
+				    console.log('Something went horribly wrong.');
+				  }
+				}); //spreedly.tokenize end
+		    };// payment_method function end
+
+		    $('#process_payment').click(function(){
+		    	var process_token = $("#process_token_request").val();
+			    var process_amount = $("#process_amount").val();
+			    var currency_code = $("#currency_code").val();
+
+			    alert(process_token+'\n\n'+process_amount+'\n\n'+currency_code);
+			    // process_payment(process_token, process_amount, currency_code);
+		    });
+
+		    function process_payment(process_token, process_amount, currency_code){
+			    Spreedly.process({
+					environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
+					processToken: process_token,
+					processAmount: process_amount,
+					currencyCode: currency_code,
+				  callback: function(processToken) {
+				    // alert('I tokenized a payment! Woot! ' + token);
+				    console.log('I tokenized a payment! Woot! ' + processToken);
 				  },
 				  error: function() {
 				    // alert('Something went horribly wrong.');
@@ -92,10 +143,23 @@ cvv: '123'
 	<option value="2021">2021</option>
 </select>
 <div>CVV: </div> <input type="text" id="cvv_payment" name="cvv_payment" placeholder="ccv"/> <br>
+<hr>
+Billing Address
+<div class="align"><input type="text" id="address_1" name="address_1" placeholder="Address 1"/></div>
+<div class="align"><input type="text" id="address_2" name="address_2" placeholder="Address 2"/></div>
+<div class="align"><input type="text" id="city" name="city" placeholder="City"/></div>
+<div class="align"><input type="text" id="state" name="state" placeholder="State"/></div>
+<div class="align"><input type="text" id="zip" name="zip" placeholder="Zip"/></div>
+<div class="align"><input type="text" id="country" name="country" placeholder="Country"/></div>
+<div class="align"><input type="text" id="phone_number" name="phone_number" placeholder="Phone Number"/></div>
+<div class="align"><input type="text" id="email" name="email" placeholder="spreedly@email.com"/></div>
+<br>
 <input type="submit" id="payment_method" name="payment_method" placeholder="Payment Method"/>
 <!-- End For Payment_method -->
 <hr/>
-<input type="text" id="token_request" name="token_request" placeholder="Token requested"/>
+<div class="align"><input type="text" id="process_token_request" name="process_token_request" placeholder="Token requested"/></div>
+<div class="align"><input type="number" id="process_amount" name="process_amount" placeholder="Process Amount"/></div>
+<div class="align"><input type="text" id="currency_code" name="currency_code" placeholder="Ex: USD"/></div>
 <input type="submit" id="process_payment" name="process_payment" value="Process Payment"/>
 
 </body>
