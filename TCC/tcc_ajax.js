@@ -48,7 +48,7 @@
 
           // var settleID = settle.data.settlement_id;
 
-          console.log('sample = '+resend.status+'&'+resend.message);
+          console.log('sample = '+resend.status+' & '+resend.message);
 
           if (typeof resend !== 'object') {
             resend = jQuery.parseJSON(resend);
@@ -81,17 +81,19 @@
       var token_key = $("#token").val();
       var trade_id = $("#trade_id").val();
 
-      // alert(token_key);
+      // alert(token_key+' ~ '+trade_id);
 
       deposit_account(token_key, trade_id);
     });
 
     function deposit_account(token_key, trade_id){
       $.ajax({
-          type: "POST",
-          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
+          type: "GET",
           url: "http://localhost/JSON_beginner/TCC/deposit_account.php",
+          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
+          // url: "https://devapi.thecurrencycloud.com/api/en/v1.0/"+token_key+"/trade/"+trade_id+"/deposit_account",
           dataType: "json",
+          crossDomain: true,
           data:{
             'tokenKey': token_key,
             'tradeID': trade_id,
@@ -120,7 +122,7 @@
             // if (typeof price.redirect !== 'undefined') {
             //   window.location = price.redirect;
             // }
-        }
+          }
       });
     } 
 

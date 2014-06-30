@@ -55,5 +55,42 @@ Spreedly.tokenize = function(opt) {
 	        </credit_card> \
 	    </payment_method>'
 	);
+ 
+};
 
+
+Spreedly.process = function(process) {
+	
+	process.firstName = Spreedly.escapeXml(process.firstName);
+	process.lastName = Spreedly.escapeXml(process.lastName);
+	process.number = ('' + process.number).replace(/\D/g, '');
+	
+	var url = 'https://core.spreedly.com/v1/payment_methods.xml?environment_key=' + process.environmentKey;
+	var xhr = Spreedly.createCORSRequest('POST', url);
+	
+	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	xhr.setRequestHeader('Content-Type', 'application/xml');
+	
+	xhr.onload = function() {
+	  var text = xhr.responseText;
+	  var token = $(text).find("payment_method").find("token").text();
+	  process.callback(token);
+	};
+	
+	xhr.onerror = process.error || function() {
+	  alert('There was an error making the request.');
+	};
+	
+	xhr.send(
+	    '<payment_method> \
+	        <credit_card> \
+	            <first_name>' + process.firstName + '</first_name> \
+	            <last_name>' + process.lastName + '</last_name> \
+	            <number>' + process.number + '</number> \
+	            <month>' + process.month + '</month> \
+	            <year>' + process.year + '</year> \
+	        </credit_card> \
+	    </payment_method>'
+	);
+ 
 };

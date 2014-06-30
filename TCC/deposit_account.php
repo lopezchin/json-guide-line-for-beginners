@@ -1,5 +1,7 @@
 <?php
 
+	header('Access-Control-Allow-Origin: *');
+
 	$trade_id = '';
 	
 	if (isset($_REQUEST['action']) ) {
@@ -10,12 +12,13 @@
 	};
 
 	$qstring = array(
-	    // 'trade_id' => $trade_id;
+	    'trade_id' => $trade_id
 	);
 
 	 //cURL settings
     $curlOptions = array (
         CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/".$trade_id."/deposit_account",
+        // CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/".$trade_id."/settlement_account",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
