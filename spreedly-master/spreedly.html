@@ -38,8 +38,8 @@
 			});
 
 		  	function payment_method(firstName, lastName, cardNumber, month, year, cvv, address_1, address_2, city, state, zip, country, phone_number, email){
-		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+
-			    	address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number+'\n\n'+email);
+		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number+'\n\n'+email);
+
 			    Spreedly.tokenize({
 					environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
 					firstName: firstName,
@@ -48,7 +48,7 @@
 					month: month,
 					year: year,
 					cvv: cvv,
-					// with billing
+					// including billing address
 					address_1: address_1,
 					address_2: address_2,
 					city: city,
@@ -69,34 +69,8 @@
 				}); //spreedly.tokenize end
 		    };// payment_method function end
 
-		    $('#process_payment').click(function(){
-		    	var process_token = $("#process_token_request").val();
-			    var process_amount = $("#process_amount").val();
-			    var currency_code = $("#currency_code").val();
-
-			    alert(process_token+'\n\n'+process_amount+'\n\n'+currency_code);
-			    // process_payment(process_token, process_amount, currency_code);
-		    });
-
-		    function process_payment(process_token, process_amount, currency_code){
-			    Spreedly.process({
-					environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
-					processToken: process_token,
-					processAmount: process_amount,
-					currencyCode: currency_code,
-				  callback: function(processToken) {
-				    // alert('I tokenized a payment! Woot! ' + token);
-				    console.log('I tokenized a payment! Woot! ' + processToken);
-				  },
-				  error: function() {
-				    // alert('Something went horribly wrong.');
-				    console.log('Something went horribly wrong.');
-				  }
-				}); //spreedly.tokenize end
-		    };// payment_method function end
-
 		});// $(document).ready(function(){ }); end
-		
+
 	</script>
 </head>
 <body>

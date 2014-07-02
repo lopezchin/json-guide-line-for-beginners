@@ -4,7 +4,7 @@
 
 	header("Content-Type: application/json");
 	
-	//BELOW CODE ARE PROVEN AND TESTED THAT RESULT WILL SHOW AND THE ITEM'S WILL BE IN JSON FORMAT
+	//BELOW CODE ARE PROVEN AND TESTED THAT RESULT WILL SHOW AND THE ITEM'S WILL BE IN A JSON FORMAT
 	// header('content-type: application/json; charset=utf-8');
 	// header("access-control-allow-origin: *");
 

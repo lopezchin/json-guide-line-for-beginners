@@ -41,7 +41,6 @@
 	
 	 //cURL settings
     $curlOptions = array (
-        // CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token."/trade/execute",
         CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/execute",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
