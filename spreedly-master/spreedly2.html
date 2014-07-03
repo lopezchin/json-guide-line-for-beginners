@@ -14,59 +14,69 @@
 		$(document).ready(function () {
 
 			$("#payment_method").click(function () {
-        		
 			    var firstName = $("#firstname").val();
 			    var lastName = $("#lastname").val();
 			    var cardNumber = $("#cardNumber").val();
 			    var month = $("#month").val();
 			    var year = $("#year").val();
 			    var cvv = $("#cvv_payment").val();
+			    var payment_method_identifier = $("#payment_method_identifier").val();
+			    var some_other_things = $("#some_other_things").val();
 			    //with billing 
-			    var address_1 = $("#address_1").val();
-			    var address_2 = $("#address_2").val();
-			    var city = $("#city").val();
-			    var state = $("#state").val();
-			    var zip = $("#zip").val();
-			    var country = $("#country").val();
-			    var phone_number = $("#phone_number").val();
+			    // var address_1 = $("#address_1").val();
+			    // var address_2 = $("#address_2").val();
+			    // var city = $("#city").val();
+			    // var state = $("#state").val();
+			    // var zip = $("#zip").val();
+			    // var country = $("#country").val();
+			    // var phone_number = $("#phone_number").val();
 			    var email = $("#email").val();
 
-			     alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+
-			     	address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number);
-			   	//payment_method(firstName, lastName, cardNumber, month, year, cvv, address_1, address_2, city, state, zip, country, phone_number, email);
+			     // alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+ address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number);
+			   	payment_method(firstName, lastName, cardNumber, month, year, cvv, email, payment_method_identifier, some_other_things);
 
 			});
 
-		  	function payment_method(firstName, lastName, cardNumber, month, year, cvv, address_1, address_2, city, state, zip, country, phone_number, email){
-		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number+'\n\n'+email);
+		  	function payment_method(firstName, lastName, cardNumber, month, year, cvv, email, payment_method_identifier, some_other_things){
+		  		alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+cvv+'\n\n'+month+'\n\n'+year+'\n\n'+email+'\n\n'+payment_method_identifier+'\n\n'+some_other_things);
 
-			    Spreedly.tokenize({
-					environmentKey: '8swOjWN7iUOAozk0w0tj9gvMBY8', // my environment key 
-					firstName: firstName,
-					lastName: lastName,
-					number: cardNumber,
-					month: month,
-					year: year,
-					cvv: cvv,
-					// including billing address
-					address_1: address_1,
-					address_2: address_2,
-					city: city,
-					state: state,
-					zip: zip,
-					country: country,
-					phone_number: phone_number,
-					email: email,
-				  callback: function(token) {
-				    // alert('I tokenized a payment! Woot! ' + token);
-				    console.log('I tokenized a payment! Woot! ' + token);
-				    document.getElementById('process_token_request').value = token;
-				  },
-				  error: function() {
-				    // alert('Something went horribly wrong.');
-				    console.log('Something went horribly wrong.');
+			   var card = {
+				  "payment_method":{
+				    "credit_card":{
+				      "first_name": firstName,
+				      "last_name": lastName,
+				      "number":cardNumber,
+				      "verification_value":cvv,
+				      "month":month,
+				      "year":year,
+				      "email": email
+				    },
+				    "data": {
+				      "my_payment_method_identifier": payment_method_identifier,
+				      "extra_stuff": {
+				        "some_other_things": some_other_things
+				      }
+				    }
 				  }
-				}); //spreedly.tokenize end
+				} 
+				var url = "https://core.spreedly.com/v1/payment_methods.json?environment_key=8swOjWN7iUOAozk0w0tj9gvMBY8";
+
+				$.ajax({
+				  type: "POST",
+				  url: url,
+				  dataType: "json",
+				  data: card
+				}).success(function(data) {
+				  console.log(data);
+				  var token_result = data.transaction.payment_method.token;
+					document.getElementById("process_token_request").value = token_result;
+				}).error(function(request, status, error) {
+				  console.log(error);
+				  // alert('error');
+				  document.getElementById("process_token_request").value = 'Unexpected error>';
+				});
+
+				
 		    };// payment_method function end
 
 		});// $(document).ready(function(){ }); end
@@ -83,8 +93,11 @@ number: '4111111111111111',
 month: 12,
 year: 2017,
 cvv: '123'
+payment method identifier: '448',
+some other things: 'Can be anything really',
 </pre>
 </div>
+<hr>
 <!-- For Payment_method -->
 <div>Firstname: </div> <input type="text" id="firstname" name="firstname" placeholder="Firstname"/>
 <div>Lastname: </div> <input type="text" id="lastname" name="lastname" placeholder="Lastname"/>
@@ -117,7 +130,10 @@ cvv: '123'
 	<option value="2021">2021</option>
 </select>
 <div>CVV: </div> <input type="text" id="cvv_payment" name="cvv_payment" placeholder="ccv"/> <br>
-<hr>
+<div>Payment Method Identifier:</div><input type="text" name="payment_method_identifier" id="payment_method_identifier" placeholder="identifier"/>
+<div>Some other thing:</div><input type="text" name="some_other_things" id="some_other_things"/>
+<div>Email</div><input type="text" id="email" name="email" placeholder="spreedly@email.com"/>
+<!-- <hr>
 Billing Address
 <div class="align"><input type="text" id="address_1" name="address_1" placeholder="Address 1"/></div>
 <div class="align"><input type="text" id="address_2" name="address_2" placeholder="Address 2"/></div>
@@ -125,9 +141,8 @@ Billing Address
 <div class="align"><input type="text" id="state" name="state" placeholder="State"/></div>
 <div class="align"><input type="text" id="zip" name="zip" placeholder="Zip"/></div>
 <div class="align"><input type="text" id="country" name="country" placeholder="Country"/></div>
-<div class="align"><input type="text" id="phone_number" name="phone_number" placeholder="Phone Number"/></div>
-<div class="align"><input type="text" id="email" name="email" placeholder="spreedly@email.com"/></div>
-<br>
+<div class="align"><input type="text" id="phone_number" name="phone_number" placeholder="Phone Number"/></div>-->
+<br> 
 <input type="submit" id="payment_method" name="payment_method" placeholder="Payment Method"/>
 <!-- End For Payment_method -->
 <hr/>
