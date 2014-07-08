@@ -2,11 +2,11 @@
 
 	$qstring = array(
 		'environmentKey' => '8swOjWN7iUOAozk0w0tj9gvMBY8',
-		'SigningSecret' => 'hpJZL6wsf1I4fotf61bpMiomyxUF3I2SadNGf5GbnoCfsl4jzN1Ps5eQ09e94CbC'
+		'SigningSecret' => 'wSC5Xo2cyeyPCbLQgcR9U9eGyq2J1VG5Ig4uKhBiLd17dAfTcd4YLwIEE4q7DK8m'
 	);
 	 //cURL settings
     $curlOptions = array (
-        CURLOPT_URL => "https://core.spreedly.com/v1/gateways/Au93n8EJGRnukoU5MNG7270mMJc.xml",
+        CURLOPT_URL => "https://core.spreedly.com/v1/gateways/NBnYYNnA8Tqc8iBrpkvJQI2YORD.xml",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
@@ -14,7 +14,8 @@
     );
 
 	$ch = curl_init();
-	curl_setopt_array($ch,$curlOptions);
+	curl_setopt($ch, CURLOPT_USERPWD, $qstring);
+	
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
 
@@ -27,6 +28,10 @@
 	// $responseArray = array();
 	// parse_str($response,$responseArray);
 	
-	echo $xml_respond;
+	// echo $xml_respond;
+
+	$xml = trim($xml_respond);
+
+	print_r($xml);
 
 ?>

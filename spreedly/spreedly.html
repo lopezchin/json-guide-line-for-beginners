@@ -3,7 +3,6 @@
 <head>
     <title></title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-</head>
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -13,7 +12,7 @@
               url: 'http://localhost/JSON_beginner/spreedly/sampledata.xml', //
               success: function(xml_data) {
 
-                // console.log(xml_data);]
+                // console.log(xml_data);
 
                 //each.loop function 
                   $(xml_data).find('product').each(function () {
@@ -29,6 +28,8 @@
 
         });
     </script>
+</head>
+    
 <body>
     <form accept-charset="UTF-8" action="https://core.spreedly.com/v1/payment_methods" method="POST">
       <fieldset>

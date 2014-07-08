@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>transaction result</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+
+        	$("#single_transaction").click(function(){
+        		var single_transaction_token = $('#payment_token_single').val();
+        		alert(single_transaction_token);
+
+        		single_payment_method(single_transaction_token);
+
+        	});
+
+        	function single_payment_method(single_transaction_token){
+        		$.ajax({ 
+	              type: 'GET',
+	              dataType: 'xml',
+	              url: 'http://localhost/JSON_beginner/spreedly-master/transaction_single.php', //
+	              data:{
+			          'SinglePaymentToken': single_transaction_token,
+			          _token: "",
+			          action: 'PaymentToken'
+			        },
+	              success: function(xml_data) {
+
+	                console.log(xml_data);
+
+	                //each.loop function 
+	                $(xml_data).find('payment_method').each(function () {
+	                    var token_id = $(this).find('token').text();
+	                    var first_six_digits = $(this).find('first_six_digits').text();
+	                    var last_four_digits = $(this).find('last_four_digits').text();
+	                    var full_name = $(this).find('full_name').text();
+	                    var month = $(this).find('month').text();
+	                    var year = $(this).find('year').text();
+
+	                    $("#single_traction_record").append('<div> payment_method token = ' + token_id + ' card = ' + first_six_digits + last_four_digits + ' Fullname = ' +full_name+ ' Month = ' +month+ ' Year = ' +year+ '</div>');
+	                });
+	              }
+	            });
+        	}
+
+        	$("#all_transaction").click(function(){
+	            $.ajax({ 
+	              type: 'GET',
+	              dataType: 'xml',
+	              url: 'http://localhost/JSON_beginner/spreedly-master/transaction_all.php', //
+	              success: function(xml_data) {
+
+	                console.log(xml_data);
+
+	                //each.loop function 
+					$(xml_data).find('payment_method').each(function () {
+						var token_id = $(this).find('token').text();
+						var first_six_digits = $(this).find('first_six_digits').text();
+						var last_four_digits = $(this).find('last_four_digits').text();
+						var full_name = $(this).find('full_name').text();
+						var month = $(this).find('month').text();
+						var year = $(this).find('year').text();
+
+						$("#all_transaction_record").append('<div> payment_method token = ' + token_id + ' card = ' + first_six_digits + last_four_digits + ' Fullname = ' +full_name+ ' Month = ' +month+ ' Year = ' +year+ '</div>');
+					});
+	              }
+	            });
+			});
+
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" id="payment_token_single" name="payment_token_single" placeholder="Payment Token" />
+<input type="submit" id="single_transaction"  name="single_transaction"  value="Single Transaction"/>
+<div id="single_traction_record"></div>
+<br><hr><br>
+<input type="submit" id="all_transaction"  name="all_transaction"  value="All Transaction"/>
+<div id="all_transaction_record"></div>
+
+</body>
+</html>
