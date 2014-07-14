@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <style type="text/css">
+
+   .divider{
+    float:left;
+    border-right: 1px solid #000;
+    padding: 0 20px;
+   }
+
+   input{
+    margin-bottom: 10px;
+   }
+
+  </style>
+</head>
+<body>  
+
+<!-- form for fetching value's -->
+<br>
+<pre style="border: 1px solid #000; padding: 10px; width: 500px;">
+<span style="color: blue;">GUIDELINES:</span> "Use this value's for the moment"<br>
+'dynamic Token_key' => '<span id="tokenID"></span>'
+'buy_currency'=>'EUR',
+'sell_currency'=>'GBP',
+'amount'=>'10000',
+'side'=>'1',
+'term_agreement'=>'true',
+'reason'=>'Invoice Settlement'
+</pre>
+<br>
+
+Response Message:<br>
+<div id="response"></div><br>
+
+Result Below: <br>
+<div id="result"></div>
+<br>
+<hr>
+<div class="divider">
+  <div>Buy Currency: </div>
+  <select name="buy_currency" id="buy_currency">
+    <option value="GBP">British pound</option>
+    <option value="EUR">EU euro</option>
+    <option value="USD">US Dollar</option>
+    <option value="CAD">Canadian Dollar</option>
+    <option value="AUD">Australian Dollar</option>
+    <option value="CHF">Swiss Franc</option>
+    <option value="CZK">Czech Republic Koruna</option>
+    <option value="DKK">Danish Krone</option>
+    <option value="HKD">Hong Kong Dollar</option>
+    <option value="JPY">Japanese Yen</option>
+    <option value="MXN">Mexican Peso</option>
+    <option value="NOK">Norwegian Krone</option>
+    <option value="NZD">New Zealand Dollar</option>
+    <option value="PLN">Polish Zloty</option>
+    <option value="RUB">Russian Ruble</option>
+    <option value="SEK">Swedish Krona</option>
+    <option value="TRY">Turkish Lira</option>
+    <option value="ZAR">South Africa Rand</option>
+    <option value="AED">United Arab Emirates Dirham</option>
+    <option value="HUF">Hungarian Forint</option>
+    <option value="LTL">Lithuanian Litas</option>\
+    <option value="ILS">Israeli New Sheqel</option>
+    <option value="SGD">Singapore Dollar</option>
+    <option value="RON">Romania Leu</option>
+    <option value="THB">Thai Baht</option>
+  </select>
+  <br />
+  <div>Sell Currency:</div>             
+  <select  name="sell_currency" id="sell_currency">
+    <option value="GBP">British pound</option>
+    <option value="EUR">EU euro</option>
+    <option value="USD">US Dollar</option>
+    <option value="CAD">Canadian Dollar</option>
+    <option value="AUD">Australian Dollar</option>
+    <option value="CHF">Swiss Franc</option>
+    <option value="CZK">Czech Republic Koruna</option>
+    <option value="DKK">Danish Krone</option>
+    <option value="HKD">Hong Kong Dollar</option>
+    <option value="JPY">Japanese Yen</option>
+    <option value="MXN">Mexican Peso</option>
+    <option value="NOK">Norwegian Krone</option>
+    <option value="NZD">New Zealand Dollar</option>
+    <option value="PLN">Polish Zloty</option>
+    <option value="RUB">Russian Ruble</option>
+    <option value="SEK">Swedish Krona</option>
+    <option value="TRY">Turkish Lira</option>
+    <option value="ZAR">South Africa Rand</option>
+    <option value="AED">United Arab Emirates Dirham</option>
+    <option value="HUF">Hungarian Forint</option>
+    <option value="LTL">Lithuanian Litas</option>
+    <option value="ILS">Israeli New Sheqel</option>
+    <option value="SGD">Singapore Dollar</option>
+    <option value="RON">Romania Leu</option>
+  </select>
+
+  <br />
+  <div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
+  <br />
+  <div>Side:</div>
+    <select name="side" id="side">
+      <option value="1">buy</option>
+      <option value="2">sell</option>
+    </select>
+  <br/>
+  <div>Terms of Agreement:</div> <input type="checkbox" name="term_agreement" id="term_agreement"/>
+  <br />
+  <div>Reason:</div> <textarea name="reason" id="reason" class="text" rows="5" cols="30"></textarea>
+
+  <input type="hidden" name="token" id="token" value="" />
+  <br />
+  <input type="submit" name="trade_submit" id="trade_submit" value="trade"/>
+
+  <br>
+  
+  <!-- for the trade confirm resend and deposit-->
+  <span>Confirm Resend</span><br>
+  <div id="resend"></div>
+  <input type="text" name="trade_id" id="trade_id" placeholder='Trade ID'/>
+  <input type="submit" name="tradeID" id="tradeID" value="resend"/>
+  <input type="submit" name="deposit_account" id="deposit_account" value="Deposit Price"/>
+</div>
+
+<div class="divider">
+
+  Respond Beneficiary:<div id="benefNew"></div><br>
+  <div>Nickname:</div><input type="text" name="nickname" id="nickname" placeholder="GBP Account"/>
+  <div>Account CCY:</div><input type="text" name="account_ccy" id="account_ccy" placeholder="GBP"/>
+  <div>Beneficiary Name:</div><input type="text" name="beneficiary_name" id="beneficiary_name" placeholder="John Smith"/>
+  <div>Bank Name:</div><input type="text" name="bank_name" id="bank_name" placeholder="Barclays Bank plc"/>
+  <div>Bank Address:</div><input type="text" name="bank_address" id="bank_address"  placeholder="1 Churchill Place, London, E14 5HP, UK"/>
+  <div>Account Number:</div><input type="text" name="account_number" id="account_number" placeholder="13071472"/>
+  <div>Sort Code:</div><input type="text" name="sort_code" id="sort_code" placeholder="200605"/>
+  <div>Destination Country Code:</div><input type="text" name="destination_code" id="destination_code" placeholder="GB"/>
+  <div>Beneficiary:</div><input type="checkbox" name="beneficiary" id="beneficiary"/>
+  <div>source:</div><input type="checkbox" name="source" id="source"/>
+  <br>
+  <input type="submit" name="beneficiary_btn" id="beneficiary_btn" value="New Beneficiary"/>
+
+</div>
+
+<div class="divider">
+
+  Respond Settlement:<div id="settleNew"></div><br>
+
+  <input type="submit" name="settlement_create" id="settlement_create" value="Settlement Create"/><br>
+
+  <input type="text" name="settle_id" id="settle_id" placeholder='Settlement ID'/><br>
+  <input type="submit" name="settlement_summary" id="settlement_summary" value="Settlement ID" /><br>
+
+  <input type="text" name="trade_id_settle" id="trade_id_settle" placeholder='Trade ID'/><br>
+  <input type="submit" name="settlement_add_trade" id="settlement_add_trade" value="Settlement Add Trade"/><br>
+
+  <hr/>
+
+  <!-- payment type -->
+  Respond Payment type: <div id="paymentType"></div><br>
+  <input type="text" name="ccy" id="ccy" placeholder='CCY'/><br>
+  <input type="text" name="destination_country_code" id="destination_country_code" placeholder='Desti Country Code'/><br>
+  <input type="text" name="pay_type" id="pay_type" placeholder='Payment Type'/><br>
+
+  <input type="submit" name="payment_type" id="payment_type" value="Payment Type"/><br><br>
+  <!-- payment type end -->
+
+</div>
+<div class="divider">
+
+  Respond Payment:<div id="paymentNew"></div><br>
+  
+  <input type="text" name="pay_create_currency" id="pay_create_currency" placeholder='Currency'/><br>
+   <input type="submit" name="paymentID" id="paymentID" value="Get Payment ID"/><br>
+   <input type="text" name="payment_id" id="payment_id" placeholder='Payment ID Result ID'/><br>
+   <hr>
+  <div>Beneficiary ID:</div>
+  <input type="text" name="payment_beneficiary_id" id="payment_beneficiary_id" placeholder='Beneficiary ID'/><br>
+  <div>Trade ID:</div>
+  <input type="text" name="payment_trade_id" id="payment_trade_id" placeholder='Trade ID'/><br>
+  <div>Currency:</div>             
+  <select  name="payment_currency" id="payment_currency">
+      <option value="GBP">British pound</option>
+      <option value="EUR">EU euro</option>
+      <option value="USD">US Dollar</option>
+  </select><br>
+  <div>Amount</div>
+  <input type="text" name="payment_amount" id="payment_amount" placeholder="Amount" /><br>
+  <div>Reason</div>
+  <input type="text" name="payment_reason" id="payment_reason" placeholder="Reason" /><br>
+  <div>Payment Reference</div>
+  <input type="text" name="payment_reference" id="payment_reference" placeholder="Payment Reference" /><br>
+
+  <input type="submit" name="payment_add" id="payment_add" value="Payment Add"/><br>
+
+</div>
+ <br style="clear:both;">
+<hr>
+  <script type="text/javascript" src="tcc_ajax.js"></script>
+</body>
+</html>
+
