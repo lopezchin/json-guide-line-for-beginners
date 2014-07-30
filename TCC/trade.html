@@ -70,6 +70,8 @@ Result Below: <br>
     <option value="THB">Thai Baht</option>
   </select>
   <br />
+  <div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
+  <br />
   <div>Sell Currency:</div>             
   <select  name="sell_currency" id="sell_currency">
     <option value="GBP">British pound</option>
@@ -97,9 +99,6 @@ Result Below: <br>
     <option value="SGD">Singapore Dollar</option>
     <option value="RON">Romania Leu</option>
   </select>
-
-  <br />
-  <div>Amount:</div> <input type="number" name="amount" id="amount" class="text" />
   <br />
   <div>Side:</div>
     <select name="side" id="side">
@@ -191,6 +190,18 @@ Result Below: <br>
   <input type="text" name="payment_reason" id="payment_reason" placeholder="Reason" /><br>
   <div>Payment Reference</div>
   <input type="text" name="payment_reference" id="payment_reference" placeholder="Payment Reference" /><br>
+  <div>Payment Type</div>
+  <input type="text" name="payment_type" id="payment_type" value="local" /><br>
+  <div>Payer Type</div>
+  <input type="text" name="payer_type" id="payer_type" value="company" /><br>
+  <div>Payer Company Name</div>
+  <input type="text" name="payer_company_name" id="payer_company_name" value="Acme Plc" /><br>
+  <div>Payer Address</div>
+  <input type="text" name="payer_address" id="payer_address" value="164 Bishopsgate" /><br>
+  <div>Payer City</div>
+  <input type="text" name="payer_city" id="payer_city" value="London" /><br>
+  <div>Payer Country</div>
+  <input type="text" name="payer_country" id="payer_country" value="United Kingdom" /><br>
 
   <input type="submit" name="payment_add" id="payment_add" value="Payment Add"/><br>
 

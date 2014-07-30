@@ -500,13 +500,19 @@
       var beneficiary_id = $("#payment_beneficiary_id").val();
       var payment_reason = $("#payment_reason").val();
       var payment_reference = $("#payment_reference").val();
+      var payment_type = $("#payment_type").val();
+      var payer_type = $("#payer_type").val();
+      var payer_company_name = $("#payer_company_name").val();
+      var payer_address = $("#payer_address").val();
+      var payer_city = $("#payer_city").val();
+      var payer_country = $("#payer_country").val();
 
-      // alert(token_key+ ' ~ ' +currency+ ' ~ ' +payment_amount+ ' ~ ' +beneficiary_id+ ' ~ ' +payment_reason+ ' ~ ' +trade_id+ ' ~ ' +payment_reference);
-      paymentNew(token_key, currency, payment_amount, beneficiary_id, payment_reason, trade_id, payment_reference);
+      //alert(token_key+ ' ~ ' +currency+ ' ~ ' +payment_amount+ ' ~ ' +beneficiary_id+ ' ~ ' +payment_reason+ ' ~ ' +trade_id+ ' ~ ' +payment_reference+ ' ~ ' +payment_type+ ' ~ ' +payer_type+ ' ~ ' +payer_company_name+ ' ~ ' +payer_address+ ' ~ ' +payer_city+ ' ~ ' +payer_country);
+      paymentNew(token_key, currency, payment_amount, beneficiary_id, payment_reason, trade_id, payment_reference, payment_type, payer_type, payer_company_name, payer_address, payer_city, payer_country);
     
   });
 
-  function paymentNew(token_key, currency, payment_amount, beneficiary_id, payment_reason, trade_id, payment_reference){
+  function paymentNew(token_key, currency, payment_amount, beneficiary_id, payment_reason, trade_id, payment_reference, payment_type, payer_type, payer_company_name, payer_address, payer_city, payer_country){
     // alert(token_key+ ' ~ ' +currency+ ' ~ ' +payment_amount+ ' ~ ' +beneficiary_id+ ' ~ ' +payment_reason+ ' ~ ' +trade_id+ ' ~ ' +payment_reference);
     var msg="";
 
@@ -522,6 +528,12 @@
         'beneficiary_id': beneficiary_id,
         'reason': payment_reason,
         'payment_reference': payment_reference,
+        'payment_type': payment_type,
+        'payer_type': payer_type,
+        'payer_company_name': payer_company_name,
+        'payer_address': payer_address,
+        'payer_city': payer_city,
+        'payer_country': payer_country,
         _token: "",
         action: 'payment_add'
       },

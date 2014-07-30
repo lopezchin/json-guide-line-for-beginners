@@ -6,6 +6,12 @@
 	$beneficiary_id = '';
 	$reason = '';
 	$payment_reference= '';
+	$payment_type = "";
+    $payer_type = "";
+    $payer_company_name = "";
+    $payer_address = "";
+    $payer_city = "";
+    $payer_country = "";
 	
 	if (isset($_REQUEST['action']) ) {
 
@@ -16,6 +22,12 @@
 		$beneficiary_id = isset($_REQUEST['beneficiary_id']) ? $_REQUEST['beneficiary_id'] : null;
 		$reason = isset($_REQUEST['reason']) ? $_REQUEST['reason'] : null;
 		$payment_reference = isset($_REQUEST['payment_reference']) ? $_REQUEST['payment_reference'] : null;
+		$payment_type = isset($_REQUEST['payment_type']) ? $_REQUEST['payment_type'] : null;
+		$payer_type = isset($_REQUEST['payer_type']) ? $_REQUEST['payer_type'] : null;
+		$payer_company_name = isset($_REQUEST['payer_company_name']) ? $_REQUEST['payer_company_name'] : null;
+		$payer_address = isset($_REQUEST['payer_address']) ? $_REQUEST['payer_address'] : null;
+		$payer_city = isset($_REQUEST['payer_city']) ? $_REQUEST['payer_city'] : null;
+		$payer_country = isset($_REQUEST['payer_country']) ? $_REQUEST['payer_country'] : null;
 		
 	};
 
@@ -25,7 +37,13 @@
 	    'amount' => $amount,
 	    'beneficiary_id' => $beneficiary_id,
 	    'reason' => $reason,
-	    'payment_reference' => $payment_reference
+	    'payment_reference' => $payment_reference,
+	    // 'payment_type' => $payment_type,
+	    // 'payer_type' => $payer_type,
+	    // 'payer_company_name' => $payer_company_name,
+	    // 'payer_address' => $payer_address,
+	    // 'payer_city' => $payer_city,
+	    // 'payer_country' => $payer_country,
 	);
 
 	 //cURL settings
