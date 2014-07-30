@@ -348,6 +348,87 @@
     });   
   }
 
+  // Trade Execute payment
+
+  $("#ex_trade_submit").click(function () {
+
+        var token_key = $("#token").val();
+        var ex_amount = $("#ex_amount").val();
+        var ex_ben = $("#ex_ben").val();
+        var ex_buy_currency = $("#ex_buy_currency").val();
+        var ex_payment_reference = $("#ex_payment_reference").val();
+        var ex_payment_type = $("#ex_payment_type").val();
+        var ex_reason = $("#ex_reason").val();
+        var ex_sell_currency = $("#ex_sell_currency").val();
+        var ex_side = $("#ex_side").val();  //side  1 = buy, 2 = sell
+        var ex_term_agreement = $('#ex_term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
+        var ex_contact_ref = $("#ex_contact_ref").val();
+
+        // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
+       alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
+        
+        //executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref);
+    
+  });
+
+  function executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref){
+    alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
+
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/ex_trade.php',
+      data: {
+        'tokenKey': token_key,
+        'ex_amount': ex_amount,
+        'ex_ben': ex_ben,
+        'ex_buy_currency': ex_buy_currency,
+        'ex_side': ex_side,
+        'ex_payment_reference': ex_payment_reference,
+        'ex_payment_type': ex_payment_type,
+        'ex_reason': ex_reason,
+        'ex_sell_currency': ex_sell_currency,
+        'ex_term_agreement': ex_term_agreement,
+        'ex_contact_ref': ex_contact_ref,
+        _token: "",
+        action: 'ex_trade'
+      },
+
+      success: function(data) {
+
+        console.log(data);
+
+        // document.getElementById("response").innerHTML = data.message;
+
+        // if (typeof data !== 'object') {
+        //   data = jQuery.parseJSON(data);
+        // }
+
+        // //if data is success
+        // if (data.status == "success") {
+        //   msg = data.data.trade_id; 
+        //   document.getElementById('trade_id').value = msg;
+        //   document.getElementById('trade_id_settle').value = msg;
+        //   document.getElementById('payment_trade_id').value = msg;
+        //   document.getElementById("response").innerHTML = msg;
+          
+        // } else {
+        //   msg = data.message;
+        //   document.getElementById("response").innerHTML = msg;
+        // }
+
+        // // if data is undefiened
+        // if (typeof data.redirect !== 'undefined') {
+        //   window.location = data.redirect;
+        // }
+
+      }
+      
+    });   
+  }
+
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // Beneficiary
 

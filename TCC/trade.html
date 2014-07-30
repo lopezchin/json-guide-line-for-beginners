@@ -122,6 +122,54 @@ Result Below: <br>
   <input type="text" name="trade_id" id="trade_id" placeholder='Trade ID'/>
   <input type="submit" name="tradeID" id="tradeID" value="resend"/>
   <input type="submit" name="deposit_account" id="deposit_account" value="Deposit Price"/>
+
+  <hr>
+
+  <!-- for the trade with payment execute -->
+  <div><b>Trade with Execute Payment </b></div> <br>
+
+  <div>Amount:</div> <input type="number" name="ex_amount" id="ex_amount" class="text" />
+
+  <div>Beneficiary ID:</div> <input type="text" name="ex_ben" id="ex_ben" class="text" />
+
+  <div>Buy Currency: </div>
+  <select name="ex_buy_currency" id="ex_buy_currency">
+    <option value="GBP">British pound</option>
+    <option value="EUR">EU euro</option>
+    <option value="USD">US Dollar</option>
+  </select>
+  <br />
+
+  <div>Paymen Reference:</div> <input type="text" name="ex_payment_reference" id="ex_payment_reference" class="text" />
+
+  <div>Payment Type:</div> <input type="text" name="ex_payment_type" id="ex_payment_type" class="text" />
+
+  <br />
+  <div>Reason:</div> <textarea name="ex_reason" id="ex_reason" class="text" rows="5" cols="30"></textarea>
+
+  <br />
+  <div>Sell Currency:</div>             
+  <select  name="ex_sell_currency" id="ex_sell_currency">
+    <option value="GBP">British pound</option>
+    <option value="EUR">EU euro</option>
+    <option value="USD">US Dollar</option>
+  </select>
+  <br />
+  <div>Side:</div>
+    <select name="ex_side" id="ex_side">
+      <option value="1">buy</option>
+      <option value="2">sell</option>
+    </select>
+  <br/>
+  <div>Terms of Agreement:</div> <input type="checkbox" name="ex_term_agreement" id="ex_term_agreement"/>
+
+  <div>Contat Referrence:</div> <input type="text" name="ex_contact_ref" id="ex_contact_ref" value="231614c0-2012-012e-c039-23001a48acdf" />
+
+  <input type="hidden" name="token" id="token" value="" />
+  <br />
+  <input type="submit" name="ex_trade_submit" id="ex_trade_submit" value="trade"/>
+
+  <br>
 </div>
 
 <div class="divider">
