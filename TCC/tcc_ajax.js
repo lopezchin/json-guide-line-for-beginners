@@ -365,9 +365,9 @@
         var ex_contact_ref = $("#ex_contact_ref").val();
 
         // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
-       alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
+      // alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
         
-        //executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref);
+        executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref);
     
   });
 
@@ -680,6 +680,131 @@
       success: function(payCreateID) {
 
         console.log(payCreateID);
+
+        // document.getElementById("paymentNew").innerHTML = payCreateID.message;
+
+        // if (typeof payCreateID !== 'object') {
+        //   payCreateID = jQuery.parseJSON(payCreateID);
+        // }
+
+        // //if data is success
+        // if (payCreateID.status == "success") {
+        //   msg = payCreateID.status; 
+        //   document.getElementById("payment_id").innerHTML = msg;
+          
+        // }else{
+        //   msg = payCreateID.status;
+        //   document.getElementById("payment_id").innerHTML = msg;
+        // }
+
+        // // if data is undefiened
+        // if (typeof payCreateID.redirect !== 'undefined') {
+        //   window.location = payCreateID.redirect;
+        // }
+
+      }
+      
+    });   
+  }
+
+
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  // Find Contact
+
+  $("#findContact_ref_btn").click(function () {
+
+      var token_key = $("#token").val();
+      var find_cont_ref = $("#find_cont_ref").val();
+
+      
+      //findContactRef(token_key, find_cont_ref);
+    
+  });
+
+  function findContactRef(token_key, find_cont_ref){
+    alert(token_key+' ~ '+find_cont_ref);
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/find_contact_ref.php',
+      data: {
+        'tokenKey': token_key,
+        'find_cont_ref': find_cont_ref,
+        _token: "",
+        action: 'contact_ref'
+      },
+
+      success: function(FindContact) {
+
+        console.log(FindContact);
+
+        // document.getElementById("paymentNew").innerHTML = payCreateID.message;
+
+        // if (typeof payCreateID !== 'object') {
+        //   payCreateID = jQuery.parseJSON(payCreateID);
+        // }
+
+        // //if data is success
+        // if (payCreateID.status == "success") {
+        //   msg = payCreateID.status; 
+        //   document.getElementById("payment_id").innerHTML = msg;
+          
+        // }else{
+        //   msg = payCreateID.status;
+        //   document.getElementById("payment_id").innerHTML = msg;
+        // }
+
+        // // if data is undefiened
+        // if (typeof payCreateID.redirect !== 'undefined') {
+        //   window.location = payCreateID.redirect;
+        // }
+
+      }
+      
+    });   
+  }
+
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  // Adding Contact Ref
+
+  $("#contact_ref_btn").click(function () {
+
+      var token_key = $("#token").val();
+      var con_firstname = $("#con_firstname").val();
+      var con_lastname = $("#con_lastname").val();
+      var con_email = $("#con_email").val();
+      var acct_numb = $("#acct_numb").val();
+      var cont_ref = $("#cont_ref").val();
+
+      //alert(token_key+'\n\n'+con_firstname+'\n\n'+con_lastname+'\n\n'+con_email+'\n\n'+acct_numb+'\n\n'+cont_ref);
+      addContactRef(token_key, con_firstname, con_lastname, con_email, acct_numb, cont_ref);
+    
+  });
+
+  function addContactRef(token_key, con_firstname, con_lastname, con_email, acct_numb, cont_ref){
+    alert(token_key+'\n\n'+con_firstname+'\n\n'+con_lastname+'\n\n'+con_email+'\n\n'+acct_numb+'\n\n'+cont_ref);
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/add_contact_ref.php',
+      data: {
+        'tokenKey': token_key,
+        'con_firstname': con_firstname,
+        'con_lastname': con_lastname,
+        'con_email': con_email,
+        'acct_numb': acct_numb,
+        'cont_ref': cont_ref,
+        _token: "",
+        action: 'add_contact_ref'
+      },
+
+      success: function(AddContactRef) {
+
+        console.log(AddContactRef);
 
         // document.getElementById("paymentNew").innerHTML = payCreateID.message;
 

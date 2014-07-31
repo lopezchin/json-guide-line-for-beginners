@@ -132,7 +132,7 @@ Result Below: <br>
 
   <div>Beneficiary ID:</div> <input type="text" name="ex_ben" id="ex_ben" class="text" />
 
-  <div>Buy Currency: </div>
+  <div>Buy Currency:</div>
   <select name="ex_buy_currency" id="ex_buy_currency">
     <option value="GBP">British pound</option>
     <option value="EUR">EU euro</option>
@@ -140,12 +140,12 @@ Result Below: <br>
   </select>
   <br />
 
-  <div>Paymen Reference:</div> <input type="text" name="ex_payment_reference" id="ex_payment_reference" class="text" />
+  <div>Paymen Reference:</div> <input type="text" name="ex_payment_reference" id="ex_payment_reference" class="text" value="INVOICE-019264" />
 
-  <div>Payment Type:</div> <input type="text" name="ex_payment_type" id="ex_payment_type" class="text" />
+  <div>Payment Type:</div> <input type="text" name="ex_payment_type" id="ex_payment_type" class="text" value="local" />
 
   <br />
-  <div>Reason:</div> <textarea name="ex_reason" id="ex_reason" class="text" rows="5" cols="30"></textarea>
+  <div>Reason:</div> <textarea name="ex_reason" id="ex_reason" class="text" rows="5" cols="30">Invoice Settlement</textarea>
 
   <br />
   <div>Sell Currency:</div>             
@@ -187,6 +187,23 @@ Result Below: <br>
   <div>source:</div><input type="checkbox" name="source" id="source"/>
   <br>
   <input type="submit" name="beneficiary_btn" id="beneficiary_btn" value="New Beneficiary"/>
+
+  <hr/>
+
+  <!-- Contact Reference  -->
+  Find Contact:<div id="findContRef"></div><br>
+
+   <div>Your Contact Reference :</div><input type="text" name="find_cont_ref" id="find_cont_ref" placeholder="Contact Reference"/><br>
+   <input type="submit" name="findContact_ref_btn" id="findContact_ref_btn" value="Find Contact"/>
+   <hr/>
+   
+   Contact Reference:<div id="confRef"></div><br>
+   <div>Firstname:</div><input type="text" name="con_firstname" id="con_firstname" placeholder="Firstname"/>
+   <div>Lastname:</div><input type="text" name="con_lastname" id="con_lastname" placeholder="Lastname"/>
+   <div>Email:</div><input type="text" name="con_email" id="con_email" placeholder="Email"/>
+   <div>Account Number:</div><input type="text" name="acct_numb" id="acct_numb" placeholder="Account Number"/>
+   <div>Your Contact Reference :</div><input type="text" name="cont_ref" id="cont_ref" placeholder="Contact Reference"/><br>
+   <input type="submit" name="contact_ref_btn" id="contact_ref_btn" value="New Contact Reference"/>
 
 </div>
 

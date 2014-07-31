@@ -55,7 +55,7 @@
 	
 	 //cURL settings
     $curlOptions = array (
-        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/execute",
+        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/trade/execute_with_payment",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
@@ -69,13 +69,13 @@
 
 
 	//Sending our request - $response will hold the API response
-	$trade = curl_exec($ch);
+	$ex_trade = curl_exec($ch);
 
 	curl_close($ch);
 
 	// $responseArray = array();
 	// parse_str($response,$responseArray);
 	
-	echo $trade;
+	echo $ex_trade;
 
 ?>
