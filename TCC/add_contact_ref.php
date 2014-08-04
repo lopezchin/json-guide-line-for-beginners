@@ -8,7 +8,7 @@
 	// header('content-type: application/json; charset=utf-8');
 	// header("access-control-allow-origin: *");
 
-	$tokenKey = "";
+	$token_key = "";
 	$con_firstname = "";
     $con_lastname = "";
     $con_email = "";
@@ -16,7 +16,7 @@
     $cont_ref = "";
 
 	if (isset($_REQUEST['action']) ) {
-
+		$token_key = isset($_REQUEST['tokenKey']) ? $_REQUEST['tokenKey'] : null;
 		$con_firstname = isset($_REQUEST['con_firstname']) ? $_REQUEST['con_firstname'] : null;
 		$con_lastname = isset($_REQUEST['con_lastname']) ? $_REQUEST['con_lastname'] : null;
 		$con_email = isset($_REQUEST['con_email']) ? $_REQUEST['con_email'] : null;
@@ -38,6 +38,7 @@
 	 //cURL settings
     $curlOptions = array (
         CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/contact/create",
+        // CURLOPT_URL => "https://uat1.xbpconnect.com/api/en/v1.0/".$token_key."/contact/create",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,

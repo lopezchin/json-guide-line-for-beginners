@@ -8,7 +8,7 @@
 	// header('content-type: application/json; charset=utf-8');
 	// header("access-control-allow-origin: *");
 
-	$tokenKey = "";
+	$token_key = "";
     $ex_amount = "";
     $ex_ben = "";
     $ex_buy_currency = "";
