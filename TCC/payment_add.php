@@ -18,7 +18,7 @@
 		$token_key = isset($_REQUEST['tokenKey']) ? $_REQUEST['tokenKey'] : null;
 		$trade_id = isset($_REQUEST['trade_id']) ? $_REQUEST['trade_id'] : null;
 		$currency = isset($_REQUEST['currency']) ? $_REQUEST['currency'] : null;
-		$amount = isset($_REQUEST['amount']) ? $_REQUEST['amount'] : null;
+		$amount = isset($_REQUEST['payment_amount']) ? $_REQUEST['payment_amount'] : null;
 		$beneficiary_id = isset($_REQUEST['beneficiary_id']) ? $_REQUEST['beneficiary_id'] : null;
 		$reason = isset($_REQUEST['reason']) ? $_REQUEST['reason'] : null;
 		$payment_reference = isset($_REQUEST['payment_reference']) ? $_REQUEST['payment_reference'] : null;
