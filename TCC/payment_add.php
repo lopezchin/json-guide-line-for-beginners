@@ -37,7 +37,7 @@
 	    'amount' => $amount,
 	    'beneficiary_id' => $beneficiary_id,
 	    'reason' => $reason,
-	    'payment_reference' => $payment_reference
+	    'payment_reference' => $payment_reference,
 	    // 'payment_type' => $payment_type,
 	    // 'payer_type' => $payer_type,
 	    // 'payer_company_name' => $payer_company_name,
@@ -46,29 +46,24 @@
 	    // 'payer_country' => $payer_country,
 	);
 
-	 //cURL settings
-    $curlOptions = array (
-        CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/payment/add",
-        CURLOPT_VERBOSE => 1,
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_POST => 1,
-        CURLOPT_POSTFIELDS => $qstring
-    );
 
 	$ch = curl_init();
-	curl_setopt_array($ch,$curlOptions);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
 
+	curl_setopt($ch, CURLOPT_URL, "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/payment/add");
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($qstring));
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	// in real life you should use something like:
+	// curl_setopt($ch, CURLOPT_POSTFIELDS, 
+	//          http_build_query(array('postvar1' => 'value1')));
 
-	//Sending our request - $response will hold the API response
-	$payment_add = curl_exec($ch);
+	// receive server response ...
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-	curl_close($ch);
+	$payment_add = curl_exec ($ch);
 
-	// $responseArray = array();
-	// parse_str($response,$responseArray);
-	
+	curl_close ($ch);
+
 	echo $payment_add;
 
 ?>

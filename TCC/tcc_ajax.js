@@ -72,7 +72,6 @@
     });
   }
 
-
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   //DEPOSIT
 
@@ -90,8 +89,6 @@
       $.ajax({
           type: "GET",
           url: "http://localhost/JSON_beginner/TCC/deposit_account.php",
-          // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
-          // url: "https://devapi.thecurrencycloud.com/api/en/v1.0/"+token_key+"/trade/"+trade_id+"/deposit_account",
           dataType: "json",
           crossDomain: true,
           data:{
@@ -173,7 +170,6 @@
     });
   }
 
-
   // settlement id
 
   $("#settlement_summary").click(function () {
@@ -189,7 +185,6 @@
   function settlementSummary(token_key, settle_summary){
     $.ajax({
         type: "POST",
-        // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
         url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
         dataType: "json",
         data:{
@@ -230,7 +225,6 @@
     var settle_summary = $("#settle_id").val();
     var trade_id_settle = $("#trade_id_settle").val();
 
-
     // alert('token = '+token_key+' settlement = '+settle_summary+' trade ='+trade_id_settle);
 
     settlementAddTrade(token_key, settle_summary, trade_id_settle);
@@ -239,7 +233,6 @@
   function settlementAddTrade(token_key, settle_summary, trade_id_settle){
     $.ajax({
         type: "POST",
-        // url: "http://localhost/JSON_beginner/TCC/settlement_id.php",
         url: "http://localhost/JSON_beginner/TCC/settlement_add_trade.php",
         dataType: "json",
         data:{
@@ -275,6 +268,54 @@
     });
   }
 
+  // settlement release trade
+
+  $("#settlement_release_trade").click(function () {
+    
+    var token_key = $("#token").val();
+    var settle_summary = $("#settle_id").val();
+
+    settlementReleaseTrade(token_key, settle_summary);
+  });
+
+  function settlementReleaseTrade(token_key, settle_summary){
+    alert('settlement = '+settle_summary);
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/JSON_beginner/TCC/settlement_release_trade.php",
+        dataType: "json",
+        data:{
+          'tokenKey': token_key,
+          'settleID': settle_summary,
+          _token: "",
+          action: 'settlement_release_trade'
+        },
+        success: function(settle_release) {
+
+          // console.log(settle);
+
+          if (typeof settle_release !== 'object') {
+            settle_release = jQuery.parseJSON(settle_release);
+          }
+
+          //if data is success
+          if (settle_release.status == "success") {
+            var msg = settle_release.status;
+            document.getElementById("settleNew").innerHTML = msg;
+            
+          } else {
+            var msg = settle_release.message;
+            document.getElementById("settleNew").innerHTML = msg;
+          }
+
+          // if data is undefiened
+          if (typeof settle_release.redirect !== 'undefined') {
+            window.location = settle_release.redirect;
+          }
+      }
+    });
+  }
+
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // Trade_id
 
@@ -288,7 +329,6 @@
         var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
         var reason = $("#reason").val();
 
-        // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
         document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
         checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
     
@@ -364,9 +404,7 @@
         var ex_term_agreement = $('#ex_term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
         var ex_contact_ref = $("#ex_contact_ref").val();
 
-        // alert(buy_currency+ '/' +sell_currency+ '/' +amount+ '/' +side+ '/' +term_agreement+ '/' +reason);
-      // alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
-        
+        // alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
         executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref);
     
   });
