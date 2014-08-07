@@ -388,79 +388,77 @@
     });   
   }
 
-  // Trade Execute payment
-
-  $("#ex_trade_submit").click(function () {
+  $("#trade_ben").click(function () {
 
         var token_key = $("#token").val();
-        var ex_amount = $("#ex_amount").val();
-        var ex_ben = $("#ex_ben").val();
-        var ex_buy_currency = $("#ex_buy_currency").val();
-        var ex_payment_reference = $("#ex_payment_reference").val();
-        var ex_payment_type = $("#ex_payment_type").val();
-        var ex_reason = $("#ex_reason").val();
-        var ex_sell_currency = $("#ex_sell_currency").val();
-        var ex_side = $("#ex_side").val();  //side  1 = buy, 2 = sell
-        var ex_term_agreement = $('#ex_term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
-        var ex_contact_ref = $("#ex_contact_ref").val();
+        var buy_currency = $("#buy_currency").val();
+        var sell_currency = $("#sell_currency").val();
+        var amount = $("#amount_ben").val();
+        var side = $("#side").val();  //side  1 = buy, 2 = sell
+        var term_agreement = $('#term_agreement_ben').is(':checked'); // use .is(:checked) to get value of true/false result
+        var reason = $("#reason_ben").val();
+        var beneficiary_id = $("#beneficiary_id").val();
+        var payment_ben_type = $("#payment_ben_type").val();
+        var payment_ref = $("#payment_ref").val();
 
-        // alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
-        executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref);
-    
+         // alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
+
+
+       tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref);
+        
   });
 
-  function executeCheckingValue(token_key, ex_amount, ex_ben, ex_buy_currency, ex_payment_reference, ex_payment_type, ex_reason, ex_sell_currency, ex_side, ex_term_agreement, ex_contact_ref){
-    alert(ex_amount+'\n\n'+ex_ben+'\n\n'+ex_buy_currency+'\n\n'+ex_payment_reference+'\n\n'+ex_payment_type+'\n\n'+ex_reason+'\n\n'+ex_sell_currency+'\n\n'+ex_side+'\n\n'+ex_term_agreement+'\n\n'+ex_contact_ref);
+  function tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref){
+    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
 
     var msg="";
 
     $.ajax({
       type: 'POST',
       dataType: 'json',
-      url: 'http://localhost/JSON_beginner/TCC/ex_trade.php',
+      url: 'http://localhost/JSON_beginner/TCC/trade_ben.php',
       data: {
         'tokenKey': token_key,
-        'ex_amount': ex_amount,
-        'ex_ben': ex_ben,
-        'ex_buy_currency': ex_buy_currency,
-        'ex_side': ex_side,
-        'ex_payment_reference': ex_payment_reference,
-        'ex_payment_type': ex_payment_type,
-        'ex_reason': ex_reason,
-        'ex_sell_currency': ex_sell_currency,
-        'ex_term_agreement': ex_term_agreement,
-        'ex_contact_ref': ex_contact_ref,
+        'buyCurrency': buy_currency,
+        'sellCurrency': sell_currency,
+        'amount': amount,
+        'side': side,
+        'termAgreement': term_agreement,
+        'reason': reason,
+        'beneficiary_id': beneficiary_id,
+        'payment_ben_type': payment_ben_type,
+        'payment_ref': payment_ref,
         _token: "",
-        action: 'ex_trade'
+        action: 'trade_ben'
       },
 
       success: function(data) {
 
-        console.log(data);
+        // console.log(data);
 
         // document.getElementById("response").innerHTML = data.message;
 
-        // if (typeof data !== 'object') {
-        //   data = jQuery.parseJSON(data);
-        // }
+        if (typeof data !== 'object') {
+          data = jQuery.parseJSON(data);
+        }
 
-        // //if data is success
-        // if (data.status == "success") {
-        //   msg = data.data.trade_id; 
-        //   document.getElementById('trade_id').value = msg;
-        //   document.getElementById('trade_id_settle').value = msg;
-        //   document.getElementById('payment_trade_id').value = msg;
-        //   document.getElementById("response").innerHTML = msg;
+        //if data is success
+        if (data.status == "success") {
+          msg = data.data.trade_id; 
+          document.getElementById('trade_id').value = msg;
+          document.getElementById('trade_id_settle').value = msg;
+          document.getElementById('payment_trade_id').value = msg;
+          document.getElementById("response").innerHTML = msg;
           
-        // } else {
-        //   msg = data.message;
-        //   document.getElementById("response").innerHTML = msg;
-        // }
+        } else {
+          msg = data.message;
+          document.getElementById("response").innerHTML = msg;
+        }
 
-        // // if data is undefiened
-        // if (typeof data.redirect !== 'undefined') {
-        //   window.location = data.redirect;
-        // }
+        // if data is undefiened
+        if (typeof data.redirect !== 'undefined') {
+          window.location = data.redirect;
+        }
 
       }
       
