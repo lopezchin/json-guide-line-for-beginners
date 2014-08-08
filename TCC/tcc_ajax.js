@@ -14,8 +14,84 @@
     }
   });
 
+
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-  // Confirm Resend
+  // Trade_id
+
+  $("#trade_submit").click(function () {
+
+        var token_key = $("#token").val();
+        var buy_currency = $("#buy_currency").val();
+        var sell_currency = $("#sell_currency").val();
+        var amount = $("#amount").val();
+        var side = $("#side").val();  //side  1 = buy, 2 = sell
+        var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
+        var reason = $("#reason").val();
+
+        document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
+        checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
+
+        settlementCreate(token_key);
+    
+  });
+
+  function checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason){
+    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason);
+
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/trade.php',
+      data: {
+        'tokenKey': token_key,
+        'buyCurrency': buy_currency,
+        'sellCurrency': sell_currency,
+        'amount': amount,
+        'side': side,
+        'termAgreement': term_agreement,
+        'reason': reason,
+        _token: "",
+        action: 'trade'
+      },
+
+      success: function(data) {
+
+        // console.log(data);
+
+        // document.getElementById("response").innerHTML = data.message;
+
+        if (typeof data !== 'object') {
+          data = jQuery.parseJSON(data);
+        }
+
+        //if data is success
+        if (data.status == "success") {
+          msg = data.data.trade_id; 
+          document.getElementById('trade_id').value = msg;
+          document.getElementById('trade_id_settle').value = msg;
+          document.getElementById('payment_trade_id').value = msg;
+          document.getElementById("response").innerHTML = msg;
+          
+        } else {
+          msg = data.message;
+          document.getElementById("response").innerHTML = msg;
+        }
+
+        // if data is undefiened
+        if (typeof data.redirect !== 'undefined') {
+          window.location = data.redirect;
+        }
+
+      }
+      
+    });   
+  }
+
+
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  // Confirm Resend ID
 
   $("#tradeID").click(function () {
         
@@ -70,6 +146,86 @@
           }
       }
     });
+  }
+
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  // Trade Beneficiary
+
+  $("#trade_ben").click(function () {
+
+        var token_key = $("#token").val();
+        var buy_currency = $("#buy_currency").val();
+        var sell_currency = $("#sell_currency").val();
+        var amount = $("#amount_ben").val();
+        var side = $("#side").val();  //side  1 = buy, 2 = sell
+        var term_agreement = $('#term_agreement_ben').is(':checked'); // use .is(:checked) to get value of true/false result
+        var reason = $("#reason_ben").val();
+        var beneficiary_id = $("#beneficiary_id").val();
+        var payment_ben_type = $("#payment_ben_type").val();
+        var payment_ref = $("#payment_ref").val();
+
+         // alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
+
+
+       tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref);
+        
+  });
+
+  function tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref){
+    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
+
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/trade_ben.php',
+      data: {
+        'tokenKey': token_key,
+        'buyCurrency': buy_currency,
+        'sellCurrency': sell_currency,
+        'amount': amount,
+        'side': side,
+        'termAgreement': term_agreement,
+        'reason': reason,
+        'beneficiary_id': beneficiary_id,
+        'payment_ben_type': payment_ben_type,
+        'payment_ref': payment_ref,
+        _token: "",
+        action: 'trade_ben'
+      },
+
+      success: function(data) {
+
+        // console.log(data);
+
+        // document.getElementById("response").innerHTML = data.message;
+
+        if (typeof data !== 'object') {
+          data = jQuery.parseJSON(data);
+        }
+
+        //if data is success
+        if (data.status == "success") {
+          msg = data.data.trade_id; 
+          document.getElementById('trade_id').value = msg;
+          document.getElementById('trade_id_settle').value = msg;
+          document.getElementById('payment_trade_id').value = msg;
+          document.getElementById("response").innerHTML = msg;
+          
+        } else {
+          msg = data.message;
+          document.getElementById("response").innerHTML = msg;
+        }
+
+        // if data is undefiened
+        if (typeof data.redirect !== 'undefined') {
+          window.location = data.redirect;
+        }
+
+      }
+      
+    });   
   }
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
@@ -314,155 +470,6 @@
           }
       }
     });
-  }
-
-  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-  // Trade_id
-
-  $("#trade_submit").click(function () {
-
-        var token_key = $("#token").val();
-        var buy_currency = $("#buy_currency").val();
-        var sell_currency = $("#sell_currency").val();
-        var amount = $("#amount").val();
-        var side = $("#side").val();  //side  1 = buy, 2 = sell
-        var term_agreement = $('#term_agreement').is(':checked'); // use .is(:checked) to get value of true/false result
-        var reason = $("#reason").val();
-
-        document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
-        checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
-    
-  });
-
-  function checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason){
-    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason);
-
-    var msg="";
-
-    $.ajax({
-      type: 'POST',
-      dataType: 'json',
-      url: 'http://localhost/JSON_beginner/TCC/trade.php',
-      data: {
-        'tokenKey': token_key,
-        'buyCurrency': buy_currency,
-        'sellCurrency': sell_currency,
-        'amount': amount,
-        'side': side,
-        'termAgreement': term_agreement,
-        'reason': reason,
-        _token: "",
-        action: 'trade'
-      },
-
-      success: function(data) {
-
-        // console.log(data);
-
-        // document.getElementById("response").innerHTML = data.message;
-
-        if (typeof data !== 'object') {
-          data = jQuery.parseJSON(data);
-        }
-
-        //if data is success
-        if (data.status == "success") {
-          msg = data.data.trade_id; 
-          document.getElementById('trade_id').value = msg;
-          document.getElementById('trade_id_settle').value = msg;
-          document.getElementById('payment_trade_id').value = msg;
-          document.getElementById("response").innerHTML = msg;
-          
-        } else {
-          msg = data.message;
-          document.getElementById("response").innerHTML = msg;
-        }
-
-        // if data is undefiened
-        if (typeof data.redirect !== 'undefined') {
-          window.location = data.redirect;
-        }
-
-      }
-      
-    });   
-  }
-
-  $("#trade_ben").click(function () {
-
-        var token_key = $("#token").val();
-        var buy_currency = $("#buy_currency").val();
-        var sell_currency = $("#sell_currency").val();
-        var amount = $("#amount_ben").val();
-        var side = $("#side").val();  //side  1 = buy, 2 = sell
-        var term_agreement = $('#term_agreement_ben').is(':checked'); // use .is(:checked) to get value of true/false result
-        var reason = $("#reason_ben").val();
-        var beneficiary_id = $("#beneficiary_id").val();
-        var payment_ben_type = $("#payment_ben_type").val();
-        var payment_ref = $("#payment_ref").val();
-
-         // alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
-
-
-       tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref);
-        
-  });
-
-  function tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref){
-    alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
-
-    var msg="";
-
-    $.ajax({
-      type: 'POST',
-      dataType: 'json',
-      url: 'http://localhost/JSON_beginner/TCC/trade_ben.php',
-      data: {
-        'tokenKey': token_key,
-        'buyCurrency': buy_currency,
-        'sellCurrency': sell_currency,
-        'amount': amount,
-        'side': side,
-        'termAgreement': term_agreement,
-        'reason': reason,
-        'beneficiary_id': beneficiary_id,
-        'payment_ben_type': payment_ben_type,
-        'payment_ref': payment_ref,
-        _token: "",
-        action: 'trade_ben'
-      },
-
-      success: function(data) {
-
-        // console.log(data);
-
-        // document.getElementById("response").innerHTML = data.message;
-
-        if (typeof data !== 'object') {
-          data = jQuery.parseJSON(data);
-        }
-
-        //if data is success
-        if (data.status == "success") {
-          msg = data.data.trade_id; 
-          document.getElementById('trade_id').value = msg;
-          document.getElementById('trade_id_settle').value = msg;
-          document.getElementById('payment_trade_id').value = msg;
-          document.getElementById("response").innerHTML = msg;
-          
-        } else {
-          msg = data.message;
-          document.getElementById("response").innerHTML = msg;
-        }
-
-        // if data is undefiened
-        if (typeof data.redirect !== 'undefined') {
-          window.location = data.redirect;
-        }
-
-      }
-      
-    });   
   }
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
