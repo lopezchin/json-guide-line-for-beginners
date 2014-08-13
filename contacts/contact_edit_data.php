@@ -44,7 +44,7 @@
       $email  = $row["email"];
       $phone_number  = $row["phone_number"];
       $status = 'success';
-      $jsonData .= '{ "id":"'.$id.'","fullname":"'.$fullname.'", "address":"'.$address.'", "email":"'.$email.'", "phone":"'.$phone_number.'", "status":"'.$status.'" },';
+      $jsonData = '{ "id":"'.$id.'","fullname":"'.$fullname.'", "address":"'.$address.'", "email":"'.$email.'", "phone":"'.$phone_number.'", "status":"'.$status.'" },';
     }
 
   	$jsonData = chop($jsonData, ",");

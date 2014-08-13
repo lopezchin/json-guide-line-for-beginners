@@ -19,6 +19,7 @@
     $curlOptions = array (
     	//https://api.thecurrencycloud.com for live API 
         CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/settlement/".$settlement_id."/release",
+        // CURLOPT_URL => "https://devapi.thecurrencycloud.com/api/en/v1.0/".$token_key."/settlement/".$settlement_id,
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,
