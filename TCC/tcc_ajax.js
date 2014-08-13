@@ -243,6 +243,68 @@
   }
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  // send fund 
+   $("#send_fund").click(function () {
+
+         var trade_id = $("#trade_id").val();
+
+         //alert("send funds");
+
+         if(trade_id != ""){
+            
+            sendFund(trade_id);
+            
+        }else{
+          alert("Specify a trade ID");
+        }
+        
+  });
+
+   function sendFund(trade_id){
+
+      alert("send fund to trade ID = "+trade_id);
+
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: 'https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent?deal_ref='+trade_id,
+        // url: "http://localhost/JSON_beginner/TCC/send_fund.php",
+        // data:{
+        //   'tradeID': trade_id,
+        //   _token: "",
+        //   action: 'send_fund'
+        // },
+
+        success: function(send_fund) {
+            // console.log(res.data);
+
+            console.log(send_fund);
+
+            // console.log('sample = '+send_fund.status+' & '+send_fund.message);
+
+            // if (typeof send_fund !== 'object') {
+            //   send_fund = jQuery.parseJSON(send_fund);
+            // }
+
+            // //if data is success
+            // if (send_fund.status == "success") {
+            //   var msg = send_fund.message;
+            //   document.getElementById("resend").innerHTML = msg;
+              
+            // } else {
+            //   var msg = send_fund.message;
+            //   document.getElementById("resend").innerHTML = msg;
+            // }
+
+            // // if data is undefiened
+            // if (typeof send_fund.redirect !== 'undefined') {
+            //   window.location = settle.redirect;
+            // }
+        }
+      });  
+   }
+
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   //DEPOSIT
 
     $("#deposit_account").click(function () {

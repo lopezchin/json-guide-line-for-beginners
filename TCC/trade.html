@@ -120,9 +120,12 @@ Result Below: <br>
   <br>
   
   <!-- for the trade confirm resend and deposit-->
-  <span>Confirm Resend</span><br>
+ 
   <div id="resend"></div>
-  <input type="text" name="trade_id" id="trade_id" placeholder='Trade ID'/>
+  <input type="text" name="trade_id" id="trade_id" placeholder='Trade ID'/><br>
+  <span>Send Funds</span><br>
+  <input type="submit" name="send_fund" id="send_fund" value="Send Fund"/><br>
+  <span>Confirm Resend</span><br>
   <input type="submit" name="tradeID" id="tradeID" value="resend"/>
   <input type="submit" name="deposit_account" id="deposit_account" value="Deposit Price"/>
 
@@ -282,9 +285,9 @@ Result Below: <br>
   Respond Payment:<div id="paymentNew"></div><br>
   
   <input type="text" name="pay_create_currency" id="pay_create_currency" placeholder='Currency'/><br>
-   <input type="submit" name="paymentID" id="paymentID" value="Get Payment ID"/><br>
-   <input type="text" name="payment_id" id="payment_id" placeholder='Payment ID Result ID'/><br>
-   <hr>
+  <input type="submit" name="paymentID" id="paymentID" value="Get Payment ID"/><br>
+  <input type="text" name="payment_id" id="payment_id" placeholder='Payment ID Result ID'/><br>
+  <hr>
   <div>Beneficiary ID:</div>
   <input type="text" name="payment_beneficiary_id" id="payment_beneficiary_id" placeholder='Beneficiary ID'/><br>
   <div>Trade ID:</div>
