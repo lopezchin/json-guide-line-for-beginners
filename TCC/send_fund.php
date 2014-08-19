@@ -9,12 +9,13 @@
 	};
 
 	$qstring = array(
-	    
+	    'deal_ref' => $trade_id,
+		'trade_dom_id' => 'undefined',
+		'trade_index' => 'undefined'
 	);
-
 	 //cURL settings
     $curlOptions = array (
-        CURLOPT_URL => "https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent?deal_ref=".$trade_id,
+        CURLOPT_URL => "https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent",
         CURLOPT_VERBOSE => 1,
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_POST => 1,

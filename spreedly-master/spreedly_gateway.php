@@ -3,6 +3,9 @@
 	$qstring = array(
 		'environment_key' => '8swOjWN7iUOAozk0w0tj9gvMBY8',
 		'access_token' => 'v284VsNfRilR8LP4zeyqlYn6cnG69WeJZUi4Jit3u7JXtMvtkkxOlI6rep4NGwTA'
+		// $apiLogin = 'EMEvbbib9rlMhq2EDOJawI73dnk',
+		// $apiSecret = 'Z5f98Julb4ZFxC1j1djy4NND1UcQZKt9Xb3hbZHF72gtfhTu35a2IjEiCOPSCx1L'
+
 	);
 	 //cURL settings
     $curlOptions = array (

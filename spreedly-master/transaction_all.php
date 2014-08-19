@@ -3,7 +3,10 @@
 // all transaction
  
 $apiLogin = '8swOjWN7iUOAozk0w0tj9gvMBY8';
-$apiSecret = 'wSC5Xo2cyeyPCbLQgcR9U9eGyq2J1VG5Ig4uKhBiLd17dAfTcd4YLwIEE4q7DK8m';
+$apiSecret = 'v284VsNfRilR8LP4zeyqlYn6cnG69WeJZUi4Jit3u7JXtMvtkkxOlI6rep4NGwTA';
+
+// $apiLogin = 'EMEvbbib9rlMhq2EDOJawI73dnk';
+// $apiSecret = 'Z5f98Julb4ZFxC1j1djy4NND1UcQZKt9Xb3hbZHF72gtfhTu35a2IjEiCOPSCx1L';
 
 // $paymentToken = 'GSvXKeyVEd1eCkyVnA2H6D44FBV'; 
 // $url = 'https://core.spreedly.com/v1/payment_methods/'.$paymentToken.'.xml';

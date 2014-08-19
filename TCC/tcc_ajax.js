@@ -1,6 +1,6 @@
   $.ajax({
       type: "POST",
-      url: "http://localhost/JSON_beginner/TCC/authentication.php",
+      url: "https://core.spreedly.com/v1/gateways.xml",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(token) {
@@ -243,6 +243,86 @@
   }
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  // client quote 
+  $("#client_quote").click(function () {
+
+        var token_key = $("#token").val();
+        var cq_buy_currency = $("#cq_buy_currency").val();
+        var cq_sell_currency = $("#cq_sell_currency").val();
+        var cq_amount = $("#cq_amount").val();
+        var cq_side = $("#cq_side").val();  //side  1 = buy, 2 = sell
+
+
+        // document.getElementById("result").innerHTML = buy_currency+'<br>'+sell_currency+'<br>'+amount+'<br>'+side+'<br>'+term_agreement+'<br>'+reason+'<br>'+token_key;
+        if(cq_buy_currency != "" && cq_sell_currency != "" && cq_amount != "" && cq_side != "" ){
+           clientquote(token_key, cq_buy_currency, cq_sell_currency, cq_amount, cq_side);
+            // alert(token_key+'\n\n'+cq_buy_currency+'\n\n'+cq_sell_currency+'\n\n'+cq_amount+'\n\n'+cq_side);
+           
+        }else{
+          alert("one of the field is empty");
+        }
+
+        //checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
+
+        //settlementCreate(token_key);
+    
+  });
+
+  function clientquote(token_key, cq_buy_currency, cq_sell_currency, cq_amount, cq_side){
+    
+    alert(token_key+'\n\n'+cq_buy_currency+'\n\n'+cq_sell_currency+'\n\n'+cq_amount+'\n\n'+cq_side);
+
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/client_quote.php',
+      data: {
+        'tokenKey': token_key,
+        'buyCurrency': cq_buy_currency,
+        'sellCurrency': cq_sell_currency,
+        'amount': cq_amount,
+        'side': cq_side,
+        _token: "",
+        action: 'client_quote'
+      },
+
+      success: function(clientQuote) {
+
+         console.log(clientQuote);
+
+        document.getElementById("cq_response").innerHTML = clientQuote.status;
+
+        // if (typeof clientQuote !== 'object') {
+        //   clientQuote = jQuery.parseJSON(clientQuote);
+        // }
+
+        // //if clientQuote is success
+        // if (clientQuote.status == "success") {
+        //   msg = clientQuote.clientQuote.trade_id; 
+        //   document.getElementById('trade_id').value = msg;
+        //   document.getElementById('trade_id_settle').value = msg;
+        //   document.getElementById('payment_trade_id').value = msg;
+        //   document.getElementById("response").innerHTML = msg;
+
+        //   settlementCreate(token_key);
+          
+        // } else {
+        //   msg = clientQuote.message;
+        //   document.getElementById("response").innerHTML = msg;
+        // }
+
+        // // if clientQuote is undefiened
+        // if (typeof clientQuote.redirect !== 'undefined') {
+        //   window.location = clientQuote.redirect;
+        // }
+
+      }
+      
+    });   
+  }
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // send fund 
    $("#send_fund").click(function () {
 
@@ -265,15 +345,15 @@
       alert("send fund to trade ID = "+trade_id);
 
       $.ajax({
-        type: 'GET',
+        type: 'POST',
         dataType: 'json',
-        url: 'https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent?deal_ref='+trade_id,
-        // url: "http://localhost/JSON_beginner/TCC/send_fund.php",
-        // data:{
-        //   'tradeID': trade_id,
-        //   _token: "",
-        //   action: 'send_fund'
-        // },
+        // url: 'https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent?deal_ref='+trade_id,
+        url: "http://localhost/JSON_beginner/TCC/send_fund.php",
+        data:{
+          'tradeID': trade_id,
+          _token: "",
+          action: 'send_fund'
+        },
 
         success: function(send_fund) {
             // console.log(res.data);

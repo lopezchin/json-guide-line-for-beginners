@@ -2,11 +2,11 @@
 
 // for single transaction
  	
-$paymentToken = '';
+// $paymentToken = '';
 
-if (isset($_REQUEST['action']) ) {
-	$payment_token = isset($_REQUEST['SinglePaymentToken']) ? $_REQUEST['SinglePaymentToken'] : null;
-};
+// if (isset($_REQUEST['action']) ) {
+// 	$payment_token = isset($_REQUEST['SinglePaymentToken']) ? $_REQUEST['SinglePaymentToken'] : null;
+// };
 
 $apiLogin = '8swOjWN7iUOAozk0w0tj9gvMBY8';
 $apiSecret = 'v284VsNfRilR8LP4zeyqlYn6cnG69WeJZUi4Jit3u7JXtMvtkkxOlI6rep4NGwTA';
@@ -14,9 +14,11 @@ $apiSecret = 'v284VsNfRilR8LP4zeyqlYn6cnG69WeJZUi4Jit3u7JXtMvtkkxOlI6rep4NGwTA';
 // $apiLogin = 'EMEvbbib9rlMhq2EDOJawI73dnk';
 // $apiSecret = 'Z5f98Julb4ZFxC1j1djy4NND1UcQZKt9Xb3hbZHF72gtfhTu35a2IjEiCOPSCx1L';
 
-$paymentToken = $payment_token; 
 
-$url = 'https://core.spreedly.com/v1/payment_methods/'.$paymentToken.'.xml';
+$qstring = array(
+    'gateway_type'=> 'test'
+);
+$url = 'https://core.spreedly.com/v1/gateways.xml';
 // $url = 'https://core.spreedly.com/v1/transactions.xml';
 //'https://spreedlycore.com/v1/payment_methods/' . $paymentToken . '/retain.xml';
  
@@ -30,12 +32,12 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 // Set the url
 curl_setopt($ch, CURLOPT_URL,$url);
 // Execute
-$xmlstr=curl_exec($ch);
+$gatewaystr=curl_exec($ch);
 // Closing
 curl_close($ch);
 
-$xml = trim($xmlstr);
+$gateway = trim($gatewaystr);
 
-print_r($xml);
+print_r($gateway);
 
 ?>
