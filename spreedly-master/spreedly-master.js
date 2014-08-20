@@ -83,7 +83,7 @@ $("#payment_method").click(function () {
 	}).error(function(request, status, error) {
 	  console.log(error);
 	  // alert('error');
-	  document.getElementById("process_token_request").value = 'Unexpected error>';
+	  document.getElementById("process_token_request").value = 'Unexpected error';
 	});
 	
 };// payment_method function end
@@ -98,7 +98,7 @@ $("#process_payment").click(function () {
     var process_amount = $("#process_amount").val();
     var currency_code = $("#currency_code").val();
 
-     // alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+ address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number);
+     //alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+ address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number);
    
    	 process_payment(gateway_token,process_token_request, process_amount, currency_code);
 
@@ -110,9 +110,9 @@ function process_payment(gateway_token, process_token_request, process_amount, c
 	// var msg="";
 
     $.ajax({
-      type: 'POST',
-      dataType: 'xml',
-      url: 'http://localhost/JSON_beginner/spreedly-master/process_payment.php',
+      type: 'GET',
+      dataType: 'json',
+      url: 'https://core.spreedly.com/v1/gateways/'+gateway_token+'/purchase.xml',
       data: {
     	'gateway_token':  gateway_token,
     	'payment_method_token':  process_token_request,

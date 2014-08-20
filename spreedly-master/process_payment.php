@@ -24,12 +24,13 @@ $qstring = array(
 );
 
 $url = 'https://core.spreedly.com/v1/gateways/'.$gateway_token.'/purchase.xml';
+
 // $url = 'https://core.spreedly.com/v1/transactions.xml';
 //'https://spreedlycore.com/v1/payment_methods/' . $paymentToken . '/retain.xml';
  
 //  Initiate curl_close(ch)
 $ch = curl_init();
- curl_setopt($ch, CURLOPT_USERPWD, $apiLogin . ':' . $apiSecret);
+curl_setopt($ch, CURLOPT_USERPWD, $apiLogin . ':' . $apiSecret);
 // Disable SSL verification
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 // Will return the response, if false it print the response
