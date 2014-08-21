@@ -7,11 +7,11 @@
 	$reason = '';
 	$payment_reference= '';
 	// $payment_type = "";
- //    $payer_type = "";
- //    $payer_company_name = "";
- //    $payer_address = "";
- //    $payer_city = "";
- //    $payer_country = "";
+ 	// $payer_type = "";
+ 	// $payer_company_name = "";
+ 	// $payer_address = "";
+ 	// $payer_city = "";
+ 	// $payer_country = "";
 	
 	if (isset($_REQUEST['action']) ) {
 
@@ -55,7 +55,7 @@
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	// in real life you should use something like:
 	// curl_setopt($ch, CURLOPT_POSTFIELDS, 
-	//          http_build_query(array('postvar1' => 'value1')));
+	// http_build_query(array('postvar1' => 'value1')));
 
 	// receive server response ...
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

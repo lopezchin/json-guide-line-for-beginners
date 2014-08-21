@@ -1,6 +1,6 @@
   $.ajax({
       type: "POST",
-      url: "https://core.spreedly.com/v1/gateways.xml",
+      url: "http://localhost/JSON_beginner/TCC/authentication.php",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(token) {

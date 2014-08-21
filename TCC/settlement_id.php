@@ -38,16 +38,5 @@
 	
 	echo $settlement_summary;
 
-	// sending email
-	
-	// $to      = 'philweb.seniorprogrammer05@gmail.com';
-	// $subject = 'Settlement ID';
-	// $message = 	$settlement;
-	// $headers = 'From: '.$to.
-	//     'Reply-To: admin@gmail.com'. "\r\n" .
-	//     'X-Mailer: PHP/' . phpversion();
-
-	// mail($to, $subject, $message, $headers);
-
 
 ?>
