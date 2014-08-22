@@ -322,6 +322,70 @@
       
     });   
   }
+  
+  // client CCY Pair
+  
+  $("#stale").click(function () {
+
+        var token_key = $("#token").val();
+        var choice1 = $("#choice1").val();
+        var choice2 = $("#choice2").val();
+        // var accept_stale = $('#accept_stale').is(':checked'); 
+
+        stale(token_key, choice1, choice2);
+        // alert(token_key+'\n\n'+choice1+'\n\n'+choice2);
+    
+  });
+
+  function stale(token_key, choice1, choice2){
+    
+    alert(token_key+'\n\n'+choice1+'\n\n'+choice2);
+
+    var msg="";
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: 'http://localhost/JSON_beginner/TCC/ccy_pair.php',
+      data: {
+        'tokenKey': token_key,
+        'choice1': choice1,
+        'choice2': choice2,
+        // 'accept_stale': accept_stale,
+        _token: "",
+        action: 'ccy_pair'
+      },
+
+      success: function(ccyPair) {
+
+         console.log(ccyPair);
+
+        // document.getElementById("cq_response").innerHTML = ccyPair.status;
+
+        // if (typeof ccyPair !== 'object') {
+        //   ccyPair = jQuery.parseJSON(ccyPair);
+        // }
+
+        // //if ccyPair is success
+        // if (ccyPair.status == "success") {
+        //   msg = ccyPair.ccyPair.trade_id; 
+
+        //   settlementCreate(token_key);
+          
+        // } else {
+        //   msg = ccyPair.message;
+        //   document.getElementById("response").innerHTML = msg;
+        // }
+
+        // // if ccyPair is undefiened
+        // if (typeof ccyPair.redirect !== 'undefined') {
+        //   window.location = ccyPair.redirect;
+        // }
+
+      }
+      
+    });   
+  }
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // send fund 
    $("#send_fund").click(function () {
