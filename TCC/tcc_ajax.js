@@ -3,16 +3,23 @@
       url: "http://localhost/JSON_beginner/TCC/authentication.php",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      success: function(token) {
-
+      success: function(result) {
+        console.log(result);
+        // document.location = 'trade.html';
+        // $('#tokenID').html(result.token_id);
       // console.log(res.data);
-      var tokenKey = token.data;
+      var tokenKey = result.token_id;
+      // alert($.cookie('token_id'));
       //result show on success respond
       document.getElementById('tokenID').innerHTML = tokenKey;
       document.getElementById('token').value = tokenKey;
 
     }
   });
+
+  // $( document ).ajaxComplete(function( event, xhr, settings ) {
+  //   alert(xhr.responseText);
+  // });
 
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
@@ -544,7 +551,7 @@
           if (typeof settle.redirect !== 'undefined') {
             window.location = settle.redirect;
           }
-      }
+        }
     });
   }
 

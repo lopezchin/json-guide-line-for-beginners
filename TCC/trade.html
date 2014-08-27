@@ -32,6 +32,15 @@
 'reason'=>'Invoice Settlement'
 </pre>
 <br>
+<a href="logout.php">Logout</a>
+
+<?php 
+  // session_start();
+  // if(isset($_SESSION) && isset($_COOKIE)):
+  //   print_r($_SESSION);
+  //   print_r($_COOKIE);
+  // endif; 
+?>
 
 Response Message:<br>
 <div id="response"></div><br>
@@ -46,9 +55,8 @@ Result Below: <br>
     <option value="GBP">British pound</option>
     <option value="AUD">Australian Dollar</option>
     <option value="MXN">Mexican Peso</option>
-    <!--  
-    <option value="USD">US Dollar</option>
-   <option value="CAD">Canadian Dollar</option>
+    <!-- <option value="USD">US Dollar</option>
+    <option value="CAD">Canadian Dollar</option>
     <option value="EUR">EU euro</option>
     <option value="CHF">Swiss Franc</option>
     <option value="CZK">Czech Republic Koruna</option>
@@ -64,7 +72,7 @@ Result Below: <br>
     <option value="ZAR">South Africa Rand</option>
     <option value="AED">United Arab Emirates Dirham</option>
     <option value="HUF">Hungarian Forint</option>
-    <option value="LTL">Lithuanian Litas</option>\
+    <option value="LTL">Lithuanian Litas</option>
     <option value="ILS">Israeli New Sheqel</option>
     <option value="SGD">Singapore Dollar</option>
     <option value="RON">Romania Leu</option>
@@ -90,7 +98,7 @@ Result Below: <br>
   <br />
   <div>Reason:</div> <textarea name="reason" id="reason" class="text" rows="5" cols="30"></textarea>
 
-  <input type="hidden" name="token" id="token" value="" />
+  <input type="text" name="token" id="token" value="" />
   <br />
   <input type="submit" name="trade_submit" id="trade_submit" value="trade"/>
 
@@ -305,6 +313,7 @@ Result Below: <br>
   <input type="text" name="payer_country" id="payer_country" value="United Kingdom" /><br> -->
 
   <input type="submit" name="payment_add" id="payment_add" value="Payment Add"/><br>
+
 
 </div>
  <br style="clear:both;">

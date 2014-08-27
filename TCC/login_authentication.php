@@ -46,7 +46,7 @@
 			    	'user'=> $row["user"],
 					'password'  => $row["password"],
 					'status' => true,
-					'redirect' => 'http://localhost/JSON_beginner/json_tut6_fetching.html',
+					'redirect' => 'authentication.php',
 					'message' => "Credential is correct."
 				);
 

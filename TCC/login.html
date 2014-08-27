@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="1.9.1_jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    //event handler for submit button
+      $("#btnSubmit").click(function () {
+          //collect userName and password entered by users
+          var userName = $("#username").val();
+          var passWord = $("#password").val();
+
+          //call the authenticate function
+          checkingValue(userName, passWord);
+          // alert(userName+ '/' +passWord);
+          // authenticate(userName, passWord);
+      });
+  });
+
+  function checkingValue(userName, passWord){
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'http://localhost/JSON_beginner/TCC/login_authentication.php',
+        // url: 'http://1fx.philwebservicesdev.com/data_fetching.php',
+        data: {
+          'username': userName,
+          'password': passWord,
+          '_token': "",
+          'action': 'signup'
+
+        },
+        success: function(data) {
+
+          if (typeof data !== 'object') {
+            data = jQuery.parseJSON(data);
+          }
+
+          //if data is success
+          if (data.status == "success") {
+            alert(data.message);
+          } else {
+            alert(data.message);
+          }
+
+          // if data is undefiened
+          if (typeof data.redirect !== 'undefined') {
+            window.location = data.redirect;
+          }
+        }
+        
+      });
+  }
+
+</script>
+
+<body>
+
+<div style="border:1px solid #cecece; padding: 10px;">
+	<div>Login</div><br>
+	<!-- form for fetching value's -->
+	<input type="text" name="username" id="username" placeholder="Username" class="text" maxlength="30" />
+	<br />
+	<input type="password" name="password" id="password" placeholder="Password" class="text" maxlength="30" />
+	<br />
+	<input type="submit" name="btnSubmit" id="btnSubmit" />
+</div>
+
+
+</body>
+</html>
