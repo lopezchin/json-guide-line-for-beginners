@@ -1,0 +1,1699 @@
+/************************************************************************** Web Browser ***********************************************/
+* {
+  padding: 0;
+  margin: 0;
+}
+body.trest {
+  margin: 0!important;
+  background: #FFF;
+}
+.header_web {
+  height: 80px;
+  background: #2492d2;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-color: #FFF;
+}
+.header_web .wrapper {
+  width: 1200px;
+  height: 80px;
+}
+.header_web .wrapper .logo {
+  float: left;
+  width: 190px;
+  height: 70px;
+  margin-top: 3px;
+}
+.header_web .right {
+  float: right;
+  margin-top: 23px;
+  color: #FFF;
+}
+.logo {
+  float: left;
+  width: 190px;
+  height: 70px;
+  margin-top: 3px;
+}
+.icon {
+  margin-left: -30px;
+}
+.icon_email {
+  margin-left: -30px;
+}
+.text {
+  width: 210px;
+  height: 35px;
+  padding-right: 30px;
+  border-radius: 6px;
+  border: solid 1px #FFFFFF;
+  background: transparent;
+  padding-left: 10px;
+  color: #ffffff;
+  font-family: ProximaNovaLight;
+  margin-left: 14px;
+}
+
+.text:-webkit-autofill, input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+  background-color: #2492d2!important;
+}
+
+.login-btn {
+  background: #FFF;
+  width: 60px;
+  height: 20px;
+  border-radius: 6px;
+  border: solid 1px #FFFFFF;
+  margin-left: 2px;
+  height: 35px;
+  float: right;
+  color: #2492d2;
+}
+.content_signup {
+  width: 100%;
+  height: auto;
+  background: #2492d2;
+}
+.content_signup .content1 {
+  font-family: ProximaNovaLight;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 240px;
+}
+.content_signup .content2 {
+  font-family: ProximaNovaLight;
+  padding-bottom: 2px;
+  font-size: 24px;
+  margin-top: 10px;
+}
+.content_signup .content3 {
+  font-family: ProximaNovaLight;
+  padding-bottom: 40px;
+  font-size: 17px;
+  margin-top: 19px;
+  margin-top: 200px;
+}
+.content {
+  width: 100%;
+  height: auto;
+  background: url(images/background.png);
+  background-size: 100%;
+  color: #FFF;
+}
+.content .content1 {
+  font-family: ProximaNovaLight;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 240px;
+}
+.content .content2 {
+  font-family: ProximaNovaLight;
+  padding-bottom: 2px;
+  font-size: 24px;
+  margin-top: 10px;
+}
+.content .content3 {
+  font-family: ProximaNovaLight;
+  padding-bottom: 40px;
+  font-size: 17px;
+  margin-top: 19px;
+  margin-top: 200px;
+}
+.join-us-btn {
+  width: 300px;
+  height: 50px;
+  border-radius: 7px;
+  background: #2492d2;
+  border: solid  1px #2492d2;
+  color: #FFF;
+  font-family: ProximaNovaLight;
+  font-size: 18px;
+}
+.icon_login {
+  font-size: 0px;
+}
+.text1 {
+  font-size: 0px;
+}
+.fb_login {
+  width: 0px;
+  height: 0px;
+}
+.twitter_login {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #FFF;
+}
+/************************************************************* ipad ************************************************************/
+@media (max-width: 768px) {
+  body {
+    background: #2492d2;
+  }
+}
+/************************************************************* start nexus 4 ************************************************************/
+@media (max-width: 384px) {
+  body {
+    background: #2492d2;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 116px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 130px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 12px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 65px;
+  }
+  .icon {
+    margin-left: -40px;
+    position: absolute;
+    margin-top: 33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: -40px;
+    position: absolute;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 38px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+/************************************************************* end nexus 4 ************************************************************/
+/************************************************************* start galaxy s3 and s4 ************************************************/
+@media (max-width: 360px) {
+  body {
+    background: #2492d2;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 114px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 130px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 6px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 65px;
+  }
+  .icon {
+    margin-left: -40px;
+    position: absolute;
+    margin-top: 33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: -40px;
+    position: absolute;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+/************************************************************* end galaxy s3 and s4 ************************************************/
+/************************************************************* start iphone 5 *****************************************************/
+@media (max-width: 336px) {
+  body {
+    background: #2492d2;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 90px;
+  }
+  .user_signin_header {
+    width: 0px;
+    height: 0px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 107px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 2px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 60px;
+  }
+  .icon {
+    margin-left: -38px;
+    position: absolute;
+    margin-top: 33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: 2px;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 326px) {
+  body {
+    background: #2492d2;
+  }
+  .user_signin_header {
+    width: 0px;
+    height: 0px;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 100px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 100px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 2px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 60px;
+  }
+  .icon {
+    margin-left: 218px;
+    position: absolute;
+    margin-top: -33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: 2px;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 323px) {
+  body {
+    background: #2492d2;
+  }
+  .user_signin_header {
+    width: 0px;
+    height: 0px;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 80px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 100px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 2px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 60px;
+  }
+  .icon {
+    margin-left: 218px;
+    position: absolute;
+    margin-top: -33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: 2px;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 322px) {
+  body {
+    background: #2492d2;
+  }
+  .user_signin_header {
+    width: 0px;
+    height: 0px;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 80px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 100px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 2px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 60px;
+  }
+  .icon {
+    margin-left: 218px;
+    position: absolute;
+    margin-top: -33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: 2px;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 321px) {
+  body {
+    background: #2492d2;
+  }
+  .user_signin_header {
+    width: 0px;
+    height: 0px;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 80px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 100px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 2px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 60px;
+  }
+  .icon {
+    margin-left: 218px;
+    position: absolute;
+    margin-top: -33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: 2px;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 320px) {
+  body {
+    background: #2492d2;
+  }
+  .user_signin_header {
+    width: 0px;
+    height: 0px;
+  }
+  .twitter_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .fb_login {
+    width: 50px;
+    height: 50px;
+    margin-left: 86px;
+  }
+  .text1 {
+    font-family: ProximaNovaLight;
+    font-size: 15px;
+    clear: both;
+    margin-left: 104px;
+    margin-top: 110px;
+  }
+  .icon_login {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .join-us-btn {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content1 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content2 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .content .content3 {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+  .login-btn {
+    background: #6cb6e1;
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    margin-right: 2px;
+    margin-top: 20px;
+    color: #FFF;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+    margin-top: 70px;
+    margin-left: 60px;
+  }
+  .icon {
+    margin-left: 218px;
+    position: absolute;
+    margin-top: -33px;
+    font-size: 19px;
+  }
+  .icon_email {
+    margin-left: 2px;
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .text {
+    width: 85%;
+    height: 46px;
+    border-radius: 6px;
+    border: solid 1px #FFFFFF;
+    background: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    font-family: ProximaNovaLight;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  .header_web {
+    height: 80px;
+    background: #2492d2;
+    border-color: #2492d2;
+    padding-right: 30px;
+  }
+}
+#showMe {
+  display: none;
+}
+
+.error{
+  border: 1px solid #ff0000 !important;
+}
+.valid{
+  border: 1px solid #00ff00 !important;
+}
+
+.login {
+  width: 825px;
+  height: 354px;
+  margin-top: 15px;
+  margin-bottom: 400px;
+}
+.login .line {
+  height: 70px;
+  width: 1px;
+  background: #FFF;
+  float: left;
+  margin-left: 20px;
+}
+.login .button {
+  width: 431px;
+  height: 58px;
+  background: #FFF;
+  border-radius: 6px;
+  border: solid 1px #FFFFFF;
+  margin-top: 28px;
+  margin-left: 11px;
+}
+.login .form {
+  float: left;
+  width: 458px;
+  height: 354px;
+}
+.login .label_left {
+  float: left;
+  font-family: ProximaNovaLight;
+  font-size: 18px;
+  margin-left: 23px;
+  color: #FFF;
+}
+.login .label_right {
+  float: left;
+  font-family: ProximaNovaLight;
+  font-size: 18px;
+  margin-left: 80px;
+  color: #FFF;
+}
+.login .facebook {
+  float: left;
+  width: 253px;
+  height: 53px;
+  margin-left: 70px;
+  margin-top: 26px;
+}
+.login .text {
+  width: 431px;
+  height: 58px;
+  border-radius: 6px;
+  border: solid 1px #FFFFFF;
+  background: transparent;
+  padding-left: 10px;
+  color: #ffffff;
+  font-family: ProximaNovaLight;
+  margin-top: 30px;
+}
+/* Example Styles for Demo */
+.etabs {
+  margin: 0;
+  padding: 0;
+}
+.tab {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  background: #eee;
+  border: solid 1px #999;
+  border-bottom: none;
+  -moz-border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+}
+.tab a {
+  font-size: 14px;
+  line-height: 2em;
+  display: block;
+  padding: 0 10px;
+  outline: none;
+}
+.tab a:hover {
+  text-decoration: underline;
+}
+.tab.active {
+  background: #fff;
+  padding-top: 6px;
+  position: relative;
+  top: 1px;
+  border-color: #666;
+}
+.tab a.active {
+  font-weight: bold;
+}
+.tab-container .panel-container {
+  background: #fff;
+  border: solid #666 1px;
+  padding: 10px;
+  -moz-border-radius: 0 4px 4px 4px;
+  -webkit-border-radius: 0 4px 4px 4px;
+}
+.panel-container {
+  margin-bottom: 10px;
+}
+.header_dashboard_web {
+  height: 80px;
+  background: #2492d2;
+}
+.profile_images {
+  width: 40px;
+  height: 40px;
+  border-radius: 19px;
+  margin-left: 30px;
+  margin-top: 20px;
+  clear: both;
+}
+#cssmenu {
+  position: relative;
+  height: 44px;
+  background: #2492d2;
+  float: left;
+  margin-top: 14px;
+}
+#cssmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+#cssmenu > ul {
+  position: relative;
+  display: block;
+  background: #2492d2;
+  height: 32px;
+  width: 100%;
+  z-index: 500;
+}
+#cssmenu > ul > li {
+  display: block;
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu > ul > #menu-button {
+  display: none;
+}
+#cssmenu ul li a {
+  display: block;
+  font-family: ProximaNovaLight;
+  text-decoration: none;
+}
+#cssmenu > ul > li > a {
+  font-size: 17px;
+  padding: 15px 20px;
+  color: #ffffff;
+  -webkit-transition: color 0.25s ease-out;
+  -moz-transition: color 0.25s ease-out;
+  -ms-transition: color 0.25s ease-out;
+  -o-transition: color 0.25s ease-out;
+  transition: color 0.25s ease-out;
+}
+#cssmenu > ul > li.has-sub > a {
+  padding-right: 32px;
+}
+#cssmenu > ul > li:hover > a {
+  color: #ffffff;
+}
+#cssmenu li.has-sub::after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+#cssmenu > ul > li.has-sub::after {
+  right: 10px;
+  top: 20px;
+  border: 5px solid transparent;
+  border-top-color: #ffffff;
+}
+#cssmenu > ul > li:hover::after {
+  border-top-color: #ffffff;
+}
+#indicatorContainer {
+  position: absolute;
+  height: 12px;
+  width: 100%;
+  bottom: 0px;
+  overflow: hidden;
+  z-index: -1;
+}
+#pIndicator {
+  position: absolute;
+  height: 0;
+  width: 100%;
+  border: 12px solid transparent;
+  border-top-color: #2b2f3a;
+  z-index: -2;
+  -webkit-transition: left .25s ease;
+  -moz-transition: left .25s ease;
+  -ms-transition: left .25s ease;
+  -o-transition: left .25s ease;
+  transition: left .25s ease;
+}
+#cIndicator {
+  position: absolute;
+  height: 0;
+  width: 100%;
+  border: 12px solid transparent;
+  border-top-color: #2b2f3a;
+  top: -12px;
+  right: 100%;
+  z-index: -2;
+}
+#cssmenu ul ul {
+  position: absolute;
+  left: -9999px;
+  top: 70px;
+  opacity: 0;
+  -webkit-transition: opacity .3s ease, top .25s ease;
+  -moz-transition: opacity .3s ease, top .25s ease;
+  -ms-transition: opacity .3s ease, top .25s ease;
+  -o-transition: opacity .3s ease, top .25s ease;
+  transition: opacity .3s ease, top .25s ease;
+  z-index: 1000;
+}
+#cssmenu ul ul ul {
+  top: 37px;
+  padding-left: 5px;
+}
+#cssmenu ul ul li {
+  position: relative;
+}
+#cssmenu > ul > li:hover > ul {
+  left: auto;
+  top: 44px;
+  opacity: 1;
+}
+#cssmenu ul ul li:hover > ul {
+  left: 170px;
+  top: 0;
+  opacity: 1;
+}
+#cssmenu ul ul li a {
+  width: 130px;
+  border-bottom: 1px solid #eee;
+  padding: 10px 20px;
+  font-size: 12px;
+  color: #9ea2a5;
+  background: #fff;
+  -webkit-transition: all .35s ease;
+  -moz-transition: all .35s ease;
+  -ms-transition: all .35s ease;
+  -o-transition: all .35s ease;
+  transition: all .35s ease;
+}
+#cssmenu ul ul li:hover > a {
+  background: #f6f6f6;
+  color: #8c9195;
+}
+#cssmenu ul ul li:last-child > a,
+#cssmenu ul ul li.last > a {
+  border-bottom: 0;
+}
+.submenuArrow {
+  border: 6px solid transparent;
+  width: 0;
+  height: 0;
+  border-bottom-color: #fff;
+  position: absolute;
+  top: -12px;
+}
+#cssmenu ul ul li.has-sub::after {
+  border: 4px solid transparent;
+  border-left-color: #9ea2a5;
+  right: 10px;
+  top: 12px;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transition: -webkit-transform 0.2s ease, right 0.2s ease;
+}
+#cssmenu ul ul li.has-sub:hover::after {
+  border-left-color: #fff;
+  right: -5px;
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+@media all and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+  #cssmenu {
+    width: auto;
+  }
+  #cssmenu ul {
+    width: auto;
+  }
+  #cssmenu .submenuArrow,
+  #cssmenu #indicatorContainer {
+    display: none;
+  }
+  #cssmenu > ul {
+    height: auto;
+    display: block;
+  }
+  #cssmenu > ul > li {
+    float: none;
+  }
+  #cssmenu li,
+  #cssmenu > ul > li {
+    display: none;
+  }
+  #cssmenu ul ul,
+  #cssmenu ul ul ul,
+  #cssmenu ul > li:hover > ul,
+  #cssmenu ul ul > li:hover > ul {
+    position: relative;
+    left: auto;
+    top: auto;
+    opacity: 1;
+    padding-left: 0;
+  }
+  #cssmenu ul .has-sub::after {
+    display: none;
+  }
+  #cssmenu ul li a {
+    padding: 12px 20px;
+  }
+  #cssmenu ul ul li a {
+    border: 0;
+    background: none;
+    width: auto;
+    padding: 8px 35px;
+  }
+  #cssmenu ul ul li:hover > a {
+    background: none;
+    color: #8c9195;
+  }
+  #cssmenu ul ul ul a {
+    padding: 8px 50px;
+  }
+  #cssmenu ul ul ul ul a {
+    padding: 8px 65px;
+  }
+  #cssmenu ul ul ul ul ul a {
+    padding: 8px 80px;
+  }
+  #cssmenu ul ul ul ul ul ul a {
+    padding: 8px 95px;
+  }
+  #cssmenu > ul > #menu-button {
+    display: block;
+    cursor: pointer;
+  }
+  #cssmenu #menu-button > a {
+    padding: 14px 20px;
+  }
+  #cssmenu ul.open li,
+  #cssmenu > ul.open > li {
+    display: block;
+  }
+  #cssmenu > ul.open > li#menu-button > a {
+    color: #fff;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.1);
+  }
+  #cssmenu #menu-button::after {
+    display: block;
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 22px;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    right: 20px;
+    top: 15px;
+  }
+  #cssmenu #menu-button::before {
+    display: block;
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 22px;
+    border-top: 2px solid #ffffff;
+    right: 20px;
+    top: 25px;
+  }
+  #cssmenu ul.open #menu-button::after,
+  #cssmenu ul.open #menu-button::before {
+    border-color: #fff;
+  }
+}
+@font-face {
+  font-family: 'raleway';
+  src: url('../../fonts/Raleway-Regular.eot');
+  src: url('../../fonts/Raleway-Regular.eot') format('embedded-opentype'), url('../../fonts/Raleway-Regular.woff') format('woff'), url('../../fonts/Raleway-Regular.ttf') format('truetype'), url('../../fonts/Raleway-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Helvenica";
+  src: url(fonts/HelveticaNeueLTStd-Cn.otf);
+}
+@font-face {
+  font-family: ProximaNovaLight;
+  src: url('fonts/proxima/proximanova-light.ttf');
+}
+a {
+  text-decoration: none;
+}
+table {
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: 0;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-weight: normal;
+  font-style: normal;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  color: #444;
+}
+q:before,
+q:after {
+  content: '';
+}
+abbr,
+acronym {
+  border: 0;
+}
+/* Custom CSS
+ * --------------------------------------- */
+body {
+  font-family: arial,helvetica;
+  color: #333;
+  color: rgba(0, 0, 0, 0.5);
+}
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  position: relative;
+}
+h1 {
+  font-size: 6em;
+}
+p {
+  font-size: 2em;
+}
+.intro p {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 1.5em;
+}
+.section {
+  text-align: center;
+}
+#menu li {
+  display: inline-block;
+  margin: 10px;
+  color: #000;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#menu li.active {
+  background: #666;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+#menu li a {
+  text-decoration: none;
+  color: #000;
+}
+#menu li.active a:hover {
+  color: #000;
+}
+#menu li:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+#menu li a,
+#menu li.active a {
+  padding: 9px 18px;
+  display: block;
+}
+#menu li.active a {
+  color: #fff;
+}
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 40px;
+  z-index: 70;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.twitter-share-button {
+  position: fixed;
+  z-index: 99;
+  right: 149px;
+  top: 9px;
+}
+#download {
+  margin: 10px 0 0 0;
+  padding: 15px 10px;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -ms-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(top, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+  display: inline-block;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+#download a {
+  text-decoration: none;
+  color: #fff;
+}
+#download:hover {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #2F96B4;
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+  -moz-transition: background-position 0.1s linear;
+  -ms-transition: background-position 0.1s linear;
+  -o-transition: background-position 0.1s linear;
+  transition: background-position 0.1s linear;
+}
+#infoMenu {
+  height: 20px;
+  color: #f2f2f2;
+  position: fixed;
+  z-index: 70;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+  font-size: 0.9em;
+  padding: 8px 0 8px 0;
+}
+#infoMenu ul {
+  padding: 0 40px;
+}
+#infoMenu li a {
+  display: block;
+  margin: 0 22px 0 0;
+  color: #333;
+}
+#infoMenu li a:hover {
+  text-decoration: underline;
+}
+#infoMenu li {
+  display: inline-block;
+  position: relative;
+}
+#examplesList {
+  display: none;
+  background: #282828;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  padding: 20px;
+  float: left;
+  position: absolute;
+  bottom: 29px;
+  right: 0;
+  width: 638px;
+  text-align: left;
+}
+#examplesList ul {
+  padding: 0;
+}
+#examplesList ul li {
+  display: block;
+  margin: 5px 0;
+}
+#examplesList ul li a {
+  color: #BDBDBD;
+  margin: 0;
+}
+#examplesList ul li a:hover {
+  color: #f2f2f2;
+}
+#examplesList .column {
+  float: left;
+  margin: 0 20px 0 0;
+}
+#examplesList h3 {
+  color: #f2f2f2;
+  font-size: 1.2em;
+  margin: 0 0 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 0 0 5px 0;
+}
+/* Demos Menu
+ * --------------------------------------- */
+#demosMenu {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 999;
+}
+.boxsizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+h1,
+.h1 {
+  font-size: 27px;
+}
+h2,
+.h2 {
+  font-size: 24px;
+}
+h3,
+.h3 {
+  font-size: 20px;
+}
+h4,
+.h4 {
+  font-size: 18px;
+}
+h5,
+.h5 {
+  font-size: 15px;
+}
+h6,
+.h6 {
+  font-size: 14px;
+}
+label {
+  font-weight: normal;
+}
+.brand {
+  display: block;
+  margin-top: 50px;
+}
+.navbar {
+  border: none;
+  margin-bottom: 0;
+  min-height: 58px;
+}
+.navbar-header {
+  float: none;
+  margin-bottom: 8px;
+}
+.navbar-default {
+  -webkit-box-shadow: 0 -4px 0 #8e1206 inset;
+  -moz-box-shadow: 0 -4px 0 #8e1206 inset;
+  box-shadow: 0 -4px 0 #8e1206 inset;
+  background: #c0392b;
+  border-radius: 0;
+}
+.navbar-default .navbar-nav > li > a {
+  background-color: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background: #8e1206;
+  color: #fff;
+}
+.navbar-nav > li > a {
+  padding-top: 18px;
+  padding-bottom: 20px;
+}
+.thumbnail {
+  padding: 0;
+  margin-bottom: 0;
+  border: none;
+}
+.thumbnail > img,
+.thumbnail a > img {
+  width: 100%;
+  height: 200px;
+}

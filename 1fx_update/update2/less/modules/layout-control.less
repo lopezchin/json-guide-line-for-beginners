@@ -1,0 +1,64 @@
+.layout-horizontal{
+	.controls{
+		float: right;
+		
+	}
+	.control-label{
+		float: left;
+		margin-top: 30px;
+		margin-right: 10px;
+		color: #7a7777;
+		font-weight: normal;
+
+
+	}
+}
+
+
+
+.layout-2{
+	.control-group{
+
+		width: 49%;
+		float: left;
+		&:nth-child(odd){
+			margin-right: 1%;
+		}
+		&:nth-child(even){
+			float: right;
+		}		
+	}
+}
+.control-group{
+	.clearfix;
+	margin: 10px 0 12px;
+
+}
+
+.controls-addon{
+	position: relative;
+	.addon{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.addon.fa{
+		margin-top: 9px;
+		margin-right: 8px;
+    	font-size: 17px;
+		font-weight: bold;
+		color: @color-gray-a;
+	}
+	.form-control{
+		padding-right: 30px;
+
+	}
+}
+
+
+// control sizes
+
+
+.control-med{
+	width: 280px;
+}

@@ -1,0 +1,1 @@
+$(function(){function t(){$(this).addClass("hover");$("ul:first",this).css("visibility","visible")}function n(){$(this).removeClass("hover");$("ul:first",this).css("visibility","hidden")}var e={sensitivity:3,interval:200,over:t,timeout:200,out:n};$("ul.menu li").hoverIntent(e);$("ul.menu li ul li:has(ul)").find("a:first").append(" &raquo; ")});

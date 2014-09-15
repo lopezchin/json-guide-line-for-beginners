@@ -1,0 +1,11 @@
+.error{
+  border: 1px solid #ff0000!important;
+}
+
+.valid{
+  border: 1px solid #00ff00!important;
+}
+
+label.error{
+	display: none!important;
+}

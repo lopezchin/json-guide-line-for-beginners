@@ -1,0 +1,14 @@
+.element.style {
+  float: left;
+}
+.captcha-image {
+  margin-top: 15px;
+  float: left;
+  width: 100px;
+  margin-right: 4px;
+}
+.captcha-text {
+  width: 200px;
+  float: left;
+  margin-right: 20px;
+}

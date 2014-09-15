@@ -1,0 +1,139 @@
+.list{
+	.clearfix;
+
+	list-style: none;
+	text-align: left;
+	padding: 0;
+	li{
+	
+		.clearfix;
+		margin-bottom: 35px;
+	}
+}
+.list-img{
+	float: left;
+	width: 100px;
+	img{
+		width: 100%;
+		display: block;
+	}
+}
+.list-content{
+	position: relative;
+	float: right;
+	width: 79%;
+	padding: 15px 20px;
+	-webkit-box-shadow: 0 0 2px #BEC3C3;
+	-mox-box-shadow: 0 0 2px #BEC3C3;
+	box-shadow: 0 0 2px #BEC3C3;
+
+	h5{
+		color: @color-primary-flat;
+		width:100%;
+	}
+	p{
+		margin-top: 7px;
+	
+	}
+
+}
+
+.list-addon{
+	position: absolute;
+	top: -20px;
+	right: 0;
+	margin-right: 15px;
+	text-align: center;
+
+	& > *{
+		display: block;
+		color: #fff;
+	}
+	a{
+		border-top-left-radius: 0;	
+		border-top-right-radius: 0;	
+
+	}	
+	.list-meta{
+		margin-bottom: 0;
+		padding: 5px 0;
+		line-height: 1.4;
+		background: @color-secondary-flat;
+
+		& > *{
+			display: block;
+		}
+
+
+	}
+
+
+}
+.list-content-styled{
+	&:before{
+		content: '.';
+		position: absolute;
+		left: 0;
+		margin-top: 30px;
+		margin-left: -17px;
+		width: 17px;
+		height: 32px;
+		background: url(../../img/arrow-diag.png) no-repeat;
+		text-indent: -99999px;
+
+	}
+}
+.list-block{
+	li{
+		position: relative;
+		margin-bottom: 13px;
+		&:before{
+			content: '\003e';
+			position: absolute;
+			margin-left: -15px;
+			left: 0;
+
+		}
+	}
+}
+
+.listing-o{
+	padding: 0;
+	li{
+
+		border-bottom: 1px solid #e9e9e9;
+		text-transform: uppercase;
+		letter-spacing: .5px;
+		a{
+			color: #5a5a5a;
+			padding: 10px 0;
+			display: block;
+
+
+			&:before{
+				content: "\f067";
+				font-size: 14px;
+				font-family: FontAwesome;
+				font-style: normal;
+				margin-right: 10px;
+				font-weight: normal;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+				color: #6d5c5b;
+			}
+
+			&:hover:before{
+				content: "\f067";
+				color: #c0392b;
+			}
+			
+		}
+		
+	}
+}
+
+
+h5, .h5 {
+font-size: 15px;
+float: left;
+}

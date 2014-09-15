@@ -1,0 +1,272 @@
+
+
+
+
+/************************************************************************** Web Browser ***********************************************/
+
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+
+body.trest{
+	
+   margin:0!important;
+
+   background: #FFF;
+
+}
+
+
+
+
+
+.header_web
+{
+
+
+
+  height: 80px;
+
+  background: #2492d2;
+
+
+
+
+
+   .wrapper
+   {
+
+      width: 1200px;
+      height: 80px;
+      
+      .logo
+      {
+
+
+      	float:left;
+
+      	width:190px;
+      	height:70px;
+      	margin-top: 3px;
+      }
+
+
+
+   }
+   .right{
+
+
+     	float: right;
+     	margin-top: 23px;
+
+      color:#FFF;
+
+     	
+     }
+
+   
+
+
+
+
+}
+
+ .logo
+      {
+
+
+      	float:left;
+
+      	width:190px;
+      	height:70px;
+      	margin-top: 3px;
+      }
+
+  .icon
+  {
+
+   margin-left: -30px;
+
+  }
+  .text
+  {
+
+
+  	  width: 210px;
+  	  height: 35px;
+  	  border-radius: 6px;
+  	  border: solid 1px #FFFFFF;
+  	  background: transparent;
+  	  padding-left: 10px;
+  	  color: #ffffff;
+      font-family: ProximaNovaLight;
+      margin-left: 14px;
+  }
+  .login-btn{
+
+
+    background: #FFF;
+ 
+
+     width: 60px;
+     height: 20px;
+     border-radius: 6px;
+
+     border: solid 1px #FFFFFF;
+     margin-left: 2px;
+
+       height: 35px;
+
+       float: right;
+
+       color:#2492d2;
+
+  
+    }
+
+
+ .content_signup
+ {
+
+
+    width: 100%;
+
+  height: auto;
+
+  background:#2492d2;
+
+     .content1
+   {
+
+      font-family: ProximaNovaLight;
+      font-size: 50px;
+      font-weight:bold;
+
+      margin-top: 240px;
+   }
+
+    .content2
+   {
+
+      font-family: ProximaNovaLight;
+
+      padding-bottom: 2px;
+
+      font-size: 24px;
+      margin-top: 10px;
+     
+
+     
+   }
+
+
+       .content3
+   {
+
+      font-family: ProximaNovaLight;
+
+      padding-bottom: 40px;
+
+      font-size: 17px;
+      margin-top: 19px;
+      margin-top: 200px;
+     
+
+     
+   }
+
+
+
+ }   
+
+
+ .content
+ {
+
+  width: 100%;
+
+  height: auto;
+
+  background: url(images/background.png);
+  background-size: 100%;
+
+  color:#FFF;
+
+   .content1
+   {
+
+      font-family: ProximaNovaLight;
+      font-size: 50px;
+      font-weight:bold;
+
+      margin-top: 240px;
+   }
+
+    .content2
+   {
+
+      font-family: ProximaNovaLight;
+
+      padding-bottom: 2px;
+
+      font-size: 24px;
+      margin-top: 10px;
+     
+
+     
+   }
+
+
+       .content3
+   {
+
+      font-family: ProximaNovaLight;
+
+      padding-bottom: 40px;
+
+      font-size: 17px;
+      margin-top: 19px;
+      margin-top: 200px;
+     
+
+     
+   }
+
+
+
+
+ }
+
+ .join-us-btn{
+
+ 
+    width: 300px;
+    height: 50px;
+    border-radius: 7px;
+    background: #2492d2;
+    border: solid  1px #2492d2;
+    color:#FFF;
+    
+    font-family: ProximaNovaLight;
+
+    font-size: 18px;
+
+
+
+ }
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #FFF;
+}
+
+
+/************************************************************* ipad ************************************************************/
+
+
+
+
+
+

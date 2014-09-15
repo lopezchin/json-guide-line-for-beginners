@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<body>
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <link href="css/font-awesome/font-awesome.css" rel="stylesheet"> 
+    <link href="style.css" rel="stylesheet">
+    <!-- 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+     -->
+  </head>
+   <!--- web Browser !-->
+     <!-- header !-->
+    <div class="header_web">
+        <div class="container">
+          <img class="logo" src="images/logo_dashboard.svg">
+              <!-- menu !-->
+              <div id='cssmenu'>
+                  <ul>
+                     <li class='active'><a href='index.html'><span>Home</span></a></li>
+                     <li class='active'><a href='#'><span>Applications</span></a>
+                 
+                      <ul>
+                           <li class='has-sub'><a href='#'><span>Application</span></a>
+                              <ul>
+                                 <li><a href='#'><span>Sub Item</span></a></li>
+                                 <li class='last'><a href='#'><span>Sub Item</span></a></li>
+                              </ul> 
+                           </li>
+                           <li class='has-sub'><a href='#'><span>Product 2</span></a>
+                              <ul>
+                                 <li><a href='#'><span>Sub Item</span></a></li>
+                                 <li class='last'><a href='#'><span>Sub Item</span></a></li>
+                              </ul>
+                           </li>
+                        </ul>
+                     
+                     <li><a href='#'><span>Support</span></a></li>
+                     <li class='last'><a href='#'><span>Join Us</span></a></li>
+                  </ul> 
+              </div>
+
+              <!-- sign in !-->
+               <div class="right">
+                 <form name="login_form">
+                    <input type="text" placeholder="Email" name="login_email" id="login_email" class="text">
+                      <span  class="fa fa-envelope icon"></span>
+                    <input type="password" placeholder="Password" name="password" id="password" class="text">
+                      <span  class="fa fa-unlock icon"></span>
+                    <button class="login-btn" name="btn_login" id="btn_login" data-toggle="modal">
+                      <span  class="fa fa-sign-in icon_login"></span><span>Log In</span>
+                    </button>  
+                    <p class="text1">
+                      or sign in with
+                    </p>
+                    
+                    <img class="fb_login" onclick="FacebookInviteFriends();" src="images/fb_small.svg">
+                    <img class="twitter_login"  src="images/twitter_small.svg">
+                  </form>
+               </div>
+              <!-- sign in !-->
+       </div>
+    </div>
+
+     <!-- header !-->
+
+     <!-- content !-->
+     <div class="content">
+        <div class="container">
+          <center>
+            
+            <p class="content1">Safely and Trusted</p>
+            <p class="content2">with many peoples.</p>
+            <button id="register" class="join-us-btn">Free to Join Us</button>
+            <p class="content3"><span  class="fa fa-angle-double-down icon"></span></p>
+
+          </center>
+        </div>
+     </div>
+
+     <!-- Error / Update message -->
+    <div class="modal fade bs-example-modal-sm" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content" id="credential_login" style="padding: 1em;">
+           <!-- Profile info has been updated. -->
+          </div>
+        </div>
+    </div>
+
+
+     <script src="js/1.9.1_jquery.min.js"></script>
+
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/ext/jquery.validate.min.js"></script>  
+    <script type="text/javascript" src="js/ext/jquery.easing.min.js"></script>  
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+
+        //event handler for submit button
+
+        $(document).on('click','#btn_login',function(e){
+          e.preventDefault();
+
+          var $form = $('form[name="login_form"]'),
+              fetch_login;
+          if($form.valid()){
+            fetch_login = $form.serialize();
+
+            // alert(fetch_login);
+            ajax_login(fetch_login);
+          }
+        });
+        //event handler for submit button
+        $('form[name="login_form"]').validate({
+          debug: true,
+          rules : {
+            login_email: {
+              required: true,
+              email: true 
+            },
+            password : "required"
+          },
+          messages : {
+           login_email: "",
+           password : ""
+          }
+        });
+
+        var ajax_login = function(fetch_login){
+          $.ajax({
+            url : "http://192.168.1.70/controller/data_fetching.php",
+            type: "post",
+            dataType : "json",
+            data : fetch_login,
+            success: function(result){
+              if(result.status == 'success'){
+                console.log(result);
+                // window.location = result.redirect;
+                var login_email = result.email;
+                // alert(result.status);
+                auth(login_email);
+              }
+              else{
+                document.getElementById('credential_login').innerHTML = "<div style='text-align:center; color: #ff0000;'>"+result.message+"</div>";
+                $(".bs-example-modal-sm").modal('show');
+              }
+            }
+          });
+        }
+
+        $("#register").click(function () {
+            //collect userName and password entered by users
+              window.location = "signup.html";
+        });
+      });
+
+      function auth(logged_email){
+         // alert(logged_email);
+        $.ajax({
+          type: "POST",
+          // url: "http://1fx.philwebservicesdev.com/TCC/auth.php", || http://192.168.1.70/update2/
+          url: "http://192.168.1.70/TCC/auth.php",
+          dataType: "json",
+          data: {
+            'logged_email': logged_email,
+            '_token': "",
+            'action': 'login_email'
+          },
+          success: function(result) {
+
+            if (result.status == "success") {
+
+              window.location = result.redirect;
+              
+            } else {
+
+              var red = result.redirect;
+              
+              window.location = red;
+            }
+          }
+        });   
+      }
+
+  $('#cssmenu').prepend('<div id="indicatorContainer"><div id="pIndicator"><div id="cIndicator"></div></div></div>');
+  var activeElement = $('#cssmenu>ul>li:first');
+
+  $('#cssmenu>ul>li').each(function() {
+      if ($(this).hasClass('active')) {
+          activeElement = $(this);
+      }
+  });
+
+
+  var posLeft = activeElement.position().left;
+  var elementWidth = activeElement.width();
+  posLeft = posLeft + elementWidth/2 -6;
+  if (activeElement.hasClass('has-sub')) {
+    posLeft -= 6;
+  }
+
+  $('#cssmenu #pIndicator').css('left', posLeft);
+  var element, leftPos, indicator = $('#cssmenu pIndicator');
+  
+  $("#cssmenu>ul>li").hover(function() {
+        element = $(this);
+        var w = element.width();
+        if ($(this).hasClass('has-sub'))
+        {
+          leftPos = element.position().left + w/2 - 12;
+        }
+        else {
+          leftPos = element.position().left + w/2 - 6;
+        }
+
+        $('#cssmenu #pIndicator').css('left', leftPos);
+    }
+    , function() {
+      $('#cssmenu #pIndicator').css('left', posLeft);
+    });
+
+
+  $('#cssmenu>ul>.has-sub>ul').append('<div class="submenuArrow"></div>');
+  $('#cssmenu>ul').children('.has-sub').each(function() {
+    var posLeftArrow = $(this).width();
+    posLeftArrow /= 2;
+    posLeftArrow -= 12;
+    $(this).find('.submenuArrow').css('left', posLeftArrow);
+
+  });
+
+  $('#cssmenu>ul').prepend('<li id="menu-button"><a>Menu</a></li>');
+  $( "#menu-button" ).click(function(){
+    if ($(this).parent().hasClass('open')) {
+      $(this).parent().removeClass('open');
+    }
+    else {
+      $(this).parent().addClass('open');
+    }
+  });
+
+</script>
+
+
+  <script>
+        // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src="http://connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+        // Init the SDK upon load
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1416223935319696', // App ID
+            // channelUrl: '//' + window.location.hostname + '/channel', // Path to your   Channel File
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+        });
+
+        // listen for and handle auth.statusChange events
+        FB.Event.subscribe('auth.statusChange', function (response) {
+            console.log(response);
+            var profilePicsDiv = document.getElementById('profile_pics');
+
+            if (response.authResponse) {
+
+                // user has auth'd your app and is logged into Facebook
+                FB.api('/me', function (me) {
+
+                    console.log(me.friendlists);
+
+                    if (me.name) {
+                        document.getElementById('auth-displayname').innerHTML = me.name;
+                    }
+                    if (me.id) {
+                        document.getElementById('FBId').innerHTML = me.id;
+                        document.getElementById('Pic').src = 'https://graph.facebook.com/' + me.id + '/picture';
+                        document.getElementById('Pic').alt = me.name;
+                        document.getElementById('Pic').title = me.name;
+                    }
+
+                    if (me.email) {
+                        document.getElementById("DisplayEmail").innerHTML = me.email;
+                    }
+                    if (me.gender) {
+                        document.getElementById("Gender").innerHTML = me.gender;
+                    }
+                    if (me.birthday) {
+                        document.getElementById("DOB").innerHTML = me.birthday;
+                    }
+
+                });
+
+
+                if (response.status != 'connected') {
+                    profilePicsDiv.innerHTML = '<em>You are not connected</em>';
+                    return;
+                }
+                FB.api({ method: 'friends.get' }, function(result) {
+                    // Log.info('friends.get response', result);
+
+                    console.log(result);
+                    var markup = '';
+                    var numFriends = result ? Math.min(5, result.length) : 0;
+                    if (numFriends > 0) {
+                      for (var i=0; i<numFriends; i++) {
+                        markup += (
+                          '<fb:profile-pic size="square" ' +
+                                          'uid="' + result[i] + '" ' +
+                                          'facebook-logo="true"' +
+                          '></fb:profile-pic>'
+                        );
+                      }
+                    }
+                    profilePicsDiv.innerHTML = markup;
+                    FB.XFBML.parse(profilePicsDiv);logo_dashboard
+                });
+
+                document.getElementById('auth-loggedout').style.display = 'none';
+                document.getElementById('auth-loggedin').style.display = 'block';
+            } else {
+                // user has not auth'd your app, or is not logged into Facebook
+                document.getElementById('auth-loggedout').style.display = 'block';
+                document.getElementById('auth-loggedin').style.display = 'none';
+            }
+        });
+          
+        $("#auth-logoutlink").click(function () { FB.logout(function () { window.location.reload(); }); });
+    };
+
+
+    function FacebookInviteFriends(){
+        FB.ui({ method: 'apprequests', 
+            message: '1FX requested you to join.'
+        });
+        // alert('request sent!');
+    };
+    </script>
+</body>
+</html>

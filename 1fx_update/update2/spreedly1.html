@@ -1,0 +1,38 @@
+<html>
+<body>
+<div class="container">
+  <h1><%= @cart[:cart_name] %></h1>
+</div>
+
+<div class="container">
+	<% if @gateway %>
+
+		<p class="lead">Great! You have configurated a Gateway.</p>
+		<p>Your Gateway token is <em>'<%= @gateway[:gateway_token] %>'</em>. You can see how it was retained using the secure API by looking at <a href="https://github.com/spreedly/sample-foodcarts/blob/master/web.rb">the application code</a>.</p>
+		<p>Now imagine having thousands of customers, each one using a different Gateway. You are able to store credit cards and other payment methods in Spreedly's vault for all of them. If they decide to move to another Gateway, you can tell them, "No problemo! We're using Spreedly!"<p>
+		<p>spreedly.js has been designed to simplify your integration with Spreedly. Thanks for exploring, and <a href="mailto:support@spreedly.com?subject=Food%20Carts%20Sample%20-%20spreedly.js">please let us know</a> if you have any trouble.</p>
+
+	<% else %>
+    <p class="lead">To begin accepting payments, we need to set up your payment gateway. Select your payment gateway from the drop down menu below. Each gateway has it's own variation on what you need to enter to go live but it's usually two or three different fields. If you're not sure where to find this information it's usually in the account manager area of your payment gateway."</p>
+    <div class="row">
+      <div class="span5">
+      <form action="/gateway" method="POST" class="spreedly-gateway"
+        data-environment-key="<%= ENV['SPREEDLY_ENVIRONMENT_KEY'] %>"
+        data-theme="default"
+        data-types="test">
+        <input type="hidden" name="cart_name" value="<%= @cart[:cart_name] %>"></input>
+      </form>
+      </div>
+    </div>
+		<script type="text/javascript" src="<%= ENV['SPREEDLY_JS_URL'] %>"></script>
+
+		<!-- Nothing to see here. Move along. Okay, fine. It's here because I can work
+		     with a development instance of Spreedly on my laptop. Yes I can! You can't,
+		     so you don't need this kind of thing. -->
+		<script type="text/javascript">
+			spreedly.host = '<%= ENV['SPREEDLY_API_URL'] %>'
+		</script>
+	<% end %>
+</div>
+</body>
+</html>

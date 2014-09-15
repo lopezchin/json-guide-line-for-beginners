@@ -1,0 +1,39 @@
+.pagination{
+	float: right;
+	margin: 0;
+	ul{
+
+	}
+	li{
+		
+		a, span{
+			border: none;
+			margin-right: 15px;
+			font-size: 20px;
+			text-align: center;
+			padding: 0px 9px;
+
+		}
+		a{
+			color: #8c8c8c;
+
+		}
+
+		&.active{
+			span{
+				.radius(100%);
+				background: #aeaeae;
+				border: 1px solid #8c8c8c;
+				color: #fff;
+				width: 30px;
+				height: 30px;
+
+				&:hover{
+					background: #8c8c8c;
+					border: 1px solid #8c8c8c;
+				}
+			}
+		}
+	}
+
+}

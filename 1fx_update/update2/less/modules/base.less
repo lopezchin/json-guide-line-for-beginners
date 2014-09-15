@@ -1,0 +1,129 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.container{
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg;
+  }
+}
+.conatiner-inner{
+	width: @container-inner;
+}
+.container-styled{
+	.clearfix;
+	padding: 0;
+	background: #fff;
+	margin-top: -32px;
+	.box-shadow(0 0 24px #6b6b6b);
+}
+.wrap-inner{
+	padding: 60px 20px;
+	.clearfix;
+
+
+	.t-cont{
+		padding-left: 0px;
+		float: right;
+		width: 70%;
+	}
+	.t-side{
+		position: relative;
+	    width: 340px;
+	    margin-right: -340px;
+	    float: left;
+	    padding-right: 20px;
+	    min-height: 500px;
+	}
+}
+
+body {
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+  line-height: 25px;
+  color: @color-text;
+   background: url(images/background_ipad3.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  padding-left:50px;
+  padding-right:50px;
+}
+
+
+
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5{
+	font-family: @font-family-headings;
+	font-weight: 500;
+}
+blockquote{
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+ul{
+	list-style: none;
+}
+
+a{
+	&:hover{
+		text-decoration: none;
+	}
+	.transition(linear .1s all);
+
+}
+label{
+
+	margin-left: 15px;
+}
+
+
+
+.t-head{
+	background: url(../img/header-img.png) left 1px no-repeat #fff;
+	padding-top: 30px;
+	background-size: cover;
+
+}
+
+
+
+
+.t-foot{	
+		.clearfix;
+		clear: both;
+		background: #393939;
+		.btn{
+			float: right;
+			margin-top: 20px;
+			margin-right: 63px;
+		}
+	}
+
+.copyright{
+	padding: 10px 0;
+	background: #272727;
+	text-align: center;
+	.logo-alt{
+		display: inline-block;
+		padding-right: 10px;
+		margin-right: 10px;
+		border-right: 1px solid #323232;
+	}
+	& > *{
+		color: #4e4e4e;
+	}
+	span{
+		font-size: 12px;
+		color: #6a6161
+
+	}
+}
+
+
+.blog-title-font{ font-size: 40px}
+

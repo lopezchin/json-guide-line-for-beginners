@@ -1,0 +1,28 @@
+.slider {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  margin-top: 180px;
+}
+.slider .slide .font-slogan {
+  font-family: "Helvenica";
+  font-size: 90px;
+  color: #000000;
+  padding-top: 40px;
+}
+.slider .slide .font-sub-slogan {
+  font-family: "Helvenica";
+  font-size: 40px;
+  color: #000000;
+  margin-top: -16px;
+}
+.slider .slide .join-btn {
+  width: 300px;
+  height: 50px;
+  background: transparent;
+  border-radius: 10px;
+  border-color: #000000;
+  font-size: 20px;
+  font-family: "Helvenica";
+  margin-top: 50px;
+}

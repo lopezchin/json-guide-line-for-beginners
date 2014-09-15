@@ -1,0 +1,28 @@
+.profile {
+  text-align: right;
+}
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  margin-left: 45px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 150px;
+  overflow: hidden;
+}
+.profile-avatar img {
+  display: block;
+  width: 100%;
+}
+.profile-info {
+  margin-bottom: 10px;
+}
+.profile-name {
+  display: block;
+  color: #bebaba;
+}
+.profile-job {
+  display: block;
+  color: #5e5c5c;
+  font-size: 11px;
+}

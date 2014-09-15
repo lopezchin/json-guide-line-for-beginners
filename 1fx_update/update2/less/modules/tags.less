@@ -1,0 +1,32 @@
+.tags{
+	padding: 0;
+	.clearfix;
+	margin: -3px -3px;
+
+	li{
+		float: left;
+		margin: 3px 3px;
+		a{
+			display: block;
+			letter-spacing: 1px;
+			padding: 8px 15px;
+			.radius(10px);
+			text-transform: uppercase;
+			color: #626262;
+			border: 1px solid #ebebeb;
+			background: #fff;
+			.transition(.1s linear);
+
+			&:hover{
+				color: #fff;
+				background: #86b959;
+			}
+		}
+		&.active{
+			a{
+				color: #fff;
+				background: #86b959;
+			}
+		}
+	}
+}

@@ -1,0 +1,60 @@
+
+
+* 									{ margin: 0; padding: 0; }
+
+#page-wrap							{ width: 800px; margin: 25px auto; } 
+a									{ text-decoration: none; }
+ul									{ list-style: none; }
+p                                   { margin: 15px 0; }
+
+/* 
+	LEVEL ONE
+*/
+ul.menu                         { position: relative; }
+ul.menu li                      { font-weight: bold; float: left; zoom: 0; z-index: 40;  position:relative; }
+ul.menu a:hover		            { color: #FFF; }
+ul.menu a:active                { color: #ffa500; }
+ul.menu li a                    { display: block; padding: 4px 8px; 
+
+	 								  color: #FFF; }
+ul.menu li:last-child a         { border-right: none; padding-right: 40px} /* Doesn't work in IE */
+ul.menu li.hover,
+ul.menu li:hover                { background: #8a271d; color:#FFF; position: relative; }
+ul.menu li.hover a              { color: #FFF; }
+
+
+/* 
+	LEVEL TWO
+*/
+ul.menu ul 						{ width: 320px; visibility: hidden; position: absolute; top: 100%; left: 0; }
+ul.menu ul li 					{ font-weight: normal; background: #c0392b; color: #FFF; 
+									  border-bottom: 1px solid #ccc; float: none; }
+									  
+                                    /* IE 6 & 7 Needs Inline Block */
+ul.menu ul li a					{ border-right: none; width: 100%;  display: inline-block; } 
+
+/* 
+	LEVEL THREE
+*/
+ul.menu ul ul 					{ left: 100%; top: 0; }
+ul.menu li:hover > ul 			{ visibility: visible; color:#FFF; }
+
+.sub-menu{margin-left: 0px; margin-top: 4px}
+
+
+.sub-menu li{height: 40px; margin-top: -10px}
+
+.menu li {
+margin-top: 0px;
+float: left;
+width: auto;
+color: #FFF;
+padding-left: 10px;
+padding-right: 10px;
+ margin-right: 0px; 
+ padding-bottom: 20px;
+}
+
+
+
+

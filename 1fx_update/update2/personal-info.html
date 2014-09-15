@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detail Admin - My Info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- bootstrap -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/compiled/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/compiled/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/compiled/icons.css" />
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.css" />
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="css/compiled/personal-info.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+</head>
+<body>
+
+<!-- Error / Update message -->
+    <div class="modal fade bs-example-modal-sm" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content" id="update_prof" style="padding: 1em;">
+           <!-- Profile info has been updated. -->
+          </div>
+        </div>
+    </div>
+
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+             <a class="navbar-brand"><img class="logo" src="images/logo_dashboard.svg" alt="logo" /></a>
+   
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="hidden-xs">
+                <input type="hidden" class="token" id="token"/>
+                <input type="hidden" class="email" id="email"/>
+                <input class="search" type="text" />
+            </li>
+          
+            <li class="notification-dropdown hidden-xs hidden-sm">
+                <a href="#" class="trigger">
+                    <i class="fa fa-exclamation-triangle fa-lg"></i>
+                    <span class="count">8</span>
+                </a>
+                <div class="pop-dialog">
+                    <div class="pointer right">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <div class="body">
+                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                        <div class="notifications">
+                            <h3>You have 6 new notifications</h3>
+                            <a href="#" class="item">
+                                <i class="icon-signin"></i> New user registration
+                                <span class="time"><i class="icon-time"></i> 13 min.</span>
+                            </a>
+                            <a href="#" class="item">
+                                <i class="icon-signin"></i> New user registration
+                                <span class="time"><i class="icon-time"></i> 18 min.</span>
+                            </a>
+                            <a href="#" class="item">
+                                <i class="icon-envelope-alt"></i> New message from Alejandra
+                                <span class="time"><i class="icon-time"></i> 28 min.</span>
+                            </a>
+                            <a href="#" class="item">
+                                <i class="icon-signin"></i> New user registration
+                                <span class="time"><i class="icon-time"></i> 49 min.</span>
+                            </a>
+                            <a href="#" class="item">
+                                <i class="icon-download-alt"></i> New order placed
+                                <span class="time"><i class="icon-time"></i> 1 day.</span>
+                            </a>
+                            <div class="footer">
+                                <a href="#" class="logout">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="notification-dropdown hidden-xs hidden-sm">
+                <a href="#" class="trigger">
+                    <i class="fa fa-envelope fa-lg"></i>
+                </a>
+                <div class="pop-dialog">
+                    <div class="pointer right">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <div class="body">
+                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                        <div class="messages">
+                            <a href="#" class="item">
+                                <img src="img/contact-img.png" class="display" alt="user" />
+                                <div class="name">Alejandra Galván</div>
+                                <div class="msg">
+                                    There are many variations of available, but the majority have suffered alterations.
+                                </div>
+                                <span class="time"><i class="icon-time"></i> 13 min.</span>
+                            </a>
+                            <a href="#" class="item">
+                                <img src="img/contact-img2.png" class="display" alt="user" />
+                                <div class="name">Alejandra Galván</div>
+                                <div class="msg">
+                                    There are many variations of available, have suffered alterations.
+                                </div>
+                                <span class="time"><i class="icon-time"></i> 26 min.</span>
+                            </a>
+                            <a href="#" class="item last">
+                                <img src="img/contact-img.png" class="display" alt="user" />
+                                <div class="name">Alejandra Galván</div>
+                                <div class="msg">
+                                    There are many variations of available, but the majority have suffered alterations.
+                                </div>
+                                <span class="time"><i class="icon-time"></i> 48 min.</span>
+                            </a>
+                            <div class="footer">
+                                <a href="#" class="logout">View all messages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                    Your account
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="personal-info.html">Personal info</a></li>
+                    <li><a href="#">Account settings</a></li>
+                    <li><a href="#">Billing</a></li>
+                    <li><a href="#">Export your data</a></li>
+                    <li><a href="#">Send feedback</a></li>
+                </ul>
+            </li>
+           
+           
+             
+             <li class="settings hidden-xs hidden-sm">
+                <a href="dashboard.html" class="trigger">
+                    <i class="fa fa-reply fa-lg"></i>
+                </a>
+                 <div class="pop-dialog">
+                 dfdf
+                 </div>
+            </li>
+
+             <li class="settings hidden-xs hidden-sm">
+                <a href="#" id="logout" class="trigger">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </a>
+               
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+              
+                <a href="dashboard.html">
+                    <i class="fa fa-home fa-lg"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>  
+            <li>
+                <a  href="credits.html">
+                    <i class="fa fa-credit-card fa-lg"></i>
+                    <span>Credits</span>
+                   
+                </a>
+                
+            </li>
+             <li>
+                <a href="transaction.html">
+                    <i class="fa fa fa-file-text fa-lg"></i>
+                  <span>Transaction</span>
+                    
+                </a>
+                
+            </li>
+            <li>
+                <a href="user-list.html">
+                    <i class="fa fa-users fa-lg"></i>
+                    <span>Contacts</span>
+                   
+                </a>
+            </li>
+
+             <li class="active">
+                 <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="personal-info.html">
+                    <i class="fa fa-user fa-lg"></i>
+                    <span>Profile</span>
+                    
+                   
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+    
+
+	<!-- main container .wide-content is used for this layout without sidebar :)  -->
+    <div class="content wide-content">
+        <div class="settings-wrapper" id="pad-wrapper">
+            <div class="row">
+
+                <form class="form-horizontal" name="update_profile" role="form">
+                    <!-- avatar column -->
+                    <div class="col-md-3 col-md-offset-1 avatar-box">
+                        <div class="personal-image">
+                            <img src="" class="avatar img-circle" alt="avatar" height="107" width="107" />
+                            <p>Upload a different photo...</p>
+                            
+                            <input type="file" name="avatar_icon" id="avatar_icon"/>
+                            <!-- <input type="hidden" name="avatar_profile" id="avatar_profile"/> -->
+                        </div>
+                    </div>
+
+                    <!-- edit form column -->
+                    <div class="col-md-7 personal-info">
+                    
+                        <h5 class="personal-title">Personal info</h5>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Full name:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" id="fullname" name="fullname" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Email:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" id="eMail" name="eMail" disabled/>
+                                    <input class="form-control" type="hidden" id="email_hidden" name="email_hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Company:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" id="company"  name="company"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Address:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" id="address" name="address" />
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <input type="button" name="update" class="btn-glow primary update_btn" id="update_btn" value="Update Profile">
+                                <span>OR</span>
+                                <input type="reset" value="Cancel" class="reset">
+                            </div>
+                    </div>
+
+                </form>
+            </div>            
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="js/1.9.1_jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/ext/jquery.easing.min.js"></script>  
+    <script type="text/javascript" src="js/ext/jquery.validate.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+              type: "POST",
+              // url: "http://1fx.philwebservicesdev.com/TCC/auth.php",
+              url: "http://192.168.1.70/TCC/auth.php",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function(result) {
+                console.log(result);
+                console.log('status = '+result.status);
+                
+
+                if (result.status == "success") {
+                    var tokenKey = result.token_id;
+                    var email = result.email;
+                    
+                    document.getElementById('token').value = tokenKey;
+                    document.getElementById('email').value = email;
+                    
+                    fetch_data_login(email);
+
+                } else {
+                    document.getElementById('update_prof').innerHTML = result.message;
+
+                    $(".bs-example-modal-sm").modal('show');
+
+                    var red = result.redirect;
+                    
+                    window.location = red;
+                }
+              }
+            });   
+            
+            function fetch_data_login(email){
+
+                // alert(email);
+                $.ajax({ //working
+                  type: 'POST',
+                  dataType: 'json',
+                  // url: 'http://1fx.philwebservicesdev.com/controller/info/fetch_info_login.php', //perfectly working
+                  url: 'http://192.168.1.70/controller/info/fetch_info_login.php', //perfectly working
+                  data: {
+                    'email': email,
+                    _token: "",
+                    action: 'fetch_data_login'
+                  },
+                  success: function(result){
+                    if(result.status === 'success'){
+
+                        $('#fullname').val(result.fullname);
+                        $('#eMail').val(result.email);
+                        $('#email_hidden').val(result.email);
+                        $('#company').val(result.company);
+                        $('#address').val(result.address);
+                        //Avatar icon
+                        $('.avatar').attr('src','http://192.168.1.70/controller/uploads/'+result.avatar);
+                    } else{
+                        alert('Theres an error with your sql query');
+                    }
+                  }
+                });//working end of Ajax 
+            }// end of fetch_data_login
+
+            $(document).on('click','#update_btn',function(e){
+              e.preventDefault();
+
+              var $form = $('form[name="update_profile"]'),
+                  data;
+              if($form.valid()){
+                var file = $form.find('input[type="file"]').val();
+                // alert($form.find('input[type="file"]').val());
+                data = 'avatar_icon='+file+'&'+$form.serialize();
+
+                // alert(data); 
+                ajax_updateProfile(data);
+              }
+            });
+
+            $('form[name="update_profile"]').validate({
+              debug: true,
+              rules : {
+                fullname: "required",
+                company: "required",
+                address: "required",
+                eMail : {
+                  required: true,
+                  email :true
+                }
+              },
+              messages : {
+                fullname: "",
+                company: "",
+                address: "",
+                eMail : {
+                  required : "Dont Leave blank",
+                  email : "Invalid Email!"
+                }
+              }
+            });
+
+            var ajax_updateProfile = function(data){
+              $.ajax({
+                url : "http://192.168.1.70/controller/info/update_info_login.php",
+                type: "post",
+                dataType : "json",
+                data : data,
+                success: function(update_info){
+
+                    if(update_info.status == "success"){
+                        console.log(update_info);
+                        document.getElementById('update_prof').innerHTML = "<div style='text-align:center;'>"+update_info.message+"</div>";
+                        $(".bs-example-modal-sm").modal('show');
+                    }else{
+                        document.getElementById('update_prof').innerHTML = "<div style='text-align:center;'>"+update_info.message+"</div>";
+                        $(".bs-example-modal-sm").modal('show');
+                    }
+                    
+                },
+                error: function(xhr,status){
+                  alert(xhr.responseText);
+                }
+              });
+            }
+
+            $("#logout").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                  type: "POST",
+                  url: "http://192.168.1.70/controller/logout.php",
+                  dataType: "json",
+                  data:{
+                    'logging_out': 'logout',
+                    '_token': "",
+                    'action': 'logout_app'
+                  },
+                  success: function(result) {
+
+                    if(result.status === 'logout'){
+                        alert("Thanks for using 1FX Mobile Wallet.");
+                        window.location = result.redirect;
+                    }else{
+                        // window.redirect = result.redirect;
+                    }
+                  }
+                });// logout();
+            });// logout ajax     
+
+            $('input[type="file"]').change(uploadFiles);
+            // Variable to store your files
+            var files;
+
+            // Add events
+             
+            // Grab the files and set them to our variable
+            /*function prepareUpload(event)
+            {
+              files = event.target.files;
+            }*/
+
+            function uploadFiles(event){
+                var selector = event.currentTarget.attributes[1].nodeValue;
+                files = event.target.files;
+                event.stopPropagation(); // Stop stuff happening
+                event.preventDefault(); // Totally stop stuff happening
+             
+                // START A LOADING SPINNER HERE
+             
+                // Create a formdata object and add the files
+                var data = new FormData();
+                $.each(files, function(key, value)
+                {
+                    data.append(key, value);
+                });
+                
+                $.ajax({
+                    url: 'http://192.168.1.70/controller/upload.php?files',
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    dataType: 'json',
+                    processData: false, // Don't process the files
+                    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+                    beforeSend: function(){
+                        $('.avatar').attr('src','http://192.168.1.70/update2/images/ajax-loader.gif');
+                    },
+                    success: function(data, textStatus, jqXHR)
+                    {
+                        if(typeof data.error === 'undefined')
+                        {
+                            // Success so call function to process the form
+                            submitForm(event, data);
+                            var url = data.raw_files;
+                            url = url.toString();
+                            url = url.substr(url.lastIndexOf('/') + 1);
+                            setTimeout(function(){
+                                $('.avatar').attr({src: 'http://192.168.1.70/controller/uploads/'+url, height : 107, width : 107});
+                            },1000);
+                            
+                            
+                        }
+                        else
+                        {
+                            // error handle if uploaded file is not correct
+                            document.getElementById('update_prof').innerHTML = "<div style='text-align:center; color: #ff0000;'>"+data.error+"</div>";
+                            $(".bs-example-modal-sm").modal('show');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown)
+                    {
+                        // Handle errors here
+                        console.log('ERRORS: ' + textStatus);
+                        // STOP LOADING SPINNER
+                    }
+                });
+            }
+
+            function submitForm(event, data){
+              // Create a jQuery object from the form
+                $form = $(event.target);
+                
+                // Serialize the form data
+                var formData = $form.serialize();
+                
+                // You should sterilise the file names
+                $.each(data.files, function(key, value)
+                {
+                    formData = formData + '&filenames[]=' + value;
+                });
+             
+                $.ajax({
+                    url: 'http://192.168.1.70/controller/upload.php',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    dataType: 'json',
+                    success: function(data, textStatus, jqXHR)
+                    {
+                        if(typeof data.error === 'undefined')
+                        {
+                            // Success so call function to process the form
+                            console.log('SUCCESS: ' + data.success);
+                        }
+                        else
+                        {
+                            // Handle errors here
+                            console.log('ERRORS: ' + data.error);
+                        }
+                    },
+                    beforeSend: function(){
+                        //
+                    },
+                    error: function(jqXHR, textStatus, errorThrown)
+                    {
+                        // Handle errors here
+                        console.log('ERRORS: ' + textStatus);
+                    },
+                    complete: function()
+                    {
+                        // STOP LOADING SPINNER
+                    }
+                });
+            } 
+        });// end document type
+    </script>
+</body>
+</html>

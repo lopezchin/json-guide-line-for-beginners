@@ -1,0 +1,492 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+/***********************************************************************************************************/
+/************************************************ Dashboard ************************************************/
+/***********************************************************************************************************/
+
+
+
+
+
+body.trest{
+	
+   margin:0!important;
+
+   background: #FFF;
+
+}
+
+.line
+{
+
+  height: 1px;
+  background: #9c9b9b;
+  margin-top: -63px;
+
+}
+.footer
+{
+
+   height: auto;
+
+  background: #FFF;
+
+  border-top: solid 1px #dbdbdb;
+  
+
+
+}
+.header{
+  
+
+  height: 58px;
+
+  background: #FFF;
+
+  border-bottom: solid 1px #dbdbdb;
+  
+
+  .logo
+  {
+     float:left;
+  	 margin-top: 7px;
+  	 margin-left: 9px;
+  }
+
+  .upper-menu
+  {
+
+
+  	 float:right;
+  	 min-width: 590px;
+  	 height: 55px;
+
+  	 margin-top: 2px;
+
+
+  	 .menu
+  	 {
+
+       width: 93px;
+       height: 55px;
+       background: url(images/header_menu.jpg);
+       border: none;
+       margin-top: -2px;
+
+
+  	 }
+  	 .refresh
+  	 {
+   
+        width: 93px;
+       height: 55px;
+       background: url(images/header_refresh.jpg);
+       border: none;
+       margin-top: -2px;
+
+
+  	 }
+  	   .search
+  	 {
+   
+        width: 93px;
+       height: 55px;
+       background: url(images/header_search.jpg);
+       border: none;
+       margin-top: -2px;
+
+
+  	 }
+  	 .profile
+  	 {
+      float: left;
+      min-width:300px;
+      height:55px;
+      margin-top: 4px;
+      padding-right: 30px;
+
+      font-family: Arial;
+
+
+       .name{
+
+       	 float:left;
+       	 margin-top:16px;
+
+       }
+
+
+       
+       .photo
+       {
+
+        width: 54px;
+        height: 46px;
+        margin-top: 0px;
+        padding-right: 7px;
+
+       }
+
+  	 }
+
+
+  	
+  }
+
+
+}
+
+
+.photo
+{
+  
+   float:left;
+   width: 40px;
+   height: 20px;
+   margin-top:-5px;
+
+}
+
+
+
+
+
+
+
+
+ #demo {
+      width: auto;
+      height: 640px;
+      visibility: hidden;
+      margin: 100px auto 0;
+      background: #457;
+      cursor: hand;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+      cursor: grab;
+      margin-top: 3px;
+    }
+
+    #demo li.first {
+      background: #FFF;
+    }
+
+    #demo li.middle {
+      background: #1e8;
+    }
+
+    #demo li.last {
+      background: #e8b;
+    }
+
+    #dragend {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      background: #345;
+      padding: 18px;
+      color: #fff;
+      border-radius: 3px;
+      width: 150px;
+      font-size: 15px;
+    }
+
+    #dragend h1 {
+      font-size: 15px;
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+
+    #dragend a {
+      text-decoration: underline;
+      color: #fff
+    }
+
+    .button {
+      height: 0;
+      width: 0;
+      position: absolute;
+      top: 250px;
+      left: 50%;
+      cursor: pointer;
+      border-style: solid;
+    }
+
+    .button.deactivated {
+      opacity: 0.2;
+      cursor: default;
+    }
+
+    .prev {
+      margin-left: -320px;
+      border-width: 50px 50px 50px 0;
+      border-color: transparent #333 transparent transparent;
+    }
+
+    .next {
+      margin-left: 270px;
+      border-width: 50px 0 50px 50px;
+      border-color: transparent transparent transparent #333;
+    }
+
+    .nav {
+      margin: 40px auto;
+      width: 500px;
+      list-style: none;
+    }
+
+    .nav li.active {
+      background: #215;
+      color: #fff;
+    }
+
+    .nav li {
+      width: 20%;
+      height: 100px;
+      float: left;
+      text-align: center;
+      background: #abc;
+      line-height: 100px;
+      border-right: 10px solid #eee;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .nav li:last-child {
+      border: 0;
+    }
+
+
+ .date_picker
+ {
+
+    width: 235px;
+    height: 53px;
+    float:left;
+    margin-left: 23px;
+    .title{
+
+      clear: both;
+      font-family: Arial;
+      font-size: 10px;
+
+    }
+    .input{
+
+        background: transparent;
+    }
+
+    .calendar-icon{
+       position: relative;
+       top:-33px;
+       margin-left: 160px;
+       padding-left: 40px;
+       color:#067bb7;
+    }
+
+
+ }   
+
+
+
+
+.left
+{
+
+
+    width: 484px;
+    height: auto;
+
+    float:left;
+
+    .textpost{
+
+
+          width: 463px;
+          height: 53px;
+          border: solid 3px #6cbef7;
+          border-radius: 0px;
+          margin-top: 37px;
+    }
+    .post-control{
+
+      width: 463px;
+      height: 31px;
+      
+
+      .post_update
+      {
+       
+         float:left;
+
+         color: #6cbef7;
+         font-size: 20px;
+         font-family: ProximaNovaLight;
+         margin-top: 3px;
+
+      }
+      .line_separator{
+
+         float:left;
+         margin-left: 10px;
+         font-size: 20px;
+         margin-top: 2px;
+         color: #6cbef7;
+          font-family: ProximaNovaLight;
+          margin-left: 12px;
+      }
+
+      .attachment_icon
+      {
+
+         float:left;
+
+         margin-top: 3px;
+         margin-left: 4px;
+
+      }
+
+      .fb_checkbox
+      {
+
+       float:left;
+       margin-top: -4px;
+       margin-left: 30px;
+
+      }
+      .fb_label
+      {
+
+         float:left;
+       margin-top: 9px;
+       margin-left: 30px;
+
+       font-family: ProximaNovaLight;
+
+         color: #6cbef7;
+      }
+
+
+    }
+
+    .updates{
+
+      margin-top: 30px;
+       width: 463px;
+
+       .item
+       {
+
+          border-top:solid 1px #6cbef7;
+          height: 135px;
+          .photo
+          {
+
+            width: 110px;
+            height: 113px;
+            float: left;
+            margin-top: 4px;
+          }          
+
+          .content{
+
+              float:left;
+              width: 340px;
+
+              .name{
+
+                 font-family: ProximaNovaLight;
+                 font-size: 23px;
+                 color: #373535;
+                 margin-left: 14px;
+                 margin-top: 8px;
+                 clear: both;
+              }
+              .post
+              {
+                  
+
+                 font-family: ProximaNovaLight;
+                 margin-left: 9px;
+                 margin-top: -10px;
+
+
+              }
+
+
+          }
+       }
+
+
+    }
+
+}
+
+
+.right
+{
+
+    width: 484px;
+    height: auto;
+    float:right;
+
+
+    .apps_container
+    {
+
+      width: 447px;
+      height: 124px;
+      
+       .app
+       {
+
+          float: left;
+          width: 70px;
+          height: 104px;
+          margin-left: 30px;
+          
+
+
+          font-family: ProximaNovaLight;
+
+          .icon{
+            margin-left: 3px;
+          }
+          .icon_label{
+
+             font-size: 12px;
+             margin-left: 7px;
+          }
+
+
+       }
+    }
+
+  .budget-graph-container
+  {
+
+
+     .title-graph{
+
+            font-family: ProximaNovaLight;
+            font-size: 29px;
+     }
+
+  }
+
+
+
+}
+
+
+
+/* end .squaredTwo */
+
+
+/* .squaredThree */
+
+
+

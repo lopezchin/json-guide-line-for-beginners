@@ -1,0 +1,1 @@
+(function(e){e.widget("metro.widget",{version:"1.0.0",options:{},_create:function(){},_destroy:function(){},_setOption:function(e,t){this._super("_setOption",e,t)}})})(jQuery);
