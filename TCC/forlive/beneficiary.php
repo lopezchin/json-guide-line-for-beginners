@@ -44,7 +44,6 @@
 		'bank_name' => $bank_name,
 		'bank_address' => $bank_address,
 		'acct_number' => $account_number,
-		// 'bsb_code' => $sort_code,
 		'sort_code' => $sort_code,
 		'destination_country_code' => $destination_code,
 		'is_beneficiary' => $beneficiary,

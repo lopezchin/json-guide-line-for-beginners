@@ -7,12 +7,16 @@
         console.log(result);
         // document.location = 'trade.html';
         // $('#tokenID').html(result.token_id);
-      // console.log(res.data);
+        // console.log(res.data);
       var tokenKey = result.token_id;
+      var user = result.user;
+
+      alert(user);
+
       // alert($.cookie('token_id'));
       //result show on success respond
-      document.getElementById('tokenID').innerHTML = tokenKey;
-      document.getElementById('token').value = tokenKey;
+      // document.getElementById('tokenID').innerHTML = tokenKey;
+      // document.getElementById('token').value = tokenKey;
 
     }
   });
@@ -44,7 +48,6 @@
         }
 
         //checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
-
         //settlementCreate(token_key);
     
   });
@@ -73,7 +76,6 @@
       success: function(data) {
 
         // console.log(data);
-
         // document.getElementById("response").innerHTML = data.message;
 
         if (typeof data !== 'object') {
@@ -169,25 +171,26 @@
 
   $("#trade_ben").click(function () {
 
-        var token_key = $("#token").val();
-        var buy_currency = $("#buy_currency").val();
-        var sell_currency = $("#sell_currency").val();
-        var amount = $("#amount_ben").val();
-        var side = $("#side").val();  //side  1 = buy, 2 = sell
-        var term_agreement = $('#term_agreement_ben').is(':checked'); // use .is(:checked) to get value of true/false result
-        var reason = $("#reason_ben").val();
-        var beneficiary_id = $("#beneficiary_id").val();
-        var payment_ben_type = $("#payment_ben_type").val();
-        var payment_ref = $("#payment_ref").val();
+    var token_key = $("#token").val();
+    var buy_currency = $("#buy_currency").val();
+    var sell_currency = $("#sell_currency").val();
+    var amount = $("#amount_ben").val();
+    var side = $("#side").val();  //side  1 = buy, 2 = sell
+    var term_agreement = $('#term_agreement_ben').is(':checked'); // use .is(:checked) to get value of true/false result
+    var reason = $("#reason_ben").val();
+    var beneficiary_id = $("#beneficiary_id").val();
+    var payment_ben_type = $("#payment_ben_type").val();
+    var payment_ref = $("#payment_ref").val();
 
-         // alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
+     // alert(token_key+'\n\n'+buy_currency+'\n\n'+sell_currency+'\n\n'+amount+'\n\n'+side+'\n\n'+term_agreement+'\n\n'+reason+'\n\n'+beneficiary_id+'\n\n'+payment_ben_type+'\n\n'+payment_ref);
 
-        if(buy_currency != "" && sell_currency != "" && amount != "" && side != "" && term_agreement == true && reason != "" && beneficiary_id != "" && payment_ben_type != "" && payment_ref != ""){
-            tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref);
-            
-        }else{
-          alert("one of the field is empty");
-        }
+    if(buy_currency != "" && sell_currency != "" && amount != "" && side != "" && term_agreement == true && reason != "" && beneficiary_id != "" && payment_ben_type != "" && payment_ref != ""){
+        tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref);
+        
+    }else{
+      alert("one of the field is empty");
+    }
+
   });
 
   function tradeBeneficiary(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason, beneficiary_id, payment_ben_type, payment_ref){
@@ -270,7 +273,6 @@
         }
 
         //checkingValue(token_key, buy_currency, sell_currency, amount, side, term_agreement, reason);
-
         //settlementCreate(token_key);
     
   });

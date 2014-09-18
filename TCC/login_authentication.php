@@ -41,13 +41,12 @@
 			while ($row = mysql_fetch_array($query)) {
 				$i++;
 
-				$ret = array(					
-					// 'status' => 'success',
+				$ret = array(				
 			    	'id' => $row["id"],
 			    	'user'=> $row["user"],
 					'password'  => $row["password"],
 					'status' => true,
-					'redirect' => 'authentication.php',
+					'redirect' => 'authentication.php?user='.$userName,
 					'message' => "Credential is correct."
 				);
 

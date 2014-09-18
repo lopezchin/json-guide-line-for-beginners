@@ -24,7 +24,7 @@ $url = 'https://core.spreedly.com/v1/gateways.xml';
  
 //  Initiate curl_close(ch)
 $ch = curl_init();
- curl_setopt($ch, CURLOPT_USERPWD, $apiLogin . ':' . $apiSecret);
+curl_setopt($ch, CURLOPT_USERPWD, $apiLogin . ':' . $apiSecret);
 // Disable SSL verification
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 // Will return the response, if false it print the response

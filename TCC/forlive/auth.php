@@ -1,8 +1,11 @@
 <?php
+
   $data = array();
 
 
   session_start();
+
+  $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
 
 
   if(!isset($_SESSION['token_id'])){ //check session first if its set 
@@ -23,7 +26,7 @@
     $ch = curl_init();
     curl_setopt_array($ch,$curlOptions);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
-      curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
 
 
     //Sending our request - $response will hold the API response
@@ -41,14 +44,16 @@
     $_SESSION['token_id'] = $obj['data'];
     setcookie('token_id',$obj['data']);
 
+    $_SESSION['email'] = $email;
+    setcookie('email',$email);
+
     // echo 'Token_key : '.$_SESSION['token_id'];
 
     header('Location: http://localhost/update2/dashboard.html');
 
   }else { 
     //session set so show sesssion using json_encode
-    echo json_encode(array('token_id' => $_SESSION['token_id']));
+    echo json_encode(array('token_id' => $_SESSION['token_id'], 'email' => $_SESSION['email']));
   }
-
-
 ?>
+

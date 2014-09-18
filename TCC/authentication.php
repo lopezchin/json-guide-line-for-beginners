@@ -4,8 +4,10 @@
 
 	session_start();
 
+	$user = isset($_REQUEST['user']) ? $_REQUEST['user'] : null;
 
-	if(!isset($_SESSION['token_id'])){ //check session first if its set 
+
+	if(!isset($_SESSION['token_id']) && !isset($_SESSION['user'])){ //check session first if its set 
 
 		$qstring = array(
 	    'login_id' => 'philweb.seniorprogrammer05@gmail.com',
@@ -41,13 +43,16 @@
 		$_SESSION['token_id'] = $obj['data'];
 		setcookie('token_id',$obj['data']);
 
+		$_SESSION['user'] = $user;
+		setcookie('user',$user);
+
 		// echo 'Token_key : '.$_SESSION['token_id'];
 
 		header('Location: trade.html');
 
 	}else { 
 		//session set so show sesssion using json_encode
-		echo json_encode(array('token_id' => $_SESSION['token_id']));
+		echo json_encode(array('token_id' => $_SESSION['token_id'], 'user' => $_SESSION['user']));
 	}
 
 
