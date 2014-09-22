@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	.align{
+		margin-bottom: 15px;
+	}
+
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="spreedly.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$("#payment_method").click(function () {
+			    var kind_payment = $("#kind_payment").val();
+			    var firstName = $("#firstname").val();
+			    var lastName = $("#lastname").val();
+			    var cardNumber = $("#cardNumber").val();
+			    var month = $("#month").val();
+			    var year = $("#year").val();
+			    var cvv = $("#cvv_payment").val();
+			    // var payment_method_identifier = $("#payment_method_identifier").val();
+			    // var some_other_things = $("#some_other_things").val();
+			    //with billing 
+			    // var address_1 = $("#address_1").val();
+			    // var address_2 = $("#address_2").val();
+			    // var city = $("#city").val();
+			    // var state = $("#state").val();
+			    // var zip = $("#zip").val();
+			    // var country = $("#country").val();
+			    // var phone_number = $("#phone_number").val();
+			    var email = $("#email").val();
+
+			     // alert(firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+ address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number);
+			   	payment_method(kind_payment, firstName, lastName, cardNumber, month, year, cvv, email);
+			   	// payment_method(kind_payment, firstName, lastName, cardNumber, month, year, cvv, address_1, address_2, city, state, zip, country, phone_number, email, payment_method_identifier, some_other_things);
+
+			});
+
+		  	function payment_method(kind_payment, firstName, lastName, cardNumber, month, year, cvv, email){
+		  		alert(kind_payment+'\n\n'+firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+email);
+		  		// alert(kind_payment+'\n\n'+firstName+'\n\n'+lastName+'\n\n'+cardNumber+'\n\n'+month+'\n\n'+year+'\n\n'+cvv+'\n\n'+address_1+'\n\n'+address_2+'\n\n'+city+'\n\n'+state+'\n\n'+zip+'\n\n'+country+'\n\n'+phone_number+'\n\n'+email+'\n\n'+payment_method_identifier+'\n\n'+some_other_things);
+		  		var card = {
+				  "kind": kind_payment,
+				  "first_name": firstName,
+				  "last_name":lastName,
+				  "number": cardNumber,
+				  "verification_value": cvv,
+				  "month": month,
+				  "year": year,
+				  "email": email
+				}
+
+				// Serialize and URI encode parameters.
+				var paramStr = $.param(card);
+
+
+				var url = "https://core.spreedly.com/v1/payment_methods.js?environment_key=8swOjWN7iUOAozk0w0tj9gvMBY8&" + paramStr;
+
+				$.ajax({
+				  type: "GET",
+				  url: url,
+				  dataType: "jsonp"
+				}).success(function(data) {
+				  console.log(data);
+				  if (data.status === 201) {
+				    alert(data.transaction.payment_method.token);
+				  } else {
+				    alert('validation error')
+				  }
+				}).error(function(request, status, error) {
+				  console.log(error);
+				  alert('transmission error');
+				});
+
+		    };// payment_method function end
+
+		});// $(document).ready(function(){ }); end
+
+	</script>
+</head>
+<body>
+<div style="border: 1px solid #000; padding: 10px; margin-bottom: 20px;">
+<pre>Use this as sample:</pre>
+<pre>
+kind: 'credit-card', 'bank-transfer', 'paypal', 'cheque',
+firstName: 'Bob',
+lastName: 'Smith',
+number: '5555555555554444',
+month: 12,
+year: 2017,
+cvv: '123'
+payment method identifier: '448',
+some other things: 'Can be anything really',
+</pre>
+</div>
+<!-- For Payment_method -->
+<div>Kind of Payment: </div><select id="kind_payment" name="kind_payment">
+	<option value="">Credit card</option>
+	<option value="1">Paypay</option>
+	<option value="2">Cheque</option>
+	<option value="3">Bank Transfer</option>
+</select>
+<div>Firstname: </div> <input type="text" id="firstname" name="firstname" placeholder="Firstname"/>
+<div>Lastname: </div> <input type="text" id="lastname" name="lastname" placeholder="Lastname"/>
+<div>Card Number: </div> <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number"/>
+<div>Exp: </div> 
+<select id="month" name="month">
+	<option value="">Month</option>
+	<option value="1">January</option>
+	<option value="2">February</option>
+	<option value="3">March</option>
+	<option value="4">April</option>
+	<option value="5">May</option>
+	<option value="6">June</option>
+	<option value="7">July</option>
+	<option value="8">August</option>
+	<option value="9">September</option>
+	<option value="10">October</option>
+	<option value="11">November</option>
+	<option value="12">December</option>
+</select>
+<select id="year" name="year">
+	<option value="">Year</option>
+	<option value="2014">2014</option>
+	<option value="2015">2015</option>
+	<option value="2016">2016</option>
+	<option value="2017">2017</option>
+	<option value="2018">2018</option>
+	<option value="2021">2021</option>
+	<option value="2021">2021</option>
+	<option value="2021">2021</option>
+</select>
+<div>CVV: </div> <input type="text" id="cvv_payment" name="cvv_payment" placeholder="ccv"/> <br>
+<div>Email</div><input type="text" id="email" name="email" placeholder="spreedly@email.com"/>
+
+<br>
+<input type="submit" id="payment_method" name="payment_method" placeholder="Payment Method"/>
+<!-- End For Payment_method -->
+<hr/>
+<div class="align"><input type="text" id="process_token_request" name="process_token_request" placeholder="Token requested"/></div>
+<div class="align"><input type="number" id="process_amount" name="process_amount" placeholder="Process Amount"/></div>
+<div class="align"><input type="text" id="currency_code" name="currency_code" placeholder="Ex: USD"/></div>
+<input type="submit" id="process_payment" name="process_payment" value="Process Payment"/>
+
+</body>
+</html>

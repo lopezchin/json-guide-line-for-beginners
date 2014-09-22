@@ -1,5 +1,5 @@
   $.ajax({
-      type: "POST",
+      type: "GET",
       url: "http://localhost/JSON_beginner/TCC/authentication.php",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -8,15 +8,15 @@
         // document.location = 'trade.html';
         // $('#tokenID').html(result.token_id);
         // console.log(res.data);
-      var tokenKey = result.token_id;
-      var user = result.user;
+      var tokenKey = result.data;
+      // var user = result.user;
 
-      alert(user);
+      // alert(user);
 
       // alert($.cookie('token_id'));
       //result show on success respond
-      // document.getElementById('tokenID').innerHTML = tokenKey;
-      // document.getElementById('token').value = tokenKey;
+      document.getElementById('tokenID').innerHTML = tokenKey;
+      document.getElementById('token').value = tokenKey;
 
     }
   });
@@ -985,6 +985,31 @@
 
   // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   // Find Contact
+
+  $("#contact_all").click(function () {
+
+
+    var token_key = $("#token").val();
+    
+     contact_all(token_key);
+
+  });
+
+  function contact_all(token_key){
+      $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: "http://localhost/JSON_beginner/TCC/contact_all.php",
+          data:{
+            'tokenKey': token_key,
+            _token: "",
+            action: ' contact_all'
+          },
+          success: function(result) {
+            console.log(result);          
+        }
+      });
+  }
 
   $("#findContact_ref_btn").click(function () {
 
