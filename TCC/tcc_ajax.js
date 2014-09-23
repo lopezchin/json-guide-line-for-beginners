@@ -1016,7 +1016,6 @@
       var token_key = $("#token").val();
       var find_cont_ref = $("#find_cont_ref").val();
 
-      
       findContactRef(token_key, find_cont_ref);
     
   });

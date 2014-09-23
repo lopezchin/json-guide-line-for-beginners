@@ -125,3 +125,35 @@ function process_payment(gateway_token, process_token_request, process_amount, c
 	});
 
 }
+// process payment function = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  WORKING
+
+
+$("#delete_payment").click(function () {
+    var gateway_token = $("#gateway_token").val();
+    var payment_token = $("#payment_token").val();
+
+	delete_payment_token(gateway_token, payment_token);
+
+});
+
+function delete_payment_token(gateway_token, payment_token){
+	alert(gateway_token+'\n\n'+payment_token);
+
+	$.ajax({
+      type: 'POST',
+      url: 'delete_payment.php',
+      dataType: 'xml',
+      data: {
+      	'gatewayToken': gateway_token,
+      	'paymentToken': payment_token,
+      	_token: '',
+      	action: 'deletePayment'
+      }
+	}).success(function(dataDP) {
+	  console.log(dataDP);
+	  
+	}).error(function(request, status, errorDP) {
+	  console.log(errorDP);
+	});
+
+}

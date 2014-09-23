@@ -8,34 +8,20 @@
 		
 	};
 
-	$qstring = array(
-	    'deal_ref' => $trade_id,
-		'trade_dom_id' => 'undefined',
-		'trade_index' => 'undefined'
-	);
-	 //cURL settings
-    $curlOptions = array (
-        CURLOPT_URL => "https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent",
-        CURLOPT_VERBOSE => 1,
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_POST => 1,
-        CURLOPT_POSTFIELDS => $qstring
-    );
+	$login_id = 'philweb.seniorprogrammer05@gmail.com';
+	$api_key = '4107a1cf7fba52e49d3257f24693078d4c10f13cf7ff1c2e74417b67fd63b103';
 
-	$ch = curl_init();
-	curl_setopt_array($ch,$curlOptions);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
+	$URL = "https://clientdemo.thecurrencycloud.com/proxy/transactron/confirm_funds_sent?deal_ref=20140923-BYTPWK";
+	 
+	$ch = curl_init($URL);
+	curl_setopt($ch, CURLOPT_USERPWD, $login_id . ':' . $api_key);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_POST, 1);
 
-
-	//Sending our request - $response will hold the API response
-	$send_fund = curl_exec($ch);
-
+	$output = curl_exec($ch);
 	curl_close($ch);
 
-	// $responseArray = array();
-	// parse_str($response,$responseArray);
-	
-	echo $send_fund;
+	echo($output);
 
 ?>
